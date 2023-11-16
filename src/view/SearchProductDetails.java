@@ -1,7 +1,9 @@
 
 package view;
 
+import database.Database;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
@@ -13,13 +15,18 @@ public class SearchProductDetails extends javax.swing.JFrame {
         initComponents();
          this.isManagerLoggedIn = isManagerLoggedIn;
     }
+    
+     public void setTable(){
+     Database d1=new Database();
+     d1.searchProductDetails(tblProduct,txtVal.getText(),cmbSelect.getSelectedItem().toString());
+        
+ }
+
 
    
     @SuppressWarnings("unchecked")
     
-    public JTable getTable(){
-        return tblProduct;
-    }
+   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -127,6 +134,11 @@ public class SearchProductDetails extends javax.swing.JFrame {
         btnSearch.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnClear.setBackground(new java.awt.Color(0, 0, 0));
         btnClear.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -291,6 +303,15 @@ public class SearchProductDetails extends javax.swing.JFrame {
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
         btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+       if(txtVal.getText().equals("Category | Name | Price")||cmbSelect.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
+       }
+       else{
+           setTable();
+       }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
   
     public static void main(String args[]) {

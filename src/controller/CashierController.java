@@ -20,19 +20,14 @@ public class CashierController extends ProductController {
     }
     
     public void SearchStockDetails(){
-       SearchStockDetails stock=new  SearchStockDetails(true);
-        JTable tableName=stock.getTable();
-        Database d1=new Database();
-        d1.searchStockDetails(tableName);
+    SearchStockDetails stock=new  SearchStockDetails(true);
+        stock.setTable();
         stock.setVisible(true);
     }
     
     public void SearchProductDetails(){
-         SearchProductDetails stock=new  SearchProductDetails(true);
-        JTable tableName=stock.getTable();
-        Database d1=new Database();
-        d1.searchProductDetails(tableName);
-        stock.setVisible(true);
+         SearchProductDetails product=new  SearchProductDetails(true);
+        product.setVisible(true);
     }
     
      public void changeAccountDetails(String oldMail,String newMail,String username,String password,String accountType){

@@ -351,9 +351,12 @@ private String prevMobile;
     String name = txtName.getText();
     String address = txtAddress.getText();
     String mobile = txtMobile.getText();
+    String productNames=txtProductName.getText();
+    String qty=txtQty.getText();
           
-       if(name.equals("")||address.equals("")||mobile.equals("")||cmbCat.getSelectedItem().equals("Select")||txtProductName.getText().equals("")||txtQty.getText().equals("")){
+       if(name.equals("Enter your name")||address.equals("Enter your address")||mobile.equals("07x xxxxxxx")||productNames.equals("Enter product name")||qty.equals("Enter a number")||cmbCat.getSelectedItem().equals("Select")){
           JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
+          
       }
       else{
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you wantto place order?", "Confirmation", JOptionPane.YES_NO_OPTION);

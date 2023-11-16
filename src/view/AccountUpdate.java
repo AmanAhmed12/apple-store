@@ -317,7 +317,11 @@ private boolean isManagerLoggedIn;
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-     if (isManagerLoggedIn) {
+     if(txtOldMail.getText().equals("Enter old mail")||txtNewMail.getText().equals("Enter new mail")||txtUser.getText().equals("Enter username")||txtPwd.getText().equals("")||cmbAccType.getSelectedItem().equals("Select")){
+          JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
+     }
+     else{
+        if (isManagerLoggedIn) {
         ManagerController m1=new ManagerController();
         String oldMail=txtOldMail.getText();
         String newMail=txtNewMail.getText();
@@ -337,7 +341,7 @@ private boolean isManagerLoggedIn;
         c1.changeAccountDetails(oldMail,newMail,username,password,accountType);
     }
     
-       
+     }   
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed

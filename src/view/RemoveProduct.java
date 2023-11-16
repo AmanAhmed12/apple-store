@@ -3,6 +3,7 @@ package view;
 
 import controller.ManagerController;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 public class RemoveProduct extends javax.swing.JFrame {
@@ -240,9 +241,9 @@ public class RemoveProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-            if(txtProductName.getText().equals("")||txtQty.getText().equals("")||cmbCat.getSelectedItem().equals("Select")){
+   if(txtProductName.getText().equals("Enter product name")||txtQty.getText().equals("Enter  a number")||cmbCat.getSelectedItem().equals("Select")){
         
-        System.out.println("all fields are required");
+         JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
     }
     else{
         ManagerController m1=new  ManagerController ();
@@ -251,9 +252,9 @@ public class RemoveProduct extends javax.swing.JFrame {
        String productName=txtProductName.getText();
        String qty=txtQty.getText();
        m1.removeProduct(cat,productName,qty );
-       cmbCat.setSelectedIndex(0);
-       txtProductName.setText("");
-       txtQty.setText("");
+       this.dispose();
+      RemoveProduct r1=new RemoveProduct();
+      r1.setVisible(true);
     }
     }//GEN-LAST:event_btnRemoveActionPerformed
 

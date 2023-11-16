@@ -2,6 +2,7 @@
 package view;
 import controller.ManagerController;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 public class addProduct extends javax.swing.JFrame {
@@ -302,9 +303,9 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    if(txtProduct.getText().equals("")||txtPrice.getText().equals("")||txtQty.getText().equals("")||cmbCategory.getSelectedItem().equals("Select")){
+    if(txtProductId.getText().equals("Enter product ID")||txtProduct.getText().equals("Enter product name")||txtPrice.getText().equals("Enter Amount")||txtQty.getText().equals("Enter a number")||cmbCategory.getSelectedItem().equals("Select")){
         
-        System.out.println("all fields are required");
+      JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
     }
     else{
         ManagerController m1=new  ManagerController ();

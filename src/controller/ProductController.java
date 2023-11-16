@@ -1,6 +1,7 @@
 
 package controller;
 
+import javax.swing.JTable;
 import view.SearchProductDetails;
 import view.SearchStockDetails;
 import view.ViewProductDetails;

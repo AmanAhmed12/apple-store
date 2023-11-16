@@ -193,10 +193,16 @@ private static String username;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-       Database d1=new Database();
+     if(txtUser.getText().equals("Enter username")||txtPwd.getText().equals("")){
+          JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
+     }
+     else{
+        Database d1=new Database();
        username=txtUser.getText();
        String password=txtPwd.getText();
-       d1.login(username, password);
+       
+       d1.login(username, password,this);
+     }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked

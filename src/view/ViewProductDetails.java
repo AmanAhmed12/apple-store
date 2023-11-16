@@ -1,6 +1,7 @@
 
 package view;
 
+import controller.ManagerController;
 import database.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,8 +19,8 @@ private boolean isManagerLoggedIn;
           this.isManagerLoggedIn = isManagerLoggedIn;
     }
     public void setTable(){
-        Database d1=new Database();
-        d1.viewAllProduct(tblIphone);
+     Database d1=new Database();
+     d1.viewAllProduct(tblIphone);
         
  }
 
@@ -65,7 +66,7 @@ private boolean isManagerLoggedIn;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(260, 260, 260)
+                .addGap(300, 300, 300)
                 .addComponent(lblHead)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -77,9 +78,9 @@ private boolean isManagerLoggedIn;
                         .addContainerGap()
                         .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(27, 27, 27)
                         .addComponent(lblHead)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

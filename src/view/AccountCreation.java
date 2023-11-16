@@ -3,6 +3,7 @@ package view;
 import controller.ManagerController;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import model.ManagerModel;
 
@@ -302,20 +303,16 @@ public class AccountCreation extends javax.swing.JFrame {
         String password = txtConfirm.getText();
         String accountType = txtType.getText();
         String mail = txtMail.getText();
-        if(username.equals("") || password.equals("") || accountType.equals("") || mail.equals("")){
-             System.out.println("");
-        }
-        else{
-           m1.createAccount(username, password, accountType, mail);
+        if (username.equals("Enter username") || password.equals("") || accountType.equals("Enter Account Type") || mail.equals("amaanhlimy@gmail.com")) {
+             JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
+        } else {
+            m1.createAccount(username, password, accountType, mail);
+            this.dispose();
+            PlaceOrder p1=new PlaceOrder();
+            p1.setVisible(true);
         }
 
        
-
-        txtUser.setText("");
-        txtConfirm.setText("");
-        txtType.setText("");
-        txtMail.setText("");
-        txtPwd.setText("");
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -337,57 +334,57 @@ public class AccountCreation extends javax.swing.JFrame {
     }//GEN-LAST:event_lblShowMouseClicked
 
     private void txtTypeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusGained
-     if(txtType.getText().equals("Enter Account Type")){
-           txtType.setText("");
-           txtType.setForeground(Color.black);
+        if (txtType.getText().equals("Enter Account Type")) {
+            txtType.setText("");
+            txtType.setForeground(Color.black);
             txtType.setBorder(new LineBorder(Color.blue, 2));
-       }
+        }
     }//GEN-LAST:event_txtTypeFocusGained
 
     private void txtTypeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusLost
-     if(txtType.getText().equals("")){
-           txtType.setText("Enter Account Type");
-           txtType.setForeground(new Color(153,153,153));
+        if (txtType.getText().equals("")) {
+            txtType.setText("Enter Account Type");
+            txtType.setForeground(new Color(153, 153, 153));
             txtType.setBorder(new LineBorder(Color.gray, 1));
-       }
+        }
     }//GEN-LAST:event_txtTypeFocusLost
 
     private void txtMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusGained
-       if(txtMail.getText().equals("amaanhlimy@gmail.com")){
-           txtMail.setText("");
-           txtMail.setForeground(Color.black);
+        if (txtMail.getText().equals("amaanhlimy@gmail.com")) {
+            txtMail.setText("");
+            txtMail.setForeground(Color.black);
             txtMail.setBorder(new LineBorder(Color.blue, 2));
-       }
+        }
     }//GEN-LAST:event_txtMailFocusGained
 
     private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
-        if(txtMail.getText().equals("")){
-           txtMail.setText("amaanhlimy@gmail.com");
-           txtMail.setForeground(new Color(153,153,153));
+        if (txtMail.getText().equals("")) {
+            txtMail.setText("amaanhlimy@gmail.com");
+            txtMail.setForeground(new Color(153, 153, 153));
             txtMail.setBorder(new LineBorder(Color.gray, 1));
-       }
+        }
     }//GEN-LAST:event_txtMailFocusLost
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-       if(txtUser.getText().equals("Enter username")){
-           txtUser.setText("");
-           txtUser.setForeground(Color.black);
-           txtUser.setBorder(new LineBorder(Color.blue, 2));
-       }
+        if (txtUser.getText().equals("Enter username")) {
+            txtUser.setText("");
+            txtUser.setForeground(Color.black);
+            txtUser.setBorder(new LineBorder(Color.blue, 2));
+        }
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
-     if(txtUser.getText().equals("")){
-           txtUser.setText("Enter username");
-           txtUser.setForeground(new Color(153,153,153));
-           txtUser.setBorder(new LineBorder(Color.gray, 1));
-       }
+        if (txtUser.getText().equals("")) {
+            txtUser.setText("Enter username");
+            txtUser.setForeground(new Color(153, 153, 153));
+            txtUser.setBorder(new LineBorder(Color.gray, 1));
+        }
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
-       
-           txtPwd.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
-       
+
+        txtPwd.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
@@ -403,11 +400,11 @@ public class AccountCreation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConfirmFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-      btnPrev.setBorder(new LineBorder(Color.blue, 3));
+        btnPrev.setBorder(new LineBorder(Color.blue, 3));
     }//GEN-LAST:event_btnPrevMouseEntered
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
-       btnPrev.setBorder(new LineBorder(Color.white, 3));
+        btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
 
     public static void main(String args[]) {

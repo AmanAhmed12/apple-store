@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Product;
 import view.Cashier;
 import view.Invoice;
+import view.Login;
 import view.Manager;
 import view.PlaceOrder;
 import view.addProduct;
@@ -39,7 +40,7 @@ public class Database {
             ((DefaultTableModel) tblIphone.getModel()).setRowCount(0);
              while(rs.next()){
                  String username=rs.getString("username");
-                  String password=rs.getString("password");
+                  String password=rs.getString("pwd");
                   String tbData[]={username,password};
                   DefaultTableModel tblModel=(DefaultTableModel) tblIphone.getModel();
                   tblModel.addRow(tbData);
@@ -79,8 +80,10 @@ public void searchStockDetails(JTable tblStockDetail){
 }
 
 
-public void searchProductDetails(JTable product){
+public void searchProductDetails(JTable product,String val,String selectItem){
     System.out.println(product);
+    System.out.println(val);
+    System.out.println(selectItem);
     System.out.println("product details");
 }
 
@@ -190,14 +193,19 @@ public void accountDeactivate(String username){
 }
 
 
-public void login(String username, String password) {
+public void login(String username, String password,Login login) {
     try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/my_db", "root", "")) {
         if (checkAdminLogin(conn, username, password)) {
-            System.out.println("Welcome admin");
+            JOptionPane.showMessageDialog(null,"welcome admin"); 
+            Manager m1=new Manager();
+            login.dispose();
+            m1.setVisible(true);
         } else if (checkUserLogin(conn, username, password)) {
-            System.out.println("Welcome user");
+             JOptionPane.showMessageDialog(null,"welcome user"); 
+            Cashier c1= new Cashier();
+            c1.setVisible(true);
         } else {
-            System.out.println("Login failed");
+             JOptionPane.showMessageDialog(null,"Incorrect username or password!!!"); 
         }
     } catch (SQLException e) {
         System.out.println(e.getMessage());
@@ -274,7 +282,7 @@ public void printInvoice(JTable tblInvoice,String name, String address, String m
             recordCount++;
         }
         
-        int columnToTotal = 5; // Assuming the "amount" column is at index 5
+int columnToTotal = 5; // Assuming the "amount" column is at index 5
 double total = 0.0;
 
 for (int row = 0; row < model.getRowCount(); row++) {

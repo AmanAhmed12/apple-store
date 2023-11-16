@@ -1,5 +1,6 @@
 package view;
 
+import database.Database;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -13,9 +14,10 @@ public class SearchStockDetails extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     
-    public JTable getTable(){
-        return tblStockDetails;
-    }
+   public void  setTable(){
+       Database d1=new Database();
+     d1.searchStockDetails(tblStockDetails);
+   }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
