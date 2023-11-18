@@ -5,11 +5,13 @@ import database.Database;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+
+
 import javax.swing.border.LineBorder;
 
 
 public class Login extends javax.swing.JFrame {
-private static String username;
+private static String usernames;
 
    
     public Login() {
@@ -19,7 +21,7 @@ private static String username;
     @SuppressWarnings("unchecked")
     
     public String getUsername(){
-        return username;
+        return usernames;
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -198,10 +200,10 @@ private static String username;
      }
      else{
         Database d1=new Database();
-       username=txtUser.getText();
+       String username=txtUser.getText();
        String password=txtPwd.getText();
-       
-       d1.login(username, password,this);
+       usernames=username;
+      d1.login(username, password, this, txtUser, txtPwd);
      }
     }//GEN-LAST:event_btnLoginActionPerformed
 

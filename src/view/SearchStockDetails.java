@@ -85,6 +85,7 @@ public class SearchStockDetails extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblStockDetails.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.black));
         tblStockDetails.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tblStockDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

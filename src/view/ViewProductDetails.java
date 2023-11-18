@@ -85,6 +85,7 @@ private boolean isManagerLoggedIn;
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblIphone.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.black));
         tblIphone.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tblIphone.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -1,6 +1,7 @@
 
 package database;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,9 +11,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import model.Product;
+import oop_project.Oop_project;
 import view.Cashier;
 import view.Invoice;
 import view.Login;
@@ -55,6 +60,8 @@ public class Database {
         e.printStackTrace();
     }
  }
+    
+
     
     
     
@@ -187,30 +194,70 @@ public void removeProduct(String cat,String productName,String qty){
       System.out.println("product removed successfully");
 }
 
-public void accountDeactivate(String username){
-    System.out.println(username);
-    System.out.println(" Account deactivated");
+public void useraccountDeactivate(String username){
+   Connection conn = null;
+    PreparedStatement pstmt = null;
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/my_db", "root", "");
+
+        String updateRecord = "UPDATE users SET Status = 'deactive' WHERE username = ?";
+        pstmt = conn.prepareStatement(updateRecord);
+
+        
+
+        pstmt.setString(1,username);
+
+        pstmt.executeUpdate();
+          JOptionPane.showMessageDialog(null,username+" Account Deactivated successfully...");
+    } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error in database operations", ex);
+    } finally {
+        try {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error closing database resources", ex);
+        }
+    }
 }
 
 
-public void login(String username, String password,Login login) {
+
+
+public void login(String username, String password, Login login, JTextField txtUser, JPasswordField txtPwd) {
     try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/my_db", "root", "")) {
+
+        String userLoginResult = checkUserLogin(conn, username, password);
+
         if (checkAdminLogin(conn, username, password)) {
-            JOptionPane.showMessageDialog(null,"welcome admin"); 
-            Manager m1=new Manager();
-            login.dispose();
+           
+            JOptionPane.showMessageDialog(null, "Welcome admin");
+              Oop_project o1=new  Oop_project();
+            o1.getLoginDetail().dispose();
+            Manager m1 = new Manager();
+           
             m1.setVisible(true);
-        } else if (checkUserLogin(conn, username, password)) {
-             JOptionPane.showMessageDialog(null,"welcome user"); 
-            Cashier c1= new Cashier();
+        } else if ("active".equals(userLoginResult) && userLoginResult != null) {
+            
+            JOptionPane.showMessageDialog(null, "Welcome user");
+             Oop_project o1=new  Oop_project();
+            o1.getLoginDetail().dispose();
+            Cashier c1 = new Cashier();
             c1.setVisible(true);
         } else {
-             JOptionPane.showMessageDialog(null,"Incorrect username or password!!!"); 
+            JOptionPane.showMessageDialog(null, "Incorrect username or password!!!");
         }
     } catch (SQLException e) {
         System.out.println(e.getMessage());
     }
 }
+
 
 private boolean checkAdminLogin(Connection conn, String username, String password) throws SQLException {
     String adminQuery = "SELECT username, pwd FROM administrator WHERE username = ? AND pwd = ?";
@@ -222,13 +269,22 @@ private boolean checkAdminLogin(Connection conn, String username, String passwor
     }
 }
 
-private boolean checkUserLogin(Connection conn, String username, String password) throws SQLException {
-    String userQuery = "SELECT username, pwd FROM users WHERE username = ? AND pwd = ?";
+private String checkUserLogin(Connection conn, String username, String password) throws SQLException {
+   String userQuery = "SELECT username, pwd, Status FROM users WHERE username = ? AND pwd = ?";
     try (PreparedStatement pstmt = conn.prepareStatement(userQuery)) {
         pstmt.setString(1, username);
         pstmt.setString(2, password);
-        ResultSet rs = pstmt.executeQuery();
-        return rs.next();
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                // Assuming "Status" is a String column. Adjust the type accordingly.
+                String status = rs.getString("Status");
+                return status;
+            } else {
+                // User not found
+                return null;
+            }
+        }
     }
 }
 
@@ -322,6 +378,119 @@ receipt.setTotal(Double.toString(total));
             Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error closing database resources", ex);
         }
     }
+}
+
+
+public void manageActivate(JTable tblUserDetails,int row){
+   String user = (String) tblUserDetails.getValueAt(row, 0); // First column
+   Connection conn = null;
+    PreparedStatement pstmt = null;
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/my_db", "root", "");
+
+        String updateRecord = "UPDATE users SET status = 'active' WHERE username = ?";
+        pstmt = conn.prepareStatement(updateRecord);
+
+        
+
+        pstmt.setString(1,user);
+
+        pstmt.executeUpdate();
+        JOptionPane.showMessageDialog(null,user+" Account Activated successfully...");
+    } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error in database operations", ex);
+    } finally {
+        try {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error closing database resources", ex);
+        }
+    }
+}
+
+
+public void manageDeactivate(JTable tblUserDetails,int row){
+    String user = (String) tblUserDetails.getValueAt(row, 0); // First column
+   Connection conn = null;
+    PreparedStatement pstmt = null;
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/my_db", "root", "");
+
+        String updateRecord = "UPDATE users SET status = 'deactive' WHERE username = ?";
+        pstmt = conn.prepareStatement(updateRecord);
+
+        
+
+        pstmt.setString(1,user);
+
+        pstmt.executeUpdate();
+          JOptionPane.showMessageDialog(null,user+" Account Deactivated successfully...");
+    } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error in database operations", ex);
+    } finally {
+        try {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error closing database resources", ex);
+        }
+    }
+}
+
+public void loadUserAccountDetails(JTable tblUserDetails){
+       String JDBC_URL = "jdbc:mysql://localhost:3306/my_db";
+    String USERNAME = "your_username";
+     String PASSWORD = "your_password";
+    
+    try {
+            // Connect to the database
+            Connection connection = DriverManager.getConnection(JDBC_URL, "root", "");
+
+            // Query to select all rows from the "users" table
+            String query = "SELECT * FROM users";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Get the metadata (column names) from the result set
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            DefaultTableModel model = (DefaultTableModel) tblUserDetails.getModel();
+
+            // Clear existing data in the table
+            model.setRowCount(0);
+
+            // Iterate through the result set and add rows to the table
+            while (resultSet.next()) {
+                Object[] row = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = resultSet.getObject(i);
+                }
+                model.addRow(row);
+            }
+
+            // Close resources
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception according to your application's requirements
+        }
 }
 
 

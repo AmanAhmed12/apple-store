@@ -2,6 +2,7 @@
 package controller;
 
 import database.Database;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import view.SearchProductDetails;
 import view.SearchStockDetails;
@@ -36,8 +37,11 @@ public class CashierController extends ProductController {
     }
      
       public void deactivateAccount(String username){
-         Database d1=new Database();
-        d1.accountDeactivate(username);
+           
+        
+             Database d1=new Database();
+            d1.useraccountDeactivate(username);
+         
     }
       
       public void placeOrder(String name,String address,String mobile,String category,String productName,int quantity,String prevName,String prevAddress,String prevMobile){

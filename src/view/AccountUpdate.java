@@ -3,6 +3,7 @@ package view;
 
 import controller.CashierController;
 import controller.ManagerController;
+import database.Database;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -345,13 +346,21 @@ private boolean isManagerLoggedIn;
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
-        int choice= JOptionPane.showConfirmDialog(null, "Are you sure you want to DeActivate your account?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if(choice==JOptionPane.YES_OPTION){
-            ManagerController m1=new ManagerController();
-            Login l1=new Login();
-            String username=l1.getUsername();
-            m1.deactivateAccount(username);
+      if(isManagerLoggedIn){
+           this.dispose();
+        userAccountDetails u1=new userAccountDetails();
+       u1.setVisible(true);
+      }
+      else{
+          int choicemore = JOptionPane.showConfirmDialog(null, "Are you sure you want to deactivate your Account?", "Confirmation", JOptionPane.YES_NO_OPTION);
+          if (choicemore == JOptionPane.YES_OPTION) {
+          CashierController c1=new CashierController();
+          Login l1=new Login();
+          String user=l1.getUsername();
+          c1.deactivateAccount(user);
         }
+      }
+       
     }//GEN-LAST:event_btnDeactivateActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
