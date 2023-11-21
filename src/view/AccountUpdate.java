@@ -5,6 +5,7 @@ import controller.CashierController;
 import controller.ManagerController;
 import database.Database;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -28,6 +29,15 @@ private boolean isManagerLoggedIn;
         return isManagerLoggedIn;
     }
   
+     private int getDigits(String str) {
+    int digitCount = 0;
+    for (char c : str.toCharArray()) {
+        if (Character.isDigit(c)) {
+            digitCount++;
+        }
+    }
+    return digitCount;
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,6 +63,10 @@ private boolean isManagerLoggedIn;
         cmbAccType = new javax.swing.JComboBox<>();
         txtPwd = new javax.swing.JPasswordField();
         lblShow = new javax.swing.JLabel();
+        lblIOld = new javax.swing.JLabel();
+        lblINew = new javax.swing.JLabel();
+        lblIUser = new javax.swing.JLabel();
+        lblIPwd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,13 +138,13 @@ private boolean isManagerLoggedIn;
         lblNewMail.setText("New Mail");
 
         lblUser.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblUser.setText("username");
+        lblUser.setText("New username");
 
         lblPwd.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblPwd.setText("password");
+        lblPwd.setText("New password");
 
         lblAccType.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblAccType.setText("Account Type");
+        lblAccType.setText("New Account Type");
 
         txtOldMail.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtOldMail.setForeground(new java.awt.Color(153, 153, 153));
@@ -170,6 +184,11 @@ private boolean isManagerLoggedIn;
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
+            }
+        });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserKeyTyped(evt);
             }
         });
 
@@ -219,6 +238,11 @@ private boolean isManagerLoggedIn;
                 txtPwdFocusLost(evt);
             }
         });
+        txtPwd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPwdKeyPressed(evt);
+            }
+        });
 
         lblShow.setFont(new java.awt.Font("Segoe UI Symbol", 0, 24)); // NOI18N
         lblShow.setText(" 👁");
@@ -229,6 +253,18 @@ private boolean isManagerLoggedIn;
                 lblShowMouseClicked(evt);
             }
         });
+
+        lblIOld.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIOld.setForeground(new java.awt.Color(255, 0, 0));
+
+        lblINew.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblINew.setForeground(new java.awt.Color(255, 0, 0));
+
+        lblIUser.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIUser.setForeground(new java.awt.Color(255, 0, 0));
+
+        lblIPwd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIPwd.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -244,16 +280,24 @@ private boolean isManagerLoggedIn;
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAccType)
-                                    .addComponent(lblPwd))
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbAccType, 0, 283, Short.MAX_VALUE)
-                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPwd))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblAccType, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblPwd)
+                                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(20, 20, 20)))
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbAccType, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(lblIPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblActivate)
                                 .addGap(18, 18, 18)
@@ -263,12 +307,15 @@ private boolean isManagerLoggedIn;
                                     .addComponent(lblUser)
                                     .addComponent(lblNewMail)
                                     .addComponent(lblOldMail))
-                                .addGap(75, 75, 75)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNewMail, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtOldMail, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNewMail, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                    .addComponent(txtOldMail, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                    .addComponent(lblIOld, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblINew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblIUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,30 +324,41 @@ private boolean isManagerLoggedIn;
                 .addComponent(lblHead)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtOldMail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblOldMail, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                    .addComponent(lblOldMail, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtOldMail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIOld, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNewMail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNewMail))
-                .addGap(20, 20, 20)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblNewMail)
+                        .addGap(33, 33, 33)
+                        .addComponent(lblUser)
+                        .addGap(17, 17, 17))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtNewMail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(lblINew, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(lblIUser, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUser))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPwd)
                     .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPwd))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAccType)
-                    .addComponent(cmbAccType, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                    .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbAccType, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAccType))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblActivate)
                     .addComponent(btnDeactivate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -333,28 +391,64 @@ private boolean isManagerLoggedIn;
      if(txtOldMail.getText().equals("Enter old mail")||txtNewMail.getText().equals("Enter new mail")||txtUser.getText().equals("Enter username")||txtPwd.getText().equals("")||cmbAccType.getSelectedItem().equals("Select")){
           JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
      }
+     else if(!txtOldMail.getText().endsWith("@gmail.com")||!txtNewMail.getText().endsWith("@gmail.com")){
+         if(!txtOldMail.getText().endsWith("@gmail.com")){
+             lblIOld.setText("Invalid mail format!!!");
+         }
+         else if(!txtNewMail.getText().endsWith("@gmail.com")){
+             lblINew.setText("Invalid mail format!!!");
+         }
+         else{
+              lblIOld.setText("");
+          lblINew.setText("");
+         }
+         
+          
+     }
+     else if(txtNewMail.getText().equals(txtOldMail.getText())){
+         lblINew.setText("New Mail and old Mail cannot be same!!!");
+     }
      else{
-        if (isManagerLoggedIn) {
-        ManagerController m1=new ManagerController();
-        String oldMail=txtOldMail.getText();
-        String newMail=txtNewMail.getText();
-        String username=txtUser.getText();
-        String password=txtPwd.getText();
-         String accountType=(String) cmbAccType.getSelectedItem();
-        m1.changeAccountDetails(oldMail,newMail,username,password,accountType);
-        
-        
-    } else {
-        CashierController c1=new CashierController();
-        String oldMail=txtOldMail.getText();
-        String newMail=txtNewMail.getText();
-        String username=txtUser.getText();
-        String password=txtPwd.getText();
-        String accountType=(String) cmbAccType.getSelectedItem();
-        c1.changeAccountDetails(oldMail,newMail,username,password,accountType);
-    }
-    
-     }   
+          // Check password length
+            
+            if(txtPwd.getText().length() <8){
+                 lblIPwd.setText("Password must be more than 8 characters");
+            } 
+         
+             // Check username length and digit count
+            if (txtUser.getText().length() < 5) {
+                lblIUser.setText("Username must be more than 5 characters");
+            } else if (getDigits(txtUser.getText()) > 3) {
+                lblIUser.setText("Username cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
+            
+            
+             // If all validations pass, create the account
+       if (lblIOld.getText().isEmpty() && lblINew.getText().isEmpty()&& lblIPwd.getText().isEmpty() && lblIUser.getText().isEmpty()) {
+                    if (isManagerLoggedIn) {
+                        ManagerController m1=new ManagerController();
+                        String oldMail=txtOldMail.getText();
+                        String newMail=txtNewMail.getText();
+                        String username=txtUser.getText();
+                        String password=txtPwd.getText();
+                         String accountType=(String) cmbAccType.getSelectedItem();
+                        m1.changeAccountDetails(oldMail,newMail,username,password,accountType);
+
+
+                } else {
+                    CashierController c1=new CashierController();
+                    String oldMail=txtOldMail.getText();
+                    String newMail=txtNewMail.getText();
+                    String username=txtUser.getText();
+                    String password=txtPwd.getText();
+                    String accountType=(String) cmbAccType.getSelectedItem();
+                    c1.changeAccountDetails(oldMail,newMail,username,password,accountType);
+                }
+
+        }  
+     }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
@@ -410,56 +504,78 @@ private boolean isManagerLoggedIn;
         if(txtOldMail.getText().equals("Enter old mail")){
            txtOldMail.setText("");
            txtOldMail.setForeground(Color.black);
-          txtOldMail.setBorder(new LineBorder(Color.blue, 2));
+        
        }
+        
+          txtOldMail.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtOldMailFocusGained
 
     private void txtOldMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOldMailFocusLost
-     if(txtOldMail.getText().equals("")){
-           txtOldMail.setText("Enter old mail");
-           txtOldMail.setForeground(new Color(153,153,153));
-           txtOldMail.setBorder(new LineBorder(Color.gray, 1));
-       }
+      if (txtOldMail.getText().equals("")) {
+        txtOldMail.setText("Enter old mail");
+        txtOldMail.setForeground(new Color(153, 153, 153));
+        lblIOld.setText("");  // Set lblIOld to default value
+    } else {
+        if (txtOldMail.getText().endsWith("@gmail.com")) {
+            lblIOld.setText("");
+        } else {
+            lblIOld.setText("Invalid mail format!!!");
+        }
+    }
+
+    txtOldMail.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtOldMailFocusLost
 
     private void txtNewMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewMailFocusGained
     if(txtNewMail.getText().equals("Enter new mail")){
            txtNewMail.setText("");
           txtNewMail.setForeground(Color.black);
-          txtNewMail.setBorder(new LineBorder(Color.blue, 2));
+          
        }
+    txtNewMail.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtNewMailFocusGained
 
     private void txtNewMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewMailFocusLost
-      if( txtNewMail.getText().equals("")){
-            txtNewMail.setText("Enter new mail");
-            txtNewMail.setForeground(new Color(153,153,153));
-            txtNewMail.setBorder(new LineBorder(Color.gray, 1));
-       }
+      if (txtNewMail.getText().equals("")) {
+        txtNewMail.setText("Enter new mail");
+        txtNewMail.setForeground(new Color(153, 153, 153));
+        lblINew.setText("");  // Set lblINew to default value
+    } else {
+        if (txtNewMail.getText().endsWith("@gmail.com")) {
+            lblINew.setText("");
+        } else {
+            lblINew.setText("Invalid mail format!!!");
+        }
+    }
+
+       txtNewMail.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtNewMailFocusLost
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
         if(txtUser.getText().equals("Enter username")){
            txtUser.setText("");
            txtUser.setForeground(Color.black);
-           txtUser.setBorder(new LineBorder(Color.blue, 2));
+          
        }
+         txtUser.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
       if(txtUser.getText().equals("")){
            txtUser.setText("Enter username");
            txtUser.setForeground(new Color(153,153,153));
-           txtUser.setBorder(new LineBorder(Color.gray, 1));
+          
        }
+       txtUser.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
        if(txtPwd.getText().equals("##############")){
           txtPwd.setText("");
            txtPwd.setForeground(Color.black);
-          txtPwd.setBorder(new LineBorder(Color.blue, 2));
+         
        }
+        txtPwd.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
@@ -467,8 +583,9 @@ private boolean isManagerLoggedIn;
          if(txtPwd.getText().equals("")){
            txtPwd.setText("##############");
            txtPwd.setForeground(new Color(153,153,153));
-           txtPwd.setBorder(new LineBorder(Color.gray, 1));
+         
        }
+           txtPwd.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtPwdFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
@@ -478,6 +595,38 @@ private boolean isManagerLoggedIn;
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
        btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
+
+    private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
+         if(txtPwd.getText().length() <8){
+           lblIPwd.setText("Password must have more than 8 characters");
+       }
+       else{
+           lblIPwd.setText("");
+       }
+    }//GEN-LAST:event_txtPwdKeyPressed
+
+    private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
+       char pressedKey = evt.getKeyChar();
+    String txtUserText = txtUser.getText(); // Get the current text of txtUser
+
+    if (pressedKey != KeyEvent.VK_BACK_SPACE) {
+        if (txtUserText.length() < 5) {
+            lblIUser.setText("Characters must be more than 5 !!!");
+        } else if (getDigits(txtUserText) >=3) {
+            lblIUser.setText("Cannot have more than 3 digits");
+        } else {
+            lblIUser.setText("");
+        }
+    } else { // Backspace key is pressed
+        if (txtUserText.length() < 5) {
+            lblIUser.setText("Characters must be more than 5 !!!");
+        } else if (getDigits(txtUserText) >4) {
+            lblIUser.setText("Cannot have more than 3 digits");
+        } else {
+            lblIUser.setText("");
+        }
+    }
+    }//GEN-LAST:event_txtUserKeyTyped
 
    
     public static void main(String args[]) {
@@ -501,6 +650,10 @@ private boolean isManagerLoggedIn;
     private javax.swing.JLabel lblAccType;
     private javax.swing.JLabel lblActivate;
     private javax.swing.JLabel lblHead;
+    private javax.swing.JLabel lblINew;
+    private javax.swing.JLabel lblIOld;
+    private javax.swing.JLabel lblIPwd;
+    private javax.swing.JLabel lblIUser;
     private javax.swing.JLabel lblLogoHead;
     private javax.swing.JLabel lblNewMail;
     private javax.swing.JLabel lblOldMail;

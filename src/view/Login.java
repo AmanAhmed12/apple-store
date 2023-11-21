@@ -325,8 +325,8 @@ private static String usernames;
 
     private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
       
-        if(txtPwd.getText().length()>10){
-           lblIpwd.setText("Characters must be less than 10 !!!");
+        if(txtPwd.getText().length()<8){
+           lblIpwd.setText("Characters must be more than 8 !!!");
        }
        else{
            lblIpwd.setText("");

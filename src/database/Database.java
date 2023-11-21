@@ -66,6 +66,7 @@ public class Database {
     
     
 public void addproduct(Product product){
+    System.out.println(product.getProductId());
     System.out.println(product.getCategory());
     System.out.println(product.getProductName());
     System.out.println(product.getQuantity());

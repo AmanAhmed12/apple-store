@@ -42,7 +42,6 @@ public class AccountCreation extends javax.swing.JFrame {
         txtMail = new javax.swing.JTextField();
         lblUser = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
-        txtType = new javax.swing.JTextField();
         txtPwd = new javax.swing.JPasswordField();
         lblShow = new javax.swing.JLabel();
         lblIMail = new javax.swing.JLabel();
@@ -50,6 +49,7 @@ public class AccountCreation extends javax.swing.JFrame {
         lblIUser = new javax.swing.JLabel();
         lblIConfirm = new javax.swing.JLabel();
         txtConfirm = new javax.swing.JPasswordField();
+        cmbAccType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,23 +181,6 @@ public class AccountCreation extends javax.swing.JFrame {
         lblType.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblType.setText("Account Type");
 
-        txtType.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtType.setForeground(new java.awt.Color(153, 153, 153));
-        txtType.setText("Enter Account Type");
-        txtType.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTypeFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTypeFocusLost(evt);
-            }
-        });
-        txtType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTypeActionPerformed(evt);
-            }
-        });
-
         txtPwd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtPwd.setForeground(new java.awt.Color(153, 153, 153));
         txtPwd.setText("##############");
@@ -253,6 +236,9 @@ public class AccountCreation extends javax.swing.JFrame {
             }
         });
 
+        cmbAccType.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        cmbAccType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "manager", "cashier" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -266,25 +252,18 @@ public class AccountCreation extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPwd)
-                                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblConfirm))
-                                .addGap(19, 19, 19))
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblMail)
                                     .addComponent(lblUser)
-                                    .addComponent(lblType))
-                                .addGap(52, 52, 52)))
+                                    .addComponent(lblType)
+                                    .addComponent(lblPwd)
+                                    .addComponent(lblConfirm))
+                                .addGap(23, 23, 23)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblIUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblIMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(lblIConfirm, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -292,7 +271,13 @@ public class AccountCreation extends javax.swing.JFrame {
                                     .addComponent(lblIPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cmbAccType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblIUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                                .addComponent(lblIMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -300,11 +285,11 @@ public class AccountCreation extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(lblAccHead)
-                .addGap(88, 88, 88)
+                .addGap(98, 98, 98)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAccType, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblType))
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMail))
@@ -367,28 +352,64 @@ public class AccountCreation extends javax.swing.JFrame {
         ManagerController m1 = new ManagerController();
         String username = txtUser.getText();
         String password = txtConfirm.getText();
-        String accountType = txtType.getText();
+        String accountType = (String) cmbAccType.getSelectedItem();
         String mail = txtMail.getText();
-        if (username.equals("Enter username") || password.equals("") || accountType.equals("Enter Account Type") || mail.equals("amaanhlimy@gmail.com")) {
-             JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-        } else {
-            m1.createAccount(username, password, accountType, mail);
-            this.dispose();
-            PlaceOrder p1=new PlaceOrder();
-            p1.setVisible(true);
-        }
 
-       
+        // Check for empty fields
+        if (username.equals("Enter username") || password.equals("") || accountType.equals("Select") || mail.equals("amaanhlimy@gmail.com")) {
+            JOptionPane.showMessageDialog(null, "Fields cannot be empty");
+        } else {
+            // Check email format
+            if (!isValidEmail(mail)) {
+                lblIMail.setText("Invalid Email format");
+            } else {
+                lblIMail.setText("");
+            }
+
+          
+            // Check password length
+            
+            if(txtPwd.getText().length() <8){
+                 lblIPwd.setText("Password must have more than 8 characters");
+            } 
+            else {
+                       // Check password confirmation
+                  if (!txtPwd.getText().equals(txtConfirm.getText())) {
+                     lblIConfirm.setText("Password does not match");
+                  } else {
+                     lblIConfirm.setText("");
+                   }
+
+            }
+
+            // Check username length and digit count
+            if (username.length() < 5) {
+                lblIUser.setText("Username must be more than 5 characters");
+            } else if (getDigits(username) > 3) {
+                lblIUser.setText("Username cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
+
+            // If all validations pass, create the account
+            if (lblIMail.getText().isEmpty() && lblIConfirm.getText().isEmpty()
+                && lblIPwd.getText().isEmpty() && lblIUser.getText().isEmpty()) {
+                m1.createAccount(username, password, accountType, mail);
+                this.dispose();
+                AccountCreation a1 = new AccountCreation();
+                a1.setVisible(true);
+            }
+        }
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
+     private boolean isValidEmail(String email) {
+        // Implement a more comprehensive email validation logic using regular expressions
+        return email.endsWith("@gmail.com");
+    }
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtMailActionPerformed
-
-    private void txtTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTypeActionPerformed
 
     private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked
         char echo = txtPwd.getEchoChar();
@@ -398,24 +419,6 @@ public class AccountCreation extends javax.swing.JFrame {
             txtPwd.setEchoChar((char) 0); // Set it to 0 to make characters visible
         }
     }//GEN-LAST:event_lblShowMouseClicked
-
-    private void txtTypeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusGained
-        if (txtType.getText().equals("Enter Account Type")) {
-            txtType.setText("");
-            txtType.setForeground(Color.black);
-           
-        }
-         txtType.setBorder(new LineBorder(Color.blue, 2));
-    }//GEN-LAST:event_txtTypeFocusGained
-
-    private void txtTypeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusLost
-        if (txtType.getText().equals("")) {
-            txtType.setText("Enter Account Type");
-            txtType.setForeground(new Color(153, 153, 153));
-           
-        }
-         txtType.setBorder(new LineBorder(Color.gray, 1));
-    }//GEN-LAST:event_txtTypeFocusLost
 
     private void txtMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusGained
         if (txtMail.getText().equals("amaanhlimy@gmail.com")) {
@@ -501,8 +504,8 @@ public class AccountCreation extends javax.swing.JFrame {
 
     private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
         
-        if(txtPwd.getText().length()>10){
-           lblIPwd.setText("Characters must be less than 10 !!!");
+        if(txtPwd.getText().length() <8){
+           lblIPwd.setText("Password must have more than 8 characters");
        }
        else{
            lblIPwd.setText("");
@@ -532,7 +535,7 @@ public class AccountCreation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConfirmFocusLost
 
     private void txtConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmKeyPressed
-        if(txtConfirm.getText().equals(txtPwd.getText())){
+        if(txtPwd.getText().equals(txtConfirm.getText())){
            lblIConfirm.setText("Password doesnot match!!!");
        }
        else{
@@ -577,6 +580,7 @@ public class AccountCreation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnPrev;
+    private javax.swing.JComboBox<String> cmbAccType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -595,7 +599,6 @@ public class AccountCreation extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtConfirm;
     private javax.swing.JTextField txtMail;
     private javax.swing.JPasswordField txtPwd;
-    private javax.swing.JTextField txtType;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

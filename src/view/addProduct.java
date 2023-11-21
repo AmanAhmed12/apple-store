@@ -2,6 +2,7 @@
 package view;
 import controller.ManagerController;
 import java.awt.Color;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -35,6 +36,9 @@ public class addProduct extends javax.swing.JFrame {
         cmbCategory = new javax.swing.JComboBox<>();
         lblProductId = new javax.swing.JLabel();
         txtProductId = new javax.swing.JTextField();
+        lblIId = new javax.swing.JLabel();
+        lblIPrice = new javax.swing.JLabel();
+        lblIQty = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,7 +192,7 @@ public class addProduct extends javax.swing.JFrame {
 
         txtProductId.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtProductId.setForeground(new java.awt.Color(153, 153, 153));
-        txtProductId.setText("Enter product ID");
+        txtProductId.setText("Ixxx");
         txtProductId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtProductIdFocusGained(evt);
@@ -202,6 +206,20 @@ public class addProduct extends javax.swing.JFrame {
                 txtProductIdActionPerformed(evt);
             }
         });
+        txtProductId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtProductIdKeyTyped(evt);
+            }
+        });
+
+        lblIId.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIId.setForeground(new java.awt.Color(255, 0, 51));
+
+        lblIPrice.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIPrice.setForeground(new java.awt.Color(255, 0, 51));
+
+        lblIQty.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIQty.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,18 +243,23 @@ public class addProduct extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtProductId)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)))
+                                    .addComponent(txtProductId)
+                                    .addComponent(lblIId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                    .addComponent(lblIPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblIQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGap(52, 52, 52))
         );
         jPanel2Layout.setVerticalGroup(
@@ -248,14 +271,17 @@ public class addProduct extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblProductId)
                     .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(lblCat))
+                        .addComponent(lblCat)
+                        .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblIId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblProduct)
                     .addComponent(txtProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,15 +289,19 @@ public class addProduct extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPrice)
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblQty)
                     .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIQty, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -303,11 +333,32 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    if(txtProductId.getText().equals("Enter product ID")||txtProduct.getText().equals("Enter product name")||txtPrice.getText().equals("Enter Amount")||txtQty.getText().equals("Enter a number")||cmbCategory.getSelectedItem().equals("Select")){
+    String priceText = txtPrice.getText();
+     String qtyText = txtQty.getText();
+     String idText = txtProductId.getText();
+    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+
+    if(txtProductId.getText().equals("Ixxx")||txtProduct.getText().equals("Enter product name")||txtPrice.getText().equals("Enter Amount")||txtQty.getText().equals("Enter a number")||cmbCategory.getSelectedItem().equals("Select")){
         
       JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
     }
+    else if(!txtProductId.getText().startsWith("I")){
+        lblIId.setText("ID must start with I");
+        
+    }
+    else if(!txtProductId.getText().substring(1).matches("\\d+")){
+            lblIId.setText("Rest of the values must be digits");
+      }
+    else if(pattern.matcher(priceText).find()){
+        lblIPrice.setText("can only contain digits!!!");
+    }
+    else if(pattern.matcher(qtyText).find()){
+        lblIQty.setText("can only contain digits!!!");
+    }
     else{
+         lblIQty.setText("");
+        lblIPrice.setText("");
+        lblIId.setText("");
         ManagerController m1=new  ManagerController ();
         String productId=txtProductId.getText();
        String cat=(String) cmbCategory.getSelectedItem();
@@ -331,67 +382,93 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProductIdActionPerformed
 
     private void txtProductIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductIdFocusGained
-        if(txtProductId.getText().equals("Enter product ID")){
+        if(txtProductId.getText().equals("Ixxx")){
         txtProductId.setText("");
         txtProductId.setForeground(Color.black);
-         txtProductId.setBorder(new LineBorder(Color.blue, 2));
+         
        }
+        txtProductId.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductIdFocusGained
 
     private void txtProductIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductIdFocusLost
          if( txtProductId.getText().equals("")){
-       txtProductId.setText("Enter product ID");
+       txtProductId.setText("Ixxx");
         txtProductId.setForeground(new Color(153,153,153));
-        txtProductId.setBorder(new LineBorder(Color.gray, 1));
+        
        }
+         txtProductId.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductIdFocusLost
 
     private void txtProductFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductFocusGained
        if(txtProduct.getText().equals("Enter product name")){
         txtProduct.setText("");
         txtProduct.setForeground(Color.black);
-        txtProduct.setBorder(new LineBorder(Color.blue, 2));
+     
        }
+          txtProduct.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductFocusGained
 
     private void txtProductFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductFocusLost
        if( txtProduct.getText().equals("")){
        txtProduct.setText("Enter product name");
        txtProduct.setForeground(new Color(153,153,153));
-       txtProduct.setBorder(new LineBorder(Color.gray, 1));
+       
        }
+       txtProduct.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductFocusLost
 
     private void txtPriceFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusGained
         if(txtPrice.getText().equals("Enter Amount")){
        txtPrice.setText("");
        txtPrice.setForeground(Color.black);
-       txtPrice.setBorder(new LineBorder(Color.blue, 2));
+      
        }
+         txtPrice.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtPriceFocusGained
 
     private void txtPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusLost
        if(txtPrice.getText().equals("")){
        txtPrice.setText("Enter Amount");
        txtPrice.setForeground(new Color(153,153,153));
-       txtPrice.setBorder(new LineBorder(Color.gray, 1));
+      
        }
+       
+         String priceText = txtPrice.getText();
+    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+    if(pattern.matcher(priceText).find()){
+        lblIPrice.setText("can only contain digits!!!");
+    }
+    else{
+         lblIPrice.setText("");
+    }
+        txtPrice.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtPriceFocusLost
 
     private void txtQtyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusGained
          if(txtQty.getText().equals("Enter a number")){
       txtQty.setText("");
       txtQty.setForeground(Color.black);
-       txtQty.setBorder(new LineBorder(Color.blue, 2));
+      
        }
+          txtQty.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtQtyFocusGained
 
     private void txtQtyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusLost
          if(txtQty.getText().equals("")){
        txtQty.setText("Enter a number");
        txtQty.setForeground(new Color(153,153,153));
-       txtQty.setBorder(new LineBorder(Color.gray, 1));
+      
        }
+         
+          String qtyText = txtQty.getText();
+           Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+          if(pattern.matcher(qtyText).find()){
+             lblIQty.setText("can only contain digits!!!");
+          }
+          else{
+               lblIQty.setText("");
+          }
+          txtQty.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnPrevMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMousePressed
@@ -409,6 +486,15 @@ public class addProduct extends javax.swing.JFrame {
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
      btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
+
+    private void txtProductIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductIdKeyTyped
+      if(!txtProductId.getText().startsWith("I")){
+           lblIId.setText("ID should be like I001");
+      }
+      else{
+          lblIId.setText("");
+      }
+    }//GEN-LAST:event_txtProductIdKeyTyped
 
    
     public static void main(String args[]) {
@@ -429,6 +515,9 @@ public class addProduct extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAddHead;
     private javax.swing.JLabel lblCat;
+    private javax.swing.JLabel lblIId;
+    private javax.swing.JLabel lblIPrice;
+    private javax.swing.JLabel lblIQty;
     private javax.swing.JLabel lblLogoImg;
     private javax.swing.JLabel lblLogoText;
     private javax.swing.JLabel lblPrice;

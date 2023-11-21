@@ -155,12 +155,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblPwd" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnCreate" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                                      <Component id="lblConfirm" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Component id="btnCreate" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -168,18 +164,13 @@
                                       <Component id="lblMail" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblType" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblPwd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblConfirm" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lblIUser" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtUser" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtMail" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblIMail" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtType" alignment="0" pref="245" max="32767" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="lblIConfirm" alignment="0" max="32767" attributes="0"/>
@@ -189,6 +180,13 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblShow" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="cmbAccType" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblIUser" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtUser" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtMail" alignment="0" pref="245" max="32767" attributes="0"/>
+                                  <Component id="lblIMail" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -202,12 +200,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Component id="lblAccHead" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtType" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="cmbAccType" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="lblType" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtMail" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="lblMail" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -350,22 +348,6 @@
             <Property name="text" type="java.lang.String" value="Account Type"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtType">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="99" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Enter Account Type"/>
-          </Properties>
-          <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTypeFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTypeFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTypeActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JPasswordField" name="txtPwd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -455,6 +437,23 @@
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtConfirmFocusLost"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtConfirmKeyPressed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmbAccType">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="1"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Select"/>
+                <StringItem index="1" value="manager"/>
+                <StringItem index="2" value="cashier"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

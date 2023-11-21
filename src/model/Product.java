@@ -17,6 +17,13 @@ public class Product {
         this.quantity=quantity;
         
     }
+    
+    
+      public String getProductId(){
+        return productId;
+    }
+   
+    
     public String getCategory(){
         return category;
     }

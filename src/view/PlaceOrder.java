@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -75,6 +76,9 @@ private String prevMobile;
         txtAddress = new javax.swing.JTextField();
         txtTel = new javax.swing.JLabel();
         txtMobile = new javax.swing.JTextField();
+        lblIName = new javax.swing.JLabel();
+        lblIMobile = new javax.swing.JLabel();
+        lblIQty = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,7 +132,7 @@ private String prevMobile;
                 .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblLogoText)
                 .addGap(55, 55, 55))
         );
@@ -229,7 +233,7 @@ private String prevMobile;
 
         txtMobile.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtMobile.setForeground(new java.awt.Color(153, 153, 153));
-        txtMobile.setText("07x xxxxxxx");
+        txtMobile.setText("0712222222");
         txtMobile.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtMobileFocusGained(evt);
@@ -239,87 +243,99 @@ private String prevMobile;
             }
         });
 
+        lblIName.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIName.setForeground(new java.awt.Color(255, 0, 0));
+
+        lblIMobile.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIMobile.setForeground(new java.awt.Color(255, 0, 0));
+
+        lblIQty.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIQty.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout txtProductLayout = new javax.swing.GroupLayout(txtProduct);
         txtProduct.setLayout(txtProductLayout);
         txtProductLayout.setHorizontalGroup(
             txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtProductLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addComponent(lblHead)
                 .addGap(99, 99, 99))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtProductLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, txtProductLayout.createSequentialGroup()
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTel)
-                            .addComponent(lblCat))
-                        .addGap(43, 43, 43)
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMobile)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, txtProductLayout.createSequentialGroup()
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblname)
-                            .addComponent(lblAddress))
-                        .addGap(58, 58, 58)
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName)
-                            .addComponent(txtAddress)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, txtProductLayout.createSequentialGroup()
-                        .addComponent(lblProduct)
-                        .addGap(18, 18, 18)
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProductName)
-                            .addComponent(txtQty))))
-                .addGap(54, 54, 54))
             .addGroup(txtProductLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(70, 70, 70)
                 .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblQty)
                     .addGroup(txtProductLayout.createSequentialGroup()
                         .addComponent(btnOrder)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(txtProductLayout.createSequentialGroup()
+                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(txtProductLayout.createSequentialGroup()
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblname)
+                                    .addComponent(lblAddress))
+                                .addGap(60, 60, 60)
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblIName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                    .addComponent(txtName)))
+                            .addGroup(txtProductLayout.createSequentialGroup()
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblQty)
+                                    .addComponent(lblProduct)
+                                    .addComponent(lblCat)
+                                    .addComponent(txtTel))
+                                .addGap(18, 18, 18)
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblIQty, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtProductName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                                        .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbCat, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblIMobile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtQty)))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         txtProductLayout.setVerticalGroup(
             txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(txtProductLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(lblHead)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(txtProductLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(lblname))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtProductLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAddress)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(17, 17, 17)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(88, 88, 88)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblname))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIName, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAddress))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbCat, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCat))
-                .addGap(15, 15, 15)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblProduct)
-                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblQty)
-                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProduct))
+                .addGap(18, 18, 18)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblQty))
+                .addGap(5, 5, 5)
+                .addComponent(lblIQty, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,18 +344,13 @@ private String prevMobile;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -350,15 +361,30 @@ private String prevMobile;
     
     String name = txtName.getText();
     String address = txtAddress.getText();
-    String mobile = txtMobile.getText();
     String productNames=txtProductName.getText();
     String qty=txtQty.getText();
+    String mobile = txtMobile.getText();
+    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
           
        if(name.equals("Enter your name")||address.equals("Enter your address")||mobile.equals("07x xxxxxxx")||productNames.equals("Enter product name")||qty.equals("Enter a number")||cmbCat.getSelectedItem().equals("Select")){
           JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
           
       }
-      else{
+       else if(name.matches(".*\\d.*")){
+          
+           lblIName.setText("digits are not allowed");
+       }
+       else if(!mobile.matches(".*\\d.*") ){
+            lblIMobile.setText("Only digits are allowed!!!");
+       }
+       else if(mobile.length()>10 || mobile.length()<10 ){
+            lblIMobile.setText("Mobile field must contain only 10 digits");
+       }
+       else if(!qty.matches(".*\\d.*")){
+           lblIQty.setText("Only digits are allowed!!!");
+       }
+       else{
+              lblIQty.setText("");
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you wantto place order?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION){ 
             prevName = name;
@@ -396,80 +422,121 @@ private String prevMobile;
       if(txtName.getText().equals("Enter your name")){
           txtName.setText("");
            txtName.setForeground(Color.black);
-          txtName.setBorder(new LineBorder(Color.blue, 2));
+          
        }
+      txtName.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtNameFocusGained
 
     private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
           if( txtName.getText().equals("")){
             txtName.setText("Enter your name");
             txtName.setForeground(new Color(153,153,153));
-            txtName.setBorder(new LineBorder(Color.gray, 1));
+           
        }
+          
+          
+            String nameText = txtName.getText();
+           Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+          if(!pattern.matcher(nameText).find()){
+             lblIName.setText("cannot contain digits!!!");
+          }
+          else{
+                lblIName.setText("");
+          }
+           txtName.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtNameFocusLost
 
     private void txtAddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusGained
         if(txtAddress.getText().equals("Enter your address")){
           txtAddress.setText("");
            txtAddress.setForeground(Color.black);
-         txtAddress.setBorder(new LineBorder(Color.blue, 2));
+         
        }
+        txtAddress.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtAddressFocusGained
 
     private void txtAddressFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusLost
       if(  txtAddress.getText().equals("")){
              txtAddress.setText("Enter your address");
            txtAddress.setForeground(new Color(153,153,153));
-            txtAddress.setBorder(new LineBorder(Color.gray, 1));
+          
        }
+        txtAddress.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtAddressFocusLost
 
     private void txtMobileFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMobileFocusGained
-         if(txtMobile.getText().equals("07x xxxxxxx")){
+         if(txtMobile.getText().equals("0712222222")){
           txtMobile.setText("");
            txtMobile.setForeground(Color.black);
-         txtMobile.setBorder(new LineBorder(Color.blue, 2));
+        
        }
+          txtMobile.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtMobileFocusGained
 
     private void txtMobileFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMobileFocusLost
         if(  txtMobile.getText().equals("")){
-            txtMobile.setText("07x xxxxxxx");
+            txtMobile.setText("0712222222");
            txtMobile.setForeground(new Color(153,153,153));
-           txtMobile.setBorder(new LineBorder(Color.gray, 1));
+          
        }
+        
+          String mobile = txtMobile.getText();
+    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+    if(pattern.matcher( mobile).find()){
+        lblIMobile.setText("Can only contain digits");
+        
+    }
+    else if(mobile.length()>10 || mobile.length()<10 ){
+            lblIMobile.setText("Mobile field must contain only 10 digits");
+       }
+    else{
+          lblIMobile.setText("");
+    }
+         txtMobile.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtMobileFocusLost
 
     private void txtProductNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusGained
        if(txtProductName.getText().equals("Enter product name")){
           txtProductName.setText("");
           txtProductName.setForeground(Color.black);
-         txtProductName.setBorder(new LineBorder(Color.blue, 2));
+        
        }
+        txtProductName.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductNameFocusGained
 
     private void txtProductNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusLost
        if( txtProductName.getText().equals("")){
             txtProductName.setText("Enter product name");
           txtProductName.setForeground(new Color(153,153,153));
-          txtProductName.setBorder(new LineBorder(Color.gray, 1));
+        
        }
+         txtProductName.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductNameFocusLost
 
     private void txtQtyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusGained
        if(txtQty.getText().equals("Enter a number")){
           txtQty.setText("");
          txtQty.setForeground(Color.black);
-         txtQty.setBorder(new LineBorder(Color.blue, 2));
+         
        }
+       txtQty.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtQtyFocusGained
 
     private void txtQtyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusLost
         if( txtQty.getText().equals("")){
            txtQty.setText("Enter a number");
          txtQty.setForeground(new Color(153,153,153));
-         txtQty.setBorder(new LineBorder(Color.gray, 1));
+        
        }
+       
+        String qty=txtQty.getText();
+        if(!qty.matches(".*\\d.*")){
+           lblIQty.setText("Only digits are allowed!!!");
+       }
+        else{
+             lblIQty.setText("");
+        }
+         txtQty.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
@@ -500,6 +567,9 @@ private String prevMobile;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblCat;
     private javax.swing.JLabel lblHead;
+    private javax.swing.JLabel lblIMobile;
+    private javax.swing.JLabel lblIName;
+    private javax.swing.JLabel lblIQty;
     private javax.swing.JLabel lblLogoText;
     private javax.swing.JLabel lblProduct;
     private javax.swing.JLabel lblQty;
