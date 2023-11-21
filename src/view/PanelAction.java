@@ -67,6 +67,11 @@ public class PanelAction extends javax.swing.JPanel {
                 btnDeactivateMouseEntered(evt);
             }
         });
+        btnDeactivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeactivateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,7 +96,7 @@ public class PanelAction extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivateActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_btnActivateActionPerformed
 
     private void btnActivateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActivateMouseEntered
@@ -101,6 +106,10 @@ public class PanelAction extends javax.swing.JPanel {
     private void btnDeactivateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeactivateMouseEntered
      //  btnDeactivate.setBorder(new LineBorder(Color.red, 2));
     }//GEN-LAST:event_btnDeactivateMouseEntered
+
+    private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
+   
+    }//GEN-LAST:event_btnDeactivateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

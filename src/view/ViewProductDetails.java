@@ -20,7 +20,7 @@ private boolean isManagerLoggedIn;
     }
     public void setTable(){
      Database d1=new Database();
-     d1.viewAllProduct(tblIphone);
+     d1.viewAllProduct(tblProductDetails);
         
  }
 
@@ -35,7 +35,7 @@ private boolean isManagerLoggedIn;
         btnPrev = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblIphone = new javax.swing.JTable();
+        tblProductDetails = new javax.swing.JTable();
         lblTableHead = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -85,16 +85,10 @@ private boolean isManagerLoggedIn;
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblIphone.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.black));
-        tblIphone.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        tblIphone.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductDetails.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.black));
+        tblProductDetails.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        tblProductDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -114,10 +108,10 @@ private boolean isManagerLoggedIn;
                 "Category_Name", "Product_Name", "Purchase Price_Per_Unit", "Selling Price Per unit"
             }
         ));
-        tblIphone.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tblIphone.setGridColor(new java.awt.Color(0, 0, 0));
-        tblIphone.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(tblIphone);
+        tblProductDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblProductDetails.setGridColor(new java.awt.Color(0, 0, 0));
+        tblProductDetails.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(tblProductDetails);
 
         lblTableHead.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         lblTableHead.setText(" Product_Details");
@@ -219,6 +213,6 @@ private boolean isManagerLoggedIn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHead;
     private javax.swing.JLabel lblTableHead;
-    private javax.swing.JTable tblIphone;
+    private javax.swing.JTable tblProductDetails;
     // End of variables declaration//GEN-END:variables
 }

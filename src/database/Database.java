@@ -30,7 +30,7 @@ import view.addProduct;
 public class Database {
     static int yesCount=1;
     
-    public void viewAllProduct(JTable tblIphone ){
+    public void viewAllProduct(JTable tblProductDetails ){
          try {
           Connection conn = null;
         Statement stmt = null;
@@ -42,12 +42,12 @@ public class Database {
 
             String showTableQuery = "SELECT * FROM users";
              rs=stmt.executeQuery(showTableQuery);
-            ((DefaultTableModel) tblIphone.getModel()).setRowCount(0);
+            ((DefaultTableModel) tblProductDetails.getModel()).setRowCount(0);
              while(rs.next()){
                  String username=rs.getString("username");
                   String password=rs.getString("pwd");
                   String tbData[]={username,password};
-                  DefaultTableModel tblModel=(DefaultTableModel) tblIphone.getModel();
+                  DefaultTableModel tblModel=(DefaultTableModel) tblProductDetails.getModel();
                   tblModel.addRow(tbData);
              }
              conn.close();

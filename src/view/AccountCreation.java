@@ -2,6 +2,7 @@ package view;
 
 import controller.ManagerController;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -13,6 +14,16 @@ public class AccountCreation extends javax.swing.JFrame {
         initComponents();
     }
 
+    private int getDigits(String str) {
+    int digitCount = 0;
+    for (char c : str.toCharArray()) {
+        if (Character.isDigit(c)) {
+            digitCount++;
+        }
+    }
+    return digitCount;
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,13 +39,17 @@ public class AccountCreation extends javax.swing.JFrame {
         lblPwd = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
         lblConfirm = new javax.swing.JLabel();
-        txtConfirm = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
         lblUser = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         txtType = new javax.swing.JTextField();
         txtPwd = new javax.swing.JPasswordField();
         lblShow = new javax.swing.JLabel();
+        lblIMail = new javax.swing.JLabel();
+        lblIPwd = new javax.swing.JLabel();
+        lblIUser = new javax.swing.JLabel();
+        lblIConfirm = new javax.swing.JLabel();
+        txtConfirm = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +109,7 @@ public class AccountCreation extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(lblLogoText)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -116,6 +131,11 @@ public class AccountCreation extends javax.swing.JFrame {
                 txtUserFocusLost(evt);
             }
         });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
+        });
 
         lblPwd.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblPwd.setText("Password");
@@ -133,16 +153,6 @@ public class AccountCreation extends javax.swing.JFrame {
         lblConfirm.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblConfirm.setText("Confirm Password");
 
-        txtConfirm.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtConfirm.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtConfirmFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtConfirmFocusLost(evt);
-            }
-        });
-
         txtMail.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtMail.setForeground(new java.awt.Color(153, 153, 153));
         txtMail.setText("amaanhlimy@gmail.com");
@@ -157,6 +167,11 @@ public class AccountCreation extends javax.swing.JFrame {
         txtMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMailActionPerformed(evt);
+            }
+        });
+        txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMailKeyTyped(evt);
             }
         });
 
@@ -183,12 +198,20 @@ public class AccountCreation extends javax.swing.JFrame {
             }
         });
 
+        txtPwd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtPwd.setForeground(new java.awt.Color(153, 153, 153));
+        txtPwd.setText("##############");
         txtPwd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPwdFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtPwdFocusLost(evt);
+            }
+        });
+        txtPwd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPwdKeyPressed(evt);
             }
         });
 
@@ -198,6 +221,35 @@ public class AccountCreation extends javax.swing.JFrame {
         lblShow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblShowMouseClicked(evt);
+            }
+        });
+
+        lblIMail.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIMail.setForeground(new java.awt.Color(255, 0, 51));
+
+        lblIPwd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIPwd.setForeground(new java.awt.Color(255, 0, 51));
+
+        lblIUser.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIUser.setForeground(new java.awt.Color(255, 0, 51));
+
+        lblIConfirm.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIConfirm.setForeground(new java.awt.Color(255, 0, 51));
+
+        txtConfirm.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtConfirm.setForeground(new java.awt.Color(153, 153, 153));
+        txtConfirm.setText("##############");
+        txtConfirm.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtConfirmFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtConfirmFocusLost(evt);
+            }
+        });
+        txtConfirm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtConfirmKeyPressed(evt);
             }
         });
 
@@ -213,64 +265,78 @@ public class AccountCreation extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(lblConfirm))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
+                                .addGap(50, 50, 50)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUser)
                                     .addComponent(lblPwd)
-                                    .addComponent(lblMail)
-                                    .addComponent(lblType))))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
+                                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblConfirm))
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblMail)
+                                    .addComponent(lblUser)
+                                    .addComponent(lblType))
+                                .addGap(52, 52, 52)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblIUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblIMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblIConfirm, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtConfirm, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblIPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(lblAccHead)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblType, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(88, 88, 88)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblType))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMail))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIMail, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUser))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIUser, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(lblUser))
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPwd)
-                    .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblConfirm, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtConfirm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPwd))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblIPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblConfirm))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblIConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,31 +403,46 @@ public class AccountCreation extends javax.swing.JFrame {
         if (txtType.getText().equals("Enter Account Type")) {
             txtType.setText("");
             txtType.setForeground(Color.black);
-            txtType.setBorder(new LineBorder(Color.blue, 2));
+           
         }
+         txtType.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtTypeFocusGained
 
     private void txtTypeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusLost
         if (txtType.getText().equals("")) {
             txtType.setText("Enter Account Type");
             txtType.setForeground(new Color(153, 153, 153));
-            txtType.setBorder(new LineBorder(Color.gray, 1));
+           
         }
+         txtType.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtTypeFocusLost
 
     private void txtMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusGained
         if (txtMail.getText().equals("amaanhlimy@gmail.com")) {
             txtMail.setText("");
             txtMail.setForeground(Color.black);
-            txtMail.setBorder(new LineBorder(Color.blue, 2));
+            
         }
+        txtMail.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtMailFocusGained
 
     private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
         if (txtMail.getText().equals("")) {
             txtMail.setText("amaanhlimy@gmail.com");
             txtMail.setForeground(new Color(153, 153, 153));
-            txtMail.setBorder(new LineBorder(Color.gray, 1));
+            
+        }
+        txtMail.setBorder(new LineBorder(Color.gray, 1));
+        
+        
+         String email = txtMail.getText();    
+        // Check if the last 10 characters of the email are "@gmail.com"
+        if (email.length() >= 10 && email.endsWith("@gmail.com")) {
+            lblIMail.setText("");
+      
+        } else {
+            // The email does not end with "@gmail.com"
+          lblIMail.setText("Incorrect Email format..");
         }
     }//GEN-LAST:event_txtMailFocusLost
 
@@ -369,35 +450,42 @@ public class AccountCreation extends javax.swing.JFrame {
         if (txtUser.getText().equals("Enter username")) {
             txtUser.setText("");
             txtUser.setForeground(Color.black);
-            txtUser.setBorder(new LineBorder(Color.blue, 2));
+           
         }
+         txtUser.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
         if (txtUser.getText().equals("")) {
             txtUser.setText("Enter username");
             txtUser.setForeground(new Color(153, 153, 153));
-            txtUser.setBorder(new LineBorder(Color.gray, 1));
+           
         }
+         txtUser.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
 
-        txtPwd.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+      if(txtPwd.getText().equals("##############")){
+          txtPwd.setText("");
+           txtPwd.setForeground(Color.black);
+         
+       }
+       txtPwd.setBorder(new LineBorder(Color.blue, 2));
+          lblShow.setBorder(new LineBorder(Color.blue, 2));
 
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
-        txtPwd.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+        if(txtPwd.getText().equals("")){
+           txtPwd.setText("##############");
+           txtPwd.setForeground(new Color(153,153,153));
+           
+           
+       }
+        txtPwd.setBorder(new LineBorder(Color.gray, 1));
+        lblShow.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtPwdFocusLost
-
-    private void txtConfirmFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusGained
-        txtConfirm.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
-    }//GEN-LAST:event_txtConfirmFocusGained
-
-    private void txtConfirmFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusLost
-        txtConfirm.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
-    }//GEN-LAST:event_txtConfirmFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
         btnPrev.setBorder(new LineBorder(Color.blue, 3));
@@ -406,6 +494,76 @@ public class AccountCreation extends javax.swing.JFrame {
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
         btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
+
+    private void txtMailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyTyped
+
+    }//GEN-LAST:event_txtMailKeyTyped
+
+    private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
+        
+        if(txtPwd.getText().length()>10){
+           lblIPwd.setText("Characters must be less than 10 !!!");
+       }
+       else{
+           lblIPwd.setText("");
+       }
+        
+        
+    }//GEN-LAST:event_txtPwdKeyPressed
+
+    private void txtConfirmFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusGained
+        if(txtConfirm.getText().equals("##############")){
+          txtConfirm.setText("");
+          txtConfirm.setForeground(Color.black);
+          
+          
+       }
+        txtConfirm.setBorder(new LineBorder(Color.blue, 2));
+    }//GEN-LAST:event_txtConfirmFocusGained
+
+    private void txtConfirmFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusLost
+      if(txtConfirm.getText().equals("")){
+           txtConfirm.setText("##############");
+           txtConfirm.setForeground(new Color(153,153,153));
+        
+         
+       }
+        txtConfirm.setBorder(new LineBorder(Color.gray, 1));
+    }//GEN-LAST:event_txtConfirmFocusLost
+
+    private void txtConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmKeyPressed
+        if(txtConfirm.getText().equals(txtPwd.getText())){
+           lblIConfirm.setText("Password doesnot match!!!");
+       }
+       else{
+           lblIConfirm.setText("");
+       }
+        
+    }//GEN-LAST:event_txtConfirmKeyPressed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+     char pressedKey = evt.getKeyChar();
+    String txtUserText = txtUser.getText(); // Get the current text of txtUser
+
+    if (pressedKey != KeyEvent.VK_BACK_SPACE) {
+        if (txtUserText.length() < 5) {
+            lblIUser.setText("Characters must be more than 5 !!!");
+        } else if (getDigits(txtUserText) >=3) {
+            lblIUser.setText("Cannot have more than 3 digits");
+        } else {
+            lblIUser.setText("");
+        }
+    } else { // Backspace key is pressed
+        if (txtUserText.length() < 5) {
+            lblIUser.setText("Characters must be more than 5 !!!");
+        } else if (getDigits(txtUserText) >4) {
+            lblIUser.setText("Cannot have more than 3 digits");
+        } else {
+            lblIUser.setText("");
+        }
+    }
+
+    }//GEN-LAST:event_txtUserKeyPressed
 
     public static void main(String args[]) {
 
@@ -424,13 +582,17 @@ public class AccountCreation extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAccHead;
     private javax.swing.JLabel lblConfirm;
+    private javax.swing.JLabel lblIConfirm;
+    private javax.swing.JLabel lblIMail;
+    private javax.swing.JLabel lblIPwd;
+    private javax.swing.JLabel lblIUser;
     private javax.swing.JLabel lblLogoText;
     private javax.swing.JLabel lblMail;
     private javax.swing.JLabel lblPwd;
     private javax.swing.JLabel lblShow;
     private javax.swing.JLabel lblType;
     private javax.swing.JLabel lblUser;
-    private javax.swing.JTextField txtConfirm;
+    private javax.swing.JPasswordField txtConfirm;
     private javax.swing.JTextField txtMail;
     private javax.swing.JPasswordField txtPwd;
     private javax.swing.JTextField txtType;

@@ -418,7 +418,7 @@ private String prevMobile;
 
     private void txtAddressFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusLost
       if(  txtAddress.getText().equals("")){
-             txtAddress.setText("Enter your name");
+             txtAddress.setText("Enter your address");
            txtAddress.setForeground(new Color(153,153,153));
             txtAddress.setBorder(new LineBorder(Color.gray, 1));
        }

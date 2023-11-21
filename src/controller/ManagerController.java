@@ -12,9 +12,6 @@ import model.Product;
 
 public class ManagerController extends ProductController {
  
-    
-    
-    
     public void createAccount(String username,String password,String accountType,String mail){
         Database d1=new Database();
         d1.accountCreation(username,password,accountType,mail);
@@ -27,9 +24,7 @@ public class ManagerController extends ProductController {
         d1.addproduct(p1);
         
     }
-    
-    
-    
+   
      public void updateProduct(String productId,String options,String newValue ){
        
       Database d1=new Database();
@@ -40,13 +35,9 @@ public class ManagerController extends ProductController {
      public void removeProduct( String cat,String productName,String qty){
        Database d1=new Database();
         d1.removeProduct(cat, productName, qty);
-       
-      
     }
     
     public void viewAllProduct(){
-         
-     
         ViewProductDetails view=new ViewProductDetails(true);
         view.setTable();
         view.setVisible(true);

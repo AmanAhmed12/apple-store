@@ -9,10 +9,7 @@ import view.SearchStockDetails;
 import view.ViewProductDetails;
 
 public class CashierController extends ProductController {
-    
-    
-    
-    
+   
      public void viewAllProduct(){
         ViewProductDetails view=new ViewProductDetails(true);
         view.setTable();
@@ -37,8 +34,6 @@ public class CashierController extends ProductController {
     }
      
       public void deactivateAccount(String username){
-           
-        
              Database d1=new Database();
             d1.useraccountDeactivate(username);
          

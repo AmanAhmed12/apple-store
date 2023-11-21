@@ -15,8 +15,18 @@ private boolean isManagerLoggedIn;
     public AccountUpdate(boolean isManagerLoggedIn) {
         initComponents();
          this.isManagerLoggedIn = isManagerLoggedIn;
+         
+         if(isManagerLoggedIn){
+             lblActivate.setText("Manage User Accounts >>");
+         }
+         else{
+              lblActivate.setText("Account Deactivation >>");
+         }
     }
 
+    public boolean getIsManagerLoggedIn(){
+        return isManagerLoggedIn;
+    }
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -199,6 +209,8 @@ private boolean isManagerLoggedIn;
         cmbAccType.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmbAccType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Manager", "Cashier" }));
 
+        txtPwd.setForeground(new java.awt.Color(153, 153, 153));
+        txtPwd.setText("##############");
         txtPwd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPwdFocusGained(evt);
@@ -443,11 +455,20 @@ private boolean isManagerLoggedIn;
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
-         txtPwd.setBorder(new LineBorder(Color.blue, 2));
+       if(txtPwd.getText().equals("##############")){
+          txtPwd.setText("");
+           txtPwd.setForeground(Color.black);
+          txtPwd.setBorder(new LineBorder(Color.blue, 2));
+       }
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
-       txtPwd.setBorder(new LineBorder(Color.gray, 1));
+      
+         if(txtPwd.getText().equals("")){
+           txtPwd.setText("##############");
+           txtPwd.setForeground(new Color(153,153,153));
+           txtPwd.setBorder(new LineBorder(Color.gray, 1));
+       }
     }//GEN-LAST:event_txtPwdFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
