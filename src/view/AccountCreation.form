@@ -170,28 +170,24 @@
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="lblIConfirm" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtConfirm" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="lblIPwd" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtPwd" alignment="0" pref="245" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblShow" min="-2" pref="32" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="cmbAccType" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblIMail" pref="263" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="lblIUser" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblIConfirm" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbAccType" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtMail" alignment="0" pref="263" max="32767" attributes="0"/>
                                   <Component id="txtUser" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtMail" alignment="0" pref="245" max="32767" attributes="0"/>
-                                  <Component id="lblIMail" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPwd" max="32767" attributes="0"/>
+                                  <Component id="lblIPwd" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtConfirm" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblShow" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -217,21 +213,22 @@
                       <Component id="txtUser" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="lblUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblIUser" min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="lblShow" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                           <Component id="btnCreate" min="-2" pref="39" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtPwd" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="lblPwd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIUser" min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtPwd" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="lblPwd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lblShow" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblIPwd" min="-2" pref="14" max="-2" attributes="0"/>
@@ -242,7 +239,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lblIConfirm" min="-2" pref="14" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="86" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

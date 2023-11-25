@@ -333,40 +333,35 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    String priceText = txtPrice.getText();
-     String qtyText = txtQty.getText();
-     String idText = txtProductId.getText();
-    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+        String priceText = txtPrice.getText();
+        String qtyText = txtQty.getText();
+        String idText = txtProductId.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
 
-    if(txtProductId.getText().equals("Ixxx")||txtProduct.getText().equals("Enter product name")||txtPrice.getText().equals("Enter Amount")||txtQty.getText().equals("Enter a number")||cmbCategory.getSelectedItem().equals("Select")){
-        
-      JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-    }
-    else if(!txtProductId.getText().startsWith("I")){
-        lblIId.setText("ID must start with I");
-        
-    }
-    else if(!txtProductId.getText().substring(1).matches("\\d+")){
+        if (txtProductId.getText().equals("Ixxx") || txtProduct.getText().equals("Enter product name") || txtPrice.getText().equals("Enter Amount") || txtQty.getText().equals("Enter a number") || cmbCategory.getSelectedItem().equals("Select")) {
+
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+        } else if (!txtProductId.getText().startsWith("I")) {
+            lblIId.setText("ID must start with I");
+
+        } else if (!txtProductId.getText().substring(1).matches("\\d+")) {
             lblIId.setText("Rest of the values must be digits");
-      }
-    else if(pattern.matcher(priceText).find()){
-        lblIPrice.setText("can only contain digits!!!");
-    }
-    else if(pattern.matcher(qtyText).find()){
-        lblIQty.setText("can only contain digits!!!");
-    }
-    else{
-         lblIQty.setText("");
-        lblIPrice.setText("");
-        lblIId.setText("");
-        ManagerController m1=new  ManagerController ();
-        String productId=txtProductId.getText();
-       String cat=(String) cmbCategory.getSelectedItem();
-       String product=txtProduct.getText();
-       String price=txtPrice.getText();
-       String qty=txtQty.getText();
-       m1.addProduct(productId,cat,product,price,qty );
-    }
+        } else if (pattern.matcher(priceText).find()) {
+            lblIPrice.setText("can only contain digits!!!");
+        } else if (pattern.matcher(qtyText).find()) {
+            lblIQty.setText("can only contain digits!!!");
+        } else {
+            lblIQty.setText("");
+            lblIPrice.setText("");
+            lblIId.setText("");
+            ManagerController m1 = new ManagerController();
+            String productId = txtProductId.getText();
+            String cat = (String) cmbCategory.getSelectedItem();
+            String product = txtProduct.getText();
+            String price = txtPrice.getText();
+            String qty = txtQty.getText();
+            m1.addProduct(productId, cat, product, price, qty);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -427,48 +422,44 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPriceFocusGained
 
     private void txtPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusLost
-       if(txtPrice.getText().equals("")){
-       txtPrice.setText("Enter Amount");
-       txtPrice.setForeground(new Color(153,153,153));
-      
-       }
-       
-         String priceText = txtPrice.getText();
-    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-    if(pattern.matcher(priceText).find()){
-        lblIPrice.setText("can only contain digits!!!");
-    }
-    else{
-         lblIPrice.setText("");
-    }
+        String priceText = txtPrice.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+        if (txtPrice.getText().equals("")) {
+            txtPrice.setText("Enter Amount");
+            txtPrice.setForeground(new Color(153, 153, 153));
+            lblIPrice.setText("");
+
+        }else if (pattern.matcher(priceText).find()) {
+            lblIPrice.setText("can only contain digits!!!");
+        } else {
+            lblIPrice.setText("");
+        }
         txtPrice.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtPriceFocusLost
 
     private void txtQtyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusGained
-         if(txtQty.getText().equals("Enter a number")){
-      txtQty.setText("");
-      txtQty.setForeground(Color.black);
-      
-       }
-          txtQty.setBorder(new LineBorder(Color.blue, 2));
+        if (txtQty.getText().equals("Enter a number")) {
+            txtQty.setText("");
+            txtQty.setForeground(Color.black);
+
+        }
+        txtQty.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtQtyFocusGained
 
     private void txtQtyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusLost
-         if(txtQty.getText().equals("")){
-       txtQty.setText("Enter a number");
-       txtQty.setForeground(new Color(153,153,153));
-      
-       }
-         
-          String qtyText = txtQty.getText();
-           Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-          if(pattern.matcher(qtyText).find()){
-             lblIQty.setText("can only contain digits!!!");
-          }
-          else{
-               lblIQty.setText("");
-          }
-          txtQty.setBorder(new LineBorder(Color.gray, 1));
+        String qtyText = txtQty.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+        if (txtQty.getText().equals("")) {
+            txtQty.setText("Enter a number");
+            txtQty.setForeground(new Color(153, 153, 153));
+            lblIQty.setText("");
+
+        } else if (pattern.matcher(qtyText).find()) {
+            lblIQty.setText("can only contain digits!!!");
+        } else {
+            lblIQty.setText("");
+        }
+        txtQty.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnPrevMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMousePressed

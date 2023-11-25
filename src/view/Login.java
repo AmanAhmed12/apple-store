@@ -314,13 +314,31 @@ private static String usernames;
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
-       if(txtPwd.getText().equals("")){
-           txtPwd.setText("##########");
-           txtPwd.setForeground(new Color(153,153,153));
-         
-       }
-         txtPwd.setBorder(new LineBorder(Color.gray, 1));
-           lblShow.setBorder(new LineBorder(Color.gray, 1));
+      // Check if the text is empty
+    if (txtPwd.getText().equals("")) {
+        // If it's empty, set default text and color
+        txtPwd.setText("##########");
+        txtPwd.setForeground(new Color(153, 153, 153));
+    }
+
+    // Check if the length is less than 8 and not equal to the default text
+    if (txtPwd.getText().length() < 8 && !txtPwd.getText().equals("##########")) {
+        // If it's less than 8, set an error message
+        lblIpwd.setText("Characters must be more than 8 !!!");
+    } else {
+        // If it's not less than 8, clear the error message
+        lblIpwd.setText("");
+    }
+
+    // Set borders for txtPwd and lblShow
+    txtPwd.setBorder(new LineBorder(Color.gray, 1));
+    lblShow.setBorder(new LineBorder(Color.gray, 1));
+
+    // Check if the text is empty after all other checks
+    if (txtPwd.getText().equals("")) {
+        // If it's empty, set lblIpwd to an empty string
+        lblIpwd.setText("");
+    }
     }//GEN-LAST:event_txtPwdFocusLost
 
     private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
