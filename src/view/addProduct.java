@@ -1,5 +1,5 @@
-
 package view;
+
 import controller.ManagerController;
 import java.awt.Color;
 import java.util.regex.Pattern;
@@ -8,12 +8,10 @@ import javax.swing.border.LineBorder;
 
 public class addProduct extends javax.swing.JFrame {
 
-    
     public addProduct() {
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -327,9 +325,9 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProductActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-      Manager m1=new Manager();
-      m1.setVisible(true);
-      this.dispose();
+        Manager m1 = new Manager();
+        m1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -365,11 +363,11 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-      cmbCategory.setSelectedIndex(0);
-      txtProduct.setText("");
-      txtPrice.setText("");
-      txtQty.setText("");
-      txtProductId.setText("");
+        cmbCategory.setSelectedIndex(0);
+        txtProduct.setText("");
+        txtPrice.setText("");
+        txtQty.setText("");
+        txtProductId.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtProductIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductIdActionPerformed
@@ -377,48 +375,48 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProductIdActionPerformed
 
     private void txtProductIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductIdFocusGained
-        if(txtProductId.getText().equals("Ixxx")){
-        txtProductId.setText("");
-        txtProductId.setForeground(Color.black);
-         
-       }
+        if (txtProductId.getText().equals("Ixxx")) {
+            txtProductId.setText("");
+            txtProductId.setForeground(Color.black);
+
+        }
         txtProductId.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductIdFocusGained
 
     private void txtProductIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductIdFocusLost
-         if( txtProductId.getText().equals("")){
-       txtProductId.setText("Ixxx");
-        txtProductId.setForeground(new Color(153,153,153));
-        
-       }
-         txtProductId.setBorder(new LineBorder(Color.gray, 1));
+        if (txtProductId.getText().equals("")) {
+            txtProductId.setText("Ixxx");
+            txtProductId.setForeground(new Color(153, 153, 153));
+
+        }
+        txtProductId.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductIdFocusLost
 
     private void txtProductFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductFocusGained
-       if(txtProduct.getText().equals("Enter product name")){
-        txtProduct.setText("");
-        txtProduct.setForeground(Color.black);
-     
-       }
-          txtProduct.setBorder(new LineBorder(Color.blue, 2));
+        if (txtProduct.getText().equals("Enter product name")) {
+            txtProduct.setText("");
+            txtProduct.setForeground(Color.black);
+
+        }
+        txtProduct.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductFocusGained
 
     private void txtProductFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductFocusLost
-       if( txtProduct.getText().equals("")){
-       txtProduct.setText("Enter product name");
-       txtProduct.setForeground(new Color(153,153,153));
-       
-       }
-       txtProduct.setBorder(new LineBorder(Color.gray, 1));
+        if (txtProduct.getText().equals("")) {
+            txtProduct.setText("Enter product name");
+            txtProduct.setForeground(new Color(153, 153, 153));
+
+        }
+        txtProduct.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductFocusLost
 
     private void txtPriceFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusGained
-        if(txtPrice.getText().equals("Enter Amount")){
-       txtPrice.setText("");
-       txtPrice.setForeground(Color.black);
-      
-       }
-         txtPrice.setBorder(new LineBorder(Color.blue, 2));
+        if (txtPrice.getText().equals("Enter Amount")) {
+            txtPrice.setText("");
+            txtPrice.setForeground(Color.black);
+
+        }
+        txtPrice.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtPriceFocusGained
 
     private void txtPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusLost
@@ -429,7 +427,7 @@ public class addProduct extends javax.swing.JFrame {
             txtPrice.setForeground(new Color(153, 153, 153));
             lblIPrice.setText("");
 
-        }else if (pattern.matcher(priceText).find()) {
+        } else if (pattern.matcher(priceText).find()) {
             lblIPrice.setText("can only contain digits!!!");
         } else {
             lblIPrice.setText("");
@@ -463,7 +461,7 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnPrevMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMousePressed
-       
+
     }//GEN-LAST:event_btnPrevMousePressed
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
@@ -475,21 +473,19 @@ public class addProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevMouseReleased
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
-     btnPrev.setBorder(new LineBorder(Color.white, 3));
+        btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
 
     private void txtProductIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductIdKeyTyped
-      if(!txtProductId.getText().startsWith("I")){
-           lblIId.setText("ID should be like I001");
-      }
-      else{
-          lblIId.setText("");
-      }
+        if (!txtProductId.getText().startsWith("I")) {
+            lblIId.setText("ID should be like I001");
+        } else {
+            lblIId.setText("");
+        }
     }//GEN-LAST:event_txtProductIdKeyTyped
 
-   
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new addProduct().setVisible(true);

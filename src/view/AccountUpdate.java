@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.CashierController;
@@ -9,35 +8,35 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
-
 public class AccountUpdate extends javax.swing.JFrame {
-private boolean isManagerLoggedIn; 
-  
+
+    private boolean isManagerLoggedIn;
+
     public AccountUpdate(boolean isManagerLoggedIn) {
         initComponents();
-         this.isManagerLoggedIn = isManagerLoggedIn;
-         
-         if(isManagerLoggedIn){
-             lblActivate.setText("Manage User Accounts >>");
-         }
-         else{
-              lblActivate.setText("Account Deactivation >>");
-         }
-    }
+        this.isManagerLoggedIn = isManagerLoggedIn;
 
-    public boolean getIsManagerLoggedIn(){
-        return isManagerLoggedIn;
-    }
-  
-     private int getDigits(String str) {
-    int digitCount = 0;
-    for (char c : str.toCharArray()) {
-        if (Character.isDigit(c)) {
-            digitCount++;
+        if (isManagerLoggedIn) {
+            lblActivate.setText("Manage User Accounts >>");
+        } else {
+            lblActivate.setText("Account Deactivation >>");
         }
     }
-    return digitCount;
-}
+
+    public boolean getIsManagerLoggedIn() {
+        return isManagerLoggedIn;
+    }
+
+    private int getDigits(String str) {
+        int digitCount = 0;
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                digitCount++;
+            }
+        }
+        return digitCount;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -388,34 +387,28 @@ private boolean isManagerLoggedIn;
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-     if(txtOldMail.getText().equals("Enter old mail")||txtNewMail.getText().equals("Enter new mail")||txtUser.getText().equals("Enter username")||txtPwd.getText().equals("")||cmbAccType.getSelectedItem().equals("Select")){
-          JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-     }
-     else if(!txtOldMail.getText().endsWith("@gmail.com")||!txtNewMail.getText().endsWith("@gmail.com")){
-         if(!txtOldMail.getText().endsWith("@gmail.com")){
-             lblIOld.setText("Invalid mail format!!!");
-         }
-         else if(!txtNewMail.getText().endsWith("@gmail.com")){
-             lblINew.setText("Invalid mail format!!!");
-         }
-         else{
-              lblIOld.setText("");
-          lblINew.setText("");
-         }
-         
-          
-     }
-     else if(txtNewMail.getText().equals(txtOldMail.getText())){
-         lblINew.setText("New Mail and old Mail cannot be same!!!");
-     }
-     else{
-          // Check password length
-            
-            if(txtPwd.getText().length() <8){
-                 lblIPwd.setText("Password must be more than 8 characters");
-            } 
-         
-             // Check username length and digit count
+        if (txtOldMail.getText().equals("Enter old mail") || txtNewMail.getText().equals("Enter new mail") || txtUser.getText().equals("Enter username") || txtPwd.getText().equals("") || cmbAccType.getSelectedItem().equals("Select")) {
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+        } else if (!txtOldMail.getText().endsWith("@gmail.com") || !txtNewMail.getText().endsWith("@gmail.com")) {
+            if (!txtOldMail.getText().endsWith("@gmail.com")) {
+                lblIOld.setText("Invalid mail format!!!");
+            } else if (!txtNewMail.getText().endsWith("@gmail.com")) {
+                lblINew.setText("Invalid mail format!!!");
+            } else {
+                lblIOld.setText("");
+                lblINew.setText("");
+            }
+
+        } else if (txtNewMail.getText().equals(txtOldMail.getText())) {
+            lblINew.setText("New Mail and old Mail cannot be same!!!");
+        } else {
+            // Check password length
+
+            if (txtPwd.getText().length() < 8) {
+                lblIPwd.setText("Password must be more than 8 characters");
+            }
+
+            // Check username length and digit count
             if (txtUser.getText().length() < 5) {
                 lblIUser.setText("Username must be more than 5 characters");
             } else if (getDigits(txtUser.getText()) > 3) {
@@ -423,214 +416,208 @@ private boolean isManagerLoggedIn;
             } else {
                 lblIUser.setText("");
             }
-            
-            
-             // If all validations pass, create the account
-       if (lblIOld.getText().isEmpty() && lblINew.getText().isEmpty()&& lblIPwd.getText().isEmpty() && lblIUser.getText().isEmpty()) {
-                    if (isManagerLoggedIn) {
-                        ManagerController m1=new ManagerController();
-                        String oldMail=txtOldMail.getText();
-                        String newMail=txtNewMail.getText();
-                        String username=txtUser.getText();
-                        String password=txtPwd.getText();
-                         String accountType=(String) cmbAccType.getSelectedItem();
-                        m1.changeAccountDetails(oldMail,newMail,username,password,accountType);
 
+            // If all validations pass, create the account
+            if (lblIOld.getText().isEmpty() && lblINew.getText().isEmpty() && lblIPwd.getText().isEmpty() && lblIUser.getText().isEmpty()) {
+                if (isManagerLoggedIn) {
+                    ManagerController m1 = new ManagerController();
+                    String oldMail = txtOldMail.getText();
+                    String newMail = txtNewMail.getText();
+                    String username = txtUser.getText();
+                    String password = txtPwd.getText();
+                    String accountType = (String) cmbAccType.getSelectedItem();
+                    m1.changeAccountDetails(oldMail, newMail, username, password, accountType);
 
                 } else {
-                    CashierController c1=new CashierController();
-                    String oldMail=txtOldMail.getText();
-                    String newMail=txtNewMail.getText();
-                    String username=txtUser.getText();
-                    String password=txtPwd.getText();
-                    String accountType=(String) cmbAccType.getSelectedItem();
-                    c1.changeAccountDetails(oldMail,newMail,username,password,accountType);
+                    CashierController c1 = new CashierController();
+                    String oldMail = txtOldMail.getText();
+                    String newMail = txtNewMail.getText();
+                    String username = txtUser.getText();
+                    String password = txtPwd.getText();
+                    String accountType = (String) cmbAccType.getSelectedItem();
+                    c1.changeAccountDetails(oldMail, newMail, username, password, accountType);
                 }
 
-        }  
-     }
+            }
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
-      if(isManagerLoggedIn){
-           this.dispose();
-        userAccountDetails u1=new userAccountDetails();
-       u1.setVisible(true);
-      }
-      else{
-          int choicemore = JOptionPane.showConfirmDialog(null, "Are you sure you want to deactivate your Account?", "Confirmation", JOptionPane.YES_NO_OPTION);
-          if (choicemore == JOptionPane.YES_OPTION) {
-          CashierController c1=new CashierController();
-          Login l1=new Login();
-          String user=l1.getUsername();
-          c1.deactivateAccount(user);
+        if (isManagerLoggedIn) {
+            this.dispose();
+            userAccountDetails u1 = new userAccountDetails();
+            u1.setVisible(true);
+        } else {
+            int choicemore = JOptionPane.showConfirmDialog(null, "Are you sure you want to deactivate your Account?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (choicemore == JOptionPane.YES_OPTION) {
+                CashierController c1 = new CashierController();
+                Login l1 = new Login();
+                String user = l1.getUsername();
+                c1.deactivateAccount(user);
+            }
         }
-      }
-       
+
     }//GEN-LAST:event_btnDeactivateActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
         if (isManagerLoggedIn) {
-            Manager m1=new Manager();
+            Manager m1 = new Manager();
             m1.setVisible(true);
             this.dispose();
-        
-        
-         } else {
-           Cashier c1=new Cashier();
-           c1.setVisible(true);
-           this.dispose();
+
+        } else {
+            Cashier c1 = new Cashier();
+            c1.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-      txtOldMail.setText("");
-      txtNewMail.setText("");
-      txtUser.setText("");
-      txtPwd.setText("");
-      cmbAccType.setSelectedIndex(0);
+        txtOldMail.setText("");
+        txtNewMail.setText("");
+        txtUser.setText("");
+        txtPwd.setText("");
+        cmbAccType.setSelectedIndex(0);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked
-      char echo = txtPwd.getEchoChar();
-    if (echo == 0) {
-        txtPwd.setEchoChar('●'); // Set it to the default bullet character to hide characters
-    } else {
-        txtPwd.setEchoChar((char) 0); // Set it to 0 to make characters visible
-    }
+        char echo = txtPwd.getEchoChar();
+        if (echo == 0) {
+            txtPwd.setEchoChar('●'); // Set it to the default bullet character to hide characters
+        } else {
+            txtPwd.setEchoChar((char) 0); // Set it to 0 to make characters visible
+        }
     }//GEN-LAST:event_lblShowMouseClicked
 
     private void txtOldMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOldMailFocusGained
-        if(txtOldMail.getText().equals("Enter old mail")){
-           txtOldMail.setText("");
-           txtOldMail.setForeground(Color.black);
-        
-       }
-        
-          txtOldMail.setBorder(new LineBorder(Color.blue, 2));
+        if (txtOldMail.getText().equals("Enter old mail")) {
+            txtOldMail.setText("");
+            txtOldMail.setForeground(Color.black);
+
+        }
+
+        txtOldMail.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtOldMailFocusGained
 
     private void txtOldMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOldMailFocusLost
-      if (txtOldMail.getText().equals("")) {
-        txtOldMail.setText("Enter old mail");
-        txtOldMail.setForeground(new Color(153, 153, 153));
-        lblIOld.setText("");  // Set lblIOld to default value
-    } else {
-        if (txtOldMail.getText().endsWith("@gmail.com")) {
-            lblIOld.setText("");
+        if (txtOldMail.getText().equals("")) {
+            txtOldMail.setText("Enter old mail");
+            txtOldMail.setForeground(new Color(153, 153, 153));
+            lblIOld.setText("");  // Set lblIOld to default value
         } else {
-            lblIOld.setText("Invalid mail format!!!");
+            if (txtOldMail.getText().endsWith("@gmail.com")) {
+                lblIOld.setText("");
+            } else {
+                lblIOld.setText("Invalid mail format!!!");
+            }
         }
-    }
 
-    txtOldMail.setBorder(new LineBorder(Color.gray, 1));
+        txtOldMail.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtOldMailFocusLost
 
     private void txtNewMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewMailFocusGained
-    if(txtNewMail.getText().equals("Enter new mail")){
-           txtNewMail.setText("");
-          txtNewMail.setForeground(Color.black);
-          
-       }
-    txtNewMail.setBorder(new LineBorder(Color.blue, 2));
+        if (txtNewMail.getText().equals("Enter new mail")) {
+            txtNewMail.setText("");
+            txtNewMail.setForeground(Color.black);
+
+        }
+        txtNewMail.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtNewMailFocusGained
 
     private void txtNewMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewMailFocusLost
-      if (txtNewMail.getText().equals("")) {
-        txtNewMail.setText("Enter new mail");
-        txtNewMail.setForeground(new Color(153, 153, 153));
-        lblINew.setText("");  // Set lblINew to default value
-    } else {
-        if (txtNewMail.getText().endsWith("@gmail.com")) {
-            lblINew.setText("");
+        if (txtNewMail.getText().equals("")) {
+            txtNewMail.setText("Enter new mail");
+            txtNewMail.setForeground(new Color(153, 153, 153));
+            lblINew.setText("");  // Set lblINew to default value
         } else {
-            lblINew.setText("Invalid mail format!!!");
+            if (txtNewMail.getText().endsWith("@gmail.com")) {
+                lblINew.setText("");
+            } else {
+                lblINew.setText("Invalid mail format!!!");
+            }
         }
-    }
 
-       txtNewMail.setBorder(new LineBorder(Color.gray, 1));
+        txtNewMail.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtNewMailFocusLost
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-        if(txtUser.getText().equals("Enter username")){
-           txtUser.setText("");
-           txtUser.setForeground(Color.black);
-          
-       }
-         txtUser.setBorder(new LineBorder(Color.blue, 2));
+        if (txtUser.getText().equals("Enter username")) {
+            txtUser.setText("");
+            txtUser.setForeground(Color.black);
+
+        }
+        txtUser.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
-      if(txtUser.getText().equals("")){
-           txtUser.setText("Enter username");
-           txtUser.setForeground(new Color(153,153,153));
-          
-       }
-       txtUser.setBorder(new LineBorder(Color.gray, 1));
+        if (txtUser.getText().equals("")) {
+            txtUser.setText("Enter username");
+            txtUser.setForeground(new Color(153, 153, 153));
+
+        }
+        txtUser.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
-       if(txtPwd.getText().equals("##############")){
-          txtPwd.setText("");
-           txtPwd.setForeground(Color.black);
-         
-       }
+        if (txtPwd.getText().equals("##############")) {
+            txtPwd.setText("");
+            txtPwd.setForeground(Color.black);
+
+        }
         txtPwd.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
-      
-         if(txtPwd.getText().equals("")){
-           txtPwd.setText("##############");
-           txtPwd.setForeground(new Color(153,153,153));
-         
-       }
-           txtPwd.setBorder(new LineBorder(Color.gray, 1));
+
+        if (txtPwd.getText().equals("")) {
+            txtPwd.setText("##############");
+            txtPwd.setForeground(new Color(153, 153, 153));
+
+        }
+        txtPwd.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtPwdFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-     btnPrev.setBorder(new LineBorder(Color.blue, 3));
+        btnPrev.setBorder(new LineBorder(Color.blue, 3));
     }//GEN-LAST:event_btnPrevMouseEntered
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
-       btnPrev.setBorder(new LineBorder(Color.white, 3));
+        btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
 
     private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
-         if(txtPwd.getText().length() <8){
-           lblIPwd.setText("Password must have more than 8 characters");
-       }
-       else{
-           lblIPwd.setText("");
-       }
+        if (txtPwd.getText().length() < 8) {
+            lblIPwd.setText("Password must have more than 8 characters");
+        } else {
+            lblIPwd.setText("");
+        }
     }//GEN-LAST:event_txtPwdKeyPressed
 
     private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
-       char pressedKey = evt.getKeyChar();
-    String txtUserText = txtUser.getText(); // Get the current text of txtUser
+        char pressedKey = evt.getKeyChar();
+        String txtUserText = txtUser.getText(); // Get the current text of txtUser
 
-    if (pressedKey != KeyEvent.VK_BACK_SPACE) {
-        if (txtUserText.length() < 5) {
-            lblIUser.setText("Characters must be more than 5 !!!");
-        } else if (getDigits(txtUserText) >=3) {
-            lblIUser.setText("Cannot have more than 3 digits");
-        } else {
-            lblIUser.setText("");
+        if (pressedKey != KeyEvent.VK_BACK_SPACE) {
+            if (txtUserText.length() < 5) {
+                lblIUser.setText("Characters must be more than 5 !!!");
+            } else if (getDigits(txtUserText) >= 3) {
+                lblIUser.setText("Cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
+        } else { // Backspace key is pressed
+            if (txtUserText.length() < 5) {
+                lblIUser.setText("Characters must be more than 5 !!!");
+            } else if (getDigits(txtUserText) > 4) {
+                lblIUser.setText("Cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
         }
-    } else { // Backspace key is pressed
-        if (txtUserText.length() < 5) {
-            lblIUser.setText("Characters must be more than 5 !!!");
-        } else if (getDigits(txtUserText) >4) {
-            lblIUser.setText("Cannot have more than 3 digits");
-        } else {
-            lblIUser.setText("");
-        }
-    }
     }//GEN-LAST:event_txtUserKeyTyped
 
-   
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AccountUpdate(true).setVisible(true);

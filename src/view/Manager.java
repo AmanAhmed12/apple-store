@@ -1,14 +1,12 @@
-
 package view;
+
 import controller.ManagerController;
 
 public class Manager extends javax.swing.JFrame {
 
-    
     public Manager() {
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -240,56 +238,55 @@ public class Manager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        addProduct add=new addProduct();
+        addProduct add = new addProduct();
         add.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProductActionPerformed
-     ManagerController m1=new ManagerController();
-     m1.viewAllProduct();
-      this.dispose();
+        ManagerController m1 = new ManagerController();
+        m1.viewAllProduct();
+        this.dispose();
     }//GEN-LAST:event_btnViewProductActionPerformed
 
     private void btnSearchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStockActionPerformed
-      ManagerController m1=new ManagerController();
-      m1.SearchStockDetails();
-      this.dispose();
+        ManagerController m1 = new ManagerController();
+        m1.SearchStockDetails();
+        this.dispose();
     }//GEN-LAST:event_btnSearchStockActionPerformed
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
-       ManagerController m1=new ManagerController();
-      m1.SearchProductDetails();
-      this.dispose();
+        ManagerController m1 = new ManagerController();
+        m1.SearchProductDetails();
+        this.dispose();
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-    AccountUpdate account=new AccountUpdate(true);
-     account.setVisible(true);
-     this.dispose();
+        AccountUpdate account = new AccountUpdate(true);
+        account.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-      Login l1=new Login();
-      l1.setVisible(true);
-      this.dispose();
+        Login l1 = new Login();
+        l1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccActionPerformed
-      AccountCreation account=new AccountCreation();
-      account.setVisible(true);
-      this.dispose();
+        AccountCreation account = new AccountCreation();
+        account.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCreateAccActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         this.dispose();
-        UpdateProduct p1=new UpdateProduct();
+        UpdateProduct p1 = new UpdateProduct();
         p1.setVisible(true);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     public static void main(String args[]) {
-     
-     
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Manager().setVisible(true);

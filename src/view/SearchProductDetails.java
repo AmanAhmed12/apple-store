@@ -1,32 +1,37 @@
-
 package view;
 
 import database.Database;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
-
+import javax.swing.table.JTableHeader;
 
 public class SearchProductDetails extends javax.swing.JFrame {
 
-    private boolean isManagerLoggedIn; 
+    private boolean isManagerLoggedIn;
+
     public SearchProductDetails(boolean isManagerLoggedIn) {
         initComponents();
-         this.isManagerLoggedIn = isManagerLoggedIn;
+        this.isManagerLoggedIn = isManagerLoggedIn;
+        JTableHeader header = tblProduct.getTableHeader();
+        // Create a Font object with bold style
+        Font boldFont = new Font(header.getFont().getFontName(), Font.BOLD, header.getFont().getSize());
+
+        // Set the bold font for the header
+        header.setFont(boldFont);
     }
-    
-     public void setTable(){
-     Database d1=new Database();
-     d1.searchProductDetails(tblProduct,txtVal.getText(),cmbSelect.getSelectedItem().toString());
-        
- }
 
+    public void setTable() {
+        Database d1 = new Database();
+        d1.searchProductDetails(tblProduct, txtVal.getText(), cmbSelect.getSelectedItem().toString());
 
-   
+    }
+
     @SuppressWarnings("unchecked")
-    
-   
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -270,31 +275,31 @@ public class SearchProductDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-         if (isManagerLoggedIn) {
-        Manager managerForm = new Manager();
-        managerForm.setVisible(true);
-        
-    } else {
-        Cashier cashierForm = new Cashier();
-        cashierForm.setVisible(true);
-    }
-    this.dispose();
+        if (isManagerLoggedIn) {
+            Manager managerForm = new Manager();
+            managerForm.setVisible(true);
+
+        } else {
+            Cashier cashierForm = new Cashier();
+            cashierForm.setVisible(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void txtValFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValFocusGained
-         if(txtVal.getText().equals("Category | Name | Price")){
-         txtVal.setText("");
-        txtVal.setForeground(Color.black);
-         txtVal.setBorder(new LineBorder(Color.blue, 2));
-       }
+        if (txtVal.getText().equals("Category | Name | Price")) {
+            txtVal.setText("");
+            txtVal.setForeground(Color.black);
+            txtVal.setBorder(new LineBorder(Color.blue, 2));
+        }
     }//GEN-LAST:event_txtValFocusGained
 
     private void txtValFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValFocusLost
-        if( txtVal.getText().equals("")){
-       txtVal.setText("Category | Name | Price");
-        txtVal.setForeground(new Color(153,153,153));
-        txtVal.setBorder(new LineBorder(Color.gray, 1));
-       }
+        if (txtVal.getText().equals("")) {
+            txtVal.setText("Category | Name | Price");
+            txtVal.setForeground(new Color(153, 153, 153));
+            txtVal.setBorder(new LineBorder(Color.gray, 1));
+        }
     }//GEN-LAST:event_txtValFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
@@ -306,17 +311,15 @@ public class SearchProductDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevMouseExited
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-       if(txtVal.getText().equals("Category | Name | Price")||cmbSelect.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-       }
-       else{
-           setTable();
-       }
+        if (txtVal.getText().equals("Category | Name | Price") || cmbSelect.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+        } else {
+            setTable();
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
-  
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SearchProductDetails(true).setVisible(true);

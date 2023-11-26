@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.CashierController;
@@ -6,14 +5,13 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import view.ViewProductDetails;
+
 public class Cashier extends javax.swing.JFrame {
 
-   
     public Cashier() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -217,44 +215,44 @@ public class Cashier extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-       ViewProductDetails v1=new  ViewProductDetails(false);
-       v1.setTable();
-       v1.setVisible(true);
-       this.dispose();
+        ViewProductDetails v1 = new ViewProductDetails(false);
+        v1.setTable();
+        v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
-      Login l1=new Login();
-      l1.setVisible(true);
-      this.dispose();
+        Login l1 = new Login();
+        l1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btnSearchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStockActionPerformed
-     CashierController c1=new CashierController();
-      c1.SearchStockDetails();
-      this.dispose();
+        CashierController c1 = new CashierController();
+        c1.SearchStockDetails();
+        this.dispose();
     }//GEN-LAST:event_btnSearchStockActionPerformed
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
-        CashierController c1=new CashierController();
-      c1.SearchProductDetails();
-      this.dispose();
+        CashierController c1 = new CashierController();
+        c1.SearchProductDetails();
+        this.dispose();
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
     private void btnUpdateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAccountActionPerformed
-     AccountUpdate account=new AccountUpdate(false);
-     account.setVisible(true);
-     this.dispose();
+        AccountUpdate account = new AccountUpdate(false);
+        account.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnUpdateAccountActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-      PlaceOrder order=new PlaceOrder();
-      order.setVisible(true);
-      this.dispose();
+        PlaceOrder order = new PlaceOrder();
+        order.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Cashier().setVisible(true);

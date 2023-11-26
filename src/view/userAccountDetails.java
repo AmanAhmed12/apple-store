@@ -1,63 +1,61 @@
-
 package view;
 
 import controller.ManagerController;
 import database.Database;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.JTableHeader;
 
 public class userAccountDetails extends javax.swing.JFrame {
 
-
-
-
     public userAccountDetails() {
         initComponents();
+        JTableHeader header = tblUserDetails.getTableHeader();
+        // Create a Font object with bold style
+        Font boldFont = new Font(header.getFont().getFontName(), Font.BOLD, header.getFont().getSize());
 
-       
+        // Set the bold font for the header
+        header.setFont(boldFont);
+
         loadUserDetails();
-        TableActionEvent event=new   TableActionEvent(){
+        TableActionEvent event = new TableActionEvent() {
             @Override
             public void Activate(int row) {
                 String user = (String) tblUserDetails.getValueAt(row, 0);
-            int choice= JOptionPane.showConfirmDialog(null, "Are you sure you want to Activate  account "+user+"?", "Confirmation", JOptionPane.YES_NO_OPTION);
-               if(choice==JOptionPane.YES_OPTION){
-                    Database d1=new Database();
-                    d1.manageActivate(tblUserDetails,row);
-               }
-               
+                int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to Activate  account " + user + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    Database d1 = new Database();
+                    d1.manageActivate(tblUserDetails, row);
+                }
+
             }
 
             @Override
             public void Deactivate(int row) {
-                  String user = (String) tblUserDetails.getValueAt(row, 0);
-                 int choice= JOptionPane.showConfirmDialog(null, "Are you sure you want to Deactivate  account "+user+"?", "Confirmation", JOptionPane.YES_NO_OPTION);
-               if(choice==JOptionPane.YES_OPTION){
-                     Database d1=new Database();
-                    d1.manageDeactivate(tblUserDetails,row);
-               }
+                String user = (String) tblUserDetails.getValueAt(row, 0);
+                int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to Deactivate  account " + user + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    Database d1 = new Database();
+                    d1.manageDeactivate(tblUserDetails, row);
+                }
             }
-            
+
         };
         tblUserDetails.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRender());
         tblUserDetails.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
-        
-        
-    }
-    
-    public void loadUserDetails(){
-        Database d1=new Database();
-         d1.loadUserAccountDetails(tblUserDetails);
-    }
-    
 
+    }
 
-   
+    public void loadUserDetails() {
+        Database d1 = new Database();
+        d1.loadUserAccountDetails(tblUserDetails);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,14 +207,13 @@ public class userAccountDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-            this.dispose();
-            AccountUpdate account=new AccountUpdate(true);
-            account.setVisible(true);
+        this.dispose();
+        AccountUpdate account = new AccountUpdate(true);
+        account.setVisible(true);
     }//GEN-LAST:event_btnPrevActionPerformed
 
-    
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new userAccountDetails().setVisible(true);

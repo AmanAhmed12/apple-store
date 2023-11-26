@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.CashierController;
@@ -18,39 +17,39 @@ import javax.swing.border.LineBorder;
 import model.Order;
 
 public class PlaceOrder extends javax.swing.JFrame {
- 
-  private String prevName;
-private String prevAddress;
-private String prevMobile;
-     
+
+    private String prevName;
+    private String prevAddress;
+    private String prevMobile;
+
     public PlaceOrder() {
         initComponents();
-        
+
     }
 
-  
     @SuppressWarnings("unchecked")
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         txtName.setText(name);
     }
-    
-    public void setAddress(String address){
+
+    public void setAddress(String address) {
         txtAddress.setText(address);
     }
-    
-    public void setMobile(String mobile){
+
+    public void setMobile(String mobile) {
         txtMobile.setText(mobile);
     }
-    
-    public void setCategory(int index){
+
+    public void setCategory(int index) {
         cmbCat.setSelectedIndex(index);
     }
-    
-    public void setProductName(String name){
+
+    public void setProductName(String name) {
         txtProductName.setText(name);
     }
-    public void setQuantity(String qty){
+
+    public void setQuantity(String qty) {
         txtQty.setText(qty);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -356,51 +355,45 @@ private String prevMobile;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-    
-    String name = txtName.getText();
-    String address = txtAddress.getText();
-    String productNames=txtProductName.getText();
-    String qty=txtQty.getText();
-    String mobile = txtMobile.getText();
-    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-          
-       if(name.equals("Enter your name")||address.equals("Enter your address")||mobile.equals("07x xxxxxxx")||productNames.equals("Enter product name")||qty.equals("Enter a number")||cmbCat.getSelectedItem().equals("Select")){
-          JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-          
-      }
-       else if(name.matches(".*\\d.*")){
-          
-           lblIName.setText("digits are not allowed");
-       }
-       else if(!mobile.matches(".*\\d.*") ){
+
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String productNames = txtProductName.getText();
+        String qty = txtQty.getText();
+        String mobile = txtMobile.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+
+        if (name.equals("Enter your name") || address.equals("Enter your address") || mobile.equals("07x xxxxxxx") || productNames.equals("Enter product name") || qty.equals("Enter a number") || cmbCat.getSelectedItem().equals("Select")) {
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+
+        } else if (name.matches(".*\\d.*")) {
+
+            lblIName.setText("digits are not allowed");
+        } else if (!mobile.matches(".*\\d.*")) {
             lblIMobile.setText("Only digits are allowed!!!");
-       }
-       else if(mobile.length()>10 || mobile.length()<10 ){
+        } else if (mobile.length() > 10 || mobile.length() < 10) {
             lblIMobile.setText("Mobile field must contain only 10 digits");
-       }
-       else if(!qty.matches(".*\\d.*")){
-           lblIQty.setText("Only digits are allowed!!!");
-       }
-       else{
-              lblIQty.setText("");
-        int choice = JOptionPane.showConfirmDialog(null, "Are you sure you wantto place order?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (choice == JOptionPane.YES_OPTION){ 
-            prevName = name;
-             prevAddress = address;
-             prevMobile = mobile;
-           CashierController  c1=new CashierController();
-       
-           
-           String category=(String) cmbCat.getSelectedItem();
-           String productName=txtProductName.getText();
-           int quantity=Integer.parseInt(txtQty.getText());
-           c1.placeOrder(name,address,mobile,category,productName,quantity,prevName,prevAddress,prevMobile);
-           this.dispose();
-       
-       }
-      }
+        } else if (!qty.matches(".*\\d.*")) {
+            lblIQty.setText("Only digits are allowed!!!");
+        } else {
+            lblIQty.setText("");
+            int choice = JOptionPane.showConfirmDialog(null, "Are you sure you wantto place order?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                prevName = name;
+                prevAddress = address;
+                prevMobile = mobile;
+                CashierController c1 = new CashierController();
+
+                String category = (String) cmbCat.getSelectedItem();
+                String productName = txtProductName.getText();
+                int quantity = Integer.parseInt(txtQty.getText());
+                c1.placeOrder(name, address, mobile, category, productName, quantity, prevName, prevAddress, prevMobile);
+                this.dispose();
+
+            }
+        }
     }//GEN-LAST:event_btnOrderActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -413,143 +406,137 @@ private String prevMobile;
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-    this.dispose();
-    Cashier c1=new Cashier();
-    c1.setVisible(true);
+        this.dispose();
+        Cashier c1 = new Cashier();
+        c1.setVisible(true);
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
-      if(txtName.getText().equals("Enter your name")){
-          txtName.setText("");
-           txtName.setForeground(Color.black);
-          
-       }
-      txtName.setBorder(new LineBorder(Color.blue, 2));
+        if (txtName.getText().equals("Enter your name")) {
+            txtName.setText("");
+            txtName.setForeground(Color.black);
+
+        }
+        txtName.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtNameFocusGained
 
     private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
-          if( txtName.getText().equals("")){
+        if (txtName.getText().equals("")) {
             txtName.setText("Enter your name");
-            txtName.setForeground(new Color(153,153,153));
-           
-       }
-          
-          
-            String nameText = txtName.getText();
-           Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-          if(!pattern.matcher(nameText).find()){
-             lblIName.setText("cannot contain digits!!!");
-          }
-          else{
-                lblIName.setText("");
-          }
-           txtName.setBorder(new LineBorder(Color.gray, 1));
+            txtName.setForeground(new Color(153, 153, 153));
+
+        }
+
+        String nameText = txtName.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+        if (!pattern.matcher(nameText).find()) {
+            lblIName.setText("cannot contain digits!!!");
+        } else {
+            lblIName.setText("");
+        }
+        txtName.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtNameFocusLost
 
     private void txtAddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusGained
-        if(txtAddress.getText().equals("Enter your address")){
-          txtAddress.setText("");
-           txtAddress.setForeground(Color.black);
-         
-       }
+        if (txtAddress.getText().equals("Enter your address")) {
+            txtAddress.setText("");
+            txtAddress.setForeground(Color.black);
+
+        }
         txtAddress.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtAddressFocusGained
 
     private void txtAddressFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAddressFocusLost
-      if(  txtAddress.getText().equals("")){
-             txtAddress.setText("Enter your address");
-           txtAddress.setForeground(new Color(153,153,153));
-          
-       }
+        if (txtAddress.getText().equals("")) {
+            txtAddress.setText("Enter your address");
+            txtAddress.setForeground(new Color(153, 153, 153));
+
+        }
         txtAddress.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtAddressFocusLost
 
     private void txtMobileFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMobileFocusGained
-         if(txtMobile.getText().equals("0712222222")){
-          txtMobile.setText("");
-           txtMobile.setForeground(Color.black);
-        
-       }
-          txtMobile.setBorder(new LineBorder(Color.blue, 2));
+        if (txtMobile.getText().equals("0712222222")) {
+            txtMobile.setText("");
+            txtMobile.setForeground(Color.black);
+
+        }
+        txtMobile.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtMobileFocusGained
 
     private void txtMobileFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMobileFocusLost
-        if(  txtMobile.getText().equals("")){
+        if (txtMobile.getText().equals("")) {
             txtMobile.setText("0712222222");
-           txtMobile.setForeground(new Color(153,153,153));
-          
-       }
-        
-          String mobile = txtMobile.getText();
-    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-    if(pattern.matcher( mobile).find()){
-        lblIMobile.setText("Can only contain digits");
-        
-    }
-    else if(mobile.length()>10 || mobile.length()<10 ){
+            txtMobile.setForeground(new Color(153, 153, 153));
+
+        }
+
+        String mobile = txtMobile.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+        if (pattern.matcher(mobile).find()) {
+            lblIMobile.setText("Can only contain digits");
+
+        } else if (mobile.length() > 10 || mobile.length() < 10) {
             lblIMobile.setText("Mobile field must contain only 10 digits");
-       }
-    else{
-          lblIMobile.setText("");
-    }
-         txtMobile.setBorder(new LineBorder(Color.gray, 1));
+        } else {
+            lblIMobile.setText("");
+        }
+        txtMobile.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtMobileFocusLost
 
     private void txtProductNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusGained
-       if(txtProductName.getText().equals("Enter product name")){
-          txtProductName.setText("");
-          txtProductName.setForeground(Color.black);
-        
-       }
+        if (txtProductName.getText().equals("Enter product name")) {
+            txtProductName.setText("");
+            txtProductName.setForeground(Color.black);
+
+        }
         txtProductName.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductNameFocusGained
 
     private void txtProductNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusLost
-       if( txtProductName.getText().equals("")){
+        if (txtProductName.getText().equals("")) {
             txtProductName.setText("Enter product name");
-          txtProductName.setForeground(new Color(153,153,153));
-        
-       }
-         txtProductName.setBorder(new LineBorder(Color.gray, 1));
+            txtProductName.setForeground(new Color(153, 153, 153));
+
+        }
+        txtProductName.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductNameFocusLost
 
     private void txtQtyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusGained
-       if(txtQty.getText().equals("Enter a number")){
-          txtQty.setText("");
-         txtQty.setForeground(Color.black);
-         
-       }
-       txtQty.setBorder(new LineBorder(Color.blue, 2));
+        if (txtQty.getText().equals("Enter a number")) {
+            txtQty.setText("");
+            txtQty.setForeground(Color.black);
+
+        }
+        txtQty.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtQtyFocusGained
 
     private void txtQtyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusLost
-        if( txtQty.getText().equals("")){
-           txtQty.setText("Enter a number");
-         txtQty.setForeground(new Color(153,153,153));
-        
-       }
-       
-        String qty=txtQty.getText();
-        if(!qty.matches(".*\\d.*")){
-           lblIQty.setText("Only digits are allowed!!!");
-       }
-        else{
-             lblIQty.setText("");
+        if (txtQty.getText().equals("")) {
+            txtQty.setText("Enter a number");
+            txtQty.setForeground(new Color(153, 153, 153));
+
         }
-         txtQty.setBorder(new LineBorder(Color.gray, 1));
+
+        String qty = txtQty.getText();
+        if (!qty.matches(".*\\d.*")) {
+            lblIQty.setText("Only digits are allowed!!!");
+        } else {
+            lblIQty.setText("");
+        }
+        txtQty.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-         btnPrev.setBorder(new LineBorder(Color.blue, 3));
+        btnPrev.setBorder(new LineBorder(Color.blue, 3));
     }//GEN-LAST:event_btnPrevMouseEntered
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
-       btnPrev.setBorder(new LineBorder(Color.white, 3));
+        btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
 
-  
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PlaceOrder().setVisible(true);

@@ -15,15 +15,15 @@ public class AccountCreation extends javax.swing.JFrame {
     }
 
     private int getDigits(String str) {
-    int digitCount = 0;
-    for (char c : str.toCharArray()) {
-        if (Character.isDigit(c)) {
-            digitCount++;
+        int digitCount = 0;
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                digitCount++;
+            }
         }
+        return digitCount;
     }
-    return digitCount;
-}
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -406,12 +406,12 @@ public class AccountCreation extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
-     private boolean isValidEmail(String email) {
+    private boolean isValidEmail(String email) {
         // Implement a more comprehensive email validation logic using regular expressions
         return email.endsWith("@gmail.com");
     }
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
-       
+
     }//GEN-LAST:event_txtMailActionPerformed
 
     private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked
@@ -427,7 +427,7 @@ public class AccountCreation extends javax.swing.JFrame {
         if (txtMail.getText().equals("amaanhlimy@gmail.com")) {
             txtMail.setText("");
             txtMail.setForeground(Color.black);
-            
+
         }
         txtMail.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtMailFocusGained
@@ -436,19 +436,18 @@ public class AccountCreation extends javax.swing.JFrame {
         if (txtMail.getText().equals("")) {
             txtMail.setText("amaanhlimy@gmail.com");
             txtMail.setForeground(new Color(153, 153, 153));
-            
+
         }
         txtMail.setBorder(new LineBorder(Color.gray, 1));
-        
-        
-         String email = txtMail.getText();    
+
+        String email = txtMail.getText();
         // Check if the last 10 characters of the email are "@gmail.com"
         if (email.length() >= 10 && email.endsWith("@gmail.com")) {
             lblIMail.setText("");
-      
+
         } else {
             // The email does not end with "@gmail.com"
-          lblIMail.setText("Incorrect Email format..");
+            lblIMail.setText("Incorrect Email format..");
         }
     }//GEN-LAST:event_txtMailFocusLost
 
@@ -456,39 +455,38 @@ public class AccountCreation extends javax.swing.JFrame {
         if (txtUser.getText().equals("Enter username")) {
             txtUser.setText("");
             txtUser.setForeground(Color.black);
-           
+
         }
-         txtUser.setBorder(new LineBorder(Color.blue, 2));
+        txtUser.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
         if (txtUser.getText().equals("")) {
             txtUser.setText("Enter username");
             txtUser.setForeground(new Color(153, 153, 153));
-           
+
         }
-         txtUser.setBorder(new LineBorder(Color.gray, 1));
+        txtUser.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
 
-      if(txtPwd.getText().equals("##############")){
-          txtPwd.setText("");
-           txtPwd.setForeground(Color.black);
-         
-       }
-       txtPwd.setBorder(new LineBorder(Color.blue, 2));
-          lblShow.setBorder(new LineBorder(Color.blue, 2));
+        if (txtPwd.getText().equals("##############")) {
+            txtPwd.setText("");
+            txtPwd.setForeground(Color.black);
+
+        }
+        txtPwd.setBorder(new LineBorder(Color.blue, 2));
+        lblShow.setBorder(new LineBorder(Color.blue, 2));
 
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
-        if(txtPwd.getText().equals("")){
-           txtPwd.setText("##############");
-           txtPwd.setForeground(new Color(153,153,153));
-           
-           
-       }
+        if (txtPwd.getText().equals("")) {
+            txtPwd.setText("##############");
+            txtPwd.setForeground(new Color(153, 153, 153));
+
+        }
         txtPwd.setBorder(new LineBorder(Color.gray, 1));
         lblShow.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtPwdFocusLost
@@ -506,68 +504,64 @@ public class AccountCreation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMailKeyTyped
 
     private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
-        
-        if(txtPwd.getText().length() <8){
-           lblIPwd.setText("Password must have more than 8 characters");
-       }
-       else{
-           lblIPwd.setText("");
-       }
-        
-        
+
+        if (txtPwd.getText().length() < 8) {
+            lblIPwd.setText("Password must have more than 8 characters");
+        } else {
+            lblIPwd.setText("");
+        }
+
+
     }//GEN-LAST:event_txtPwdKeyPressed
 
     private void txtConfirmFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusGained
-        if(txtConfirm.getText().equals("##############")){
-          txtConfirm.setText("");
-          txtConfirm.setForeground(Color.black);
-          
-          
-       }
+        if (txtConfirm.getText().equals("##############")) {
+            txtConfirm.setText("");
+            txtConfirm.setForeground(Color.black);
+
+        }
         txtConfirm.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtConfirmFocusGained
 
     private void txtConfirmFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusLost
-      if(txtConfirm.getText().equals("")){
-           txtConfirm.setText("##############");
-           txtConfirm.setForeground(new Color(153,153,153));
-        
-         
-       }
+        if (txtConfirm.getText().equals("")) {
+            txtConfirm.setText("##############");
+            txtConfirm.setForeground(new Color(153, 153, 153));
+
+        }
         txtConfirm.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtConfirmFocusLost
 
     private void txtConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmKeyPressed
-        if(txtPwd.getText().equals(txtConfirm.getText())){
-           lblIConfirm.setText("Password doesnot match!!!");
-       }
-       else{
-           lblIConfirm.setText("");
-       }
-        
+        if (txtPwd.getText().equals(txtConfirm.getText())) {
+            lblIConfirm.setText("Password doesnot match!!!");
+        } else {
+            lblIConfirm.setText("");
+        }
+
     }//GEN-LAST:event_txtConfirmKeyPressed
 
     private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
-     char pressedKey = evt.getKeyChar();
-    String txtUserText = txtUser.getText(); // Get the current text of txtUser
+        char pressedKey = evt.getKeyChar();
+        String txtUserText = txtUser.getText(); // Get the current text of txtUser
 
-    if (pressedKey != KeyEvent.VK_BACK_SPACE) {
-        if (txtUserText.length() < 5) {
-            lblIUser.setText("Characters must be more than 5 !!!");
-        } else if (getDigits(txtUserText) >=3) {
-            lblIUser.setText("Cannot have more than 3 digits");
-        } else {
-            lblIUser.setText("");
+        if (pressedKey != KeyEvent.VK_BACK_SPACE) {
+            if (txtUserText.length() < 5) {
+                lblIUser.setText("Characters must be more than 5 !!!");
+            } else if (getDigits(txtUserText) >= 3) {
+                lblIUser.setText("Cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
+        } else { // Backspace key is pressed
+            if (txtUserText.length() < 5) {
+                lblIUser.setText("Characters must be more than 5 !!!");
+            } else if (getDigits(txtUserText) > 4) {
+                lblIUser.setText("Cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
         }
-    } else { // Backspace key is pressed
-        if (txtUserText.length() < 5) {
-            lblIUser.setText("Characters must be more than 5 !!!");
-        } else if (getDigits(txtUserText) >4) {
-            lblIUser.setText("Cannot have more than 3 digits");
-        } else {
-            lblIUser.setText("");
-        }
-    }
 
     }//GEN-LAST:event_txtUserKeyPressed
 

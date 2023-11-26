@@ -1,5 +1,5 @@
-
 package view;
+
 import com.itextpdf.text.BaseColor;
 import model.Order;
 import java.util.Date;
@@ -38,12 +38,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Invoice extends javax.swing.JFrame {
-   
-   
+
     public Invoice() {
         initComponents();
-       
-       
+
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime();
 
@@ -54,146 +52,125 @@ public class Invoice extends javax.swing.JFrame {
         // Set the formatted date and time to the labels
         lblDateVal.setText(dateFormat.format(currentDate));
         lblTimeVal.setText(timeFormat.format(currentDate));
-        
-        
-        
-        
-      
+
     }
-    
-    public void setTotal(String total){
+
+    public void setTotal(String total) {
         txtTotal.setText(total);
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         txtName.setText(name);
     }
-    public void setAddress(String address){
+
+    public void setAddress(String address) {
         txtAddress.setText(address);
     }
-    
-    public void setMobile(String mobile){
+
+    public void setMobile(String mobile) {
         txtTel.setText(mobile);
     }
-    
 
-    
- private void generatePDF() throws FileNotFoundException, DocumentException, IOException {
-    Document document = new Document(A5);
-    PdfWriter writer;
-    
-    try {
-        
- 
- 
-        
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String timestamp = timestampFormat.format(new Date());
-        String fileName = "invoice_" + timestamp + ".pdf"; 
-        writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
-        document.open();
-        
-       URL imageFilePath = getClass().getClassLoader().getResource("view/images/userlogo.png");
-       Image image = Image.getInstance(imageFilePath);
-       
-       image.scaleToFit(80, 80);
-       image.setAlignment(Element.ALIGN_CENTER);
- 
-        //Add content to the document using Image object.
-        document.add(image);
-      
-       
+    private void generatePDF() throws FileNotFoundException, DocumentException, IOException {
+        Document document = new Document(A5);
+        PdfWriter writer;
 
-        // Add content to the PDF
-        BaseColor redColor = BaseColor.RED;
-         Paragraph head = new Paragraph("APPLE I-STORE", new Font(Font.FontFamily.TIMES_ROMAN, 40, Font.BOLD, redColor));
-         head.setAlignment(Element.ALIGN_CENTER);
-          document.add(head);
+        try {
 
-        Paragraph header = new Paragraph("Invoice", new Font(Font.FontFamily.TIMES_ROMAN, 30, Font.BOLD));
-        header.setAlignment(Element.ALIGN_CENTER);
-        document.add(header);
-        
-        
-        Paragraph date=new Paragraph("Date: " + lblDateVal.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
-        Paragraph time=new Paragraph("Time: " + lblTimeVal.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
-        Paragraph name=new Paragraph("Name: " + txtName.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
-        Paragraph address=new Paragraph("Address: " + txtAddress.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
-        Paragraph mobile=new Paragraph("Mobile No: " + txtTel.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
-        Paragraph total=new Paragraph("Total Amount: " + txtTotal.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
-        name.setAlignment(Element.ALIGN_LEFT);
-        
-        date.setAlignment(Element.ALIGN_RIGHT);
-        document.add(date);
-        time.setAlignment(Element.ALIGN_RIGHT);
-        document.add(time);
-        document.add(name);
-        document.add(address);
-        document.add(mobile);
-        document.add(total);
+            SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            String timestamp = timestampFormat.format(new Date());
+            String fileName = "invoice_" + timestamp + ".pdf";
+            writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
+            document.open();
 
-          // Create a table for the invoice items
-        PdfPTable table = new PdfPTable(6); // 6 columns for your table
-        table.setWidthPercentage(100); // Table should take up the entire width
+            URL imageFilePath = getClass().getClassLoader().getResource("view/images/userlogo.png");
+            Image image = Image.getInstance(imageFilePath);
 
-        // Define the headers for the table
-        PdfPCell cell = new PdfPCell(new Phrase("Invoice No"));
-        table.addCell(cell);
-        cell = new PdfPCell(new Phrase("Category"));
-        table.addCell(cell);
-        cell = new PdfPCell(new Phrase("Product Name"));
-        table.addCell(cell);
-        cell = new PdfPCell(new Phrase("Quantity"));
-        table.addCell(cell);
-        cell = new PdfPCell(new Phrase("Price"));
-        table.addCell(cell);
-        cell = new PdfPCell(new Phrase("Amount"));
-        table.addCell(cell);
+            image.scaleToFit(80, 80);
+            image.setAlignment(Element.ALIGN_CENTER);
 
-        // You may need to loop through your table model and add its content to the PDF here
-      DefaultTableModel model = (DefaultTableModel) tblInvoice.getModel();
-        for (int row = 0; row < model.getRowCount(); row++) {
-             for (int col = 0; col < model.getColumnCount(); col++) {
-                 // Check if the cell value is null and replace it with an empty string if needed
-                String cellValue = model.getValueAt(row, col) != null ? model.getValueAt(row, col).toString() : "";
+            //Add content to the document using Image object.
+            document.add(image);
 
-                cell = new PdfPCell(new Phrase(cellValue));
-                table.addCell(cell);
+            // Add content to the PDF
+            BaseColor redColor = BaseColor.RED;
+            Paragraph head = new Paragraph("APPLE I-STORE", new Font(Font.FontFamily.TIMES_ROMAN, 40, Font.BOLD, redColor));
+            head.setAlignment(Element.ALIGN_CENTER);
+            document.add(head);
+
+            Paragraph header = new Paragraph("Invoice", new Font(Font.FontFamily.TIMES_ROMAN, 30, Font.BOLD));
+            header.setAlignment(Element.ALIGN_CENTER);
+            document.add(header);
+
+            Paragraph date = new Paragraph("Date: " + lblDateVal.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
+            Paragraph time = new Paragraph("Time: " + lblTimeVal.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
+            Paragraph name = new Paragraph("Name: " + txtName.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
+            Paragraph address = new Paragraph("Address: " + txtAddress.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
+            Paragraph mobile = new Paragraph("Mobile No: " + txtTel.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
+            Paragraph total = new Paragraph("Total Amount: " + txtTotal.getText(), new Font(Font.FontFamily.TIMES_ROMAN, 14));
+            name.setAlignment(Element.ALIGN_LEFT);
+
+            date.setAlignment(Element.ALIGN_RIGHT);
+            document.add(date);
+            time.setAlignment(Element.ALIGN_RIGHT);
+            document.add(time);
+            document.add(name);
+            document.add(address);
+            document.add(mobile);
+            document.add(total);
+
+            // Create a table for the invoice items
+            PdfPTable table = new PdfPTable(6); // 6 columns for your table
+            table.setWidthPercentage(100); // Table should take up the entire width
+
+            // Define the headers for the table
+            PdfPCell cell = new PdfPCell(new Phrase("Invoice No"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Category"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Product Name"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Quantity"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Price"));
+            table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Amount"));
+            table.addCell(cell);
+
+            // You may need to loop through your table model and add its content to the PDF here
+            DefaultTableModel model = (DefaultTableModel) tblInvoice.getModel();
+            for (int row = 0; row < model.getRowCount(); row++) {
+                for (int col = 0; col < model.getColumnCount(); col++) {
+                    // Check if the cell value is null and replace it with an empty string if needed
+                    String cellValue = model.getValueAt(row, col) != null ? model.getValueAt(row, col).toString() : "";
+
+                    cell = new PdfPCell(new Phrase(cellValue));
+                    table.addCell(cell);
+                }
             }
+            table.setSpacingBefore(60f);
+            document.add(table);
+
+            PdfContentByte canvas = writer.getDirectContent();
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, new Phrase("THANK YOU !!!", new Font(Font.FontFamily.TIMES_ROMAN, 30, Font.BOLD)), document.right() - document.left() / 2 - 200, document.bottom() + 30, 0);
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, new Phrase("COME AGAIN...", new Font(Font.FontFamily.TIMES_ROMAN, 30, Font.BOLD)), document.right() - document.left() / 2 - 100, document.bottom() + 0, 0);
+
+            document.close();
+            writer.close();
+        } catch (DocumentException e) {
+            System.out.println("error");
+            e.printStackTrace();
         }
-        table.setSpacingBefore(60f); 
-        document.add(table);
-
-
-        
-        PdfContentByte canvas = writer.getDirectContent();
-        ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, new Phrase("THANK YOU !!!", new Font(Font.FontFamily.TIMES_ROMAN, 30, Font.BOLD)), document.right() - document.left() / 2-200, document.bottom() + 30, 0);
-         ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, new Phrase("COME AGAIN...", new Font(Font.FontFamily.TIMES_ROMAN, 30, Font.BOLD)), document.right() - document.left() / 2-100, document.bottom() + 0, 0);
-      
-      
-
-        document.close();
-        writer.close();
-    } catch (DocumentException e) {
-        System.out.println("error");
-        e.printStackTrace();
     }
-}
-  // Initialize the count to 0
-public void print(String name, String address, String mobile, int yesCount,Invoice receipt) {
-  
-  Database d1=new Database();
-  d1.printInvoice(tblInvoice, name, address, mobile, yesCount,receipt);
+    // Initialize the count to 0
 
+    public void print(String name, String address, String mobile, int yesCount, Invoice receipt) {
 
-    
+        Database d1 = new Database();
+        d1.printInvoice(tblInvoice, name, address, mobile, yesCount, receipt);
 
-   
-}
+    }
 
-
-
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -428,28 +405,25 @@ public void print(String name, String address, String mobile, int yesCount,Invoi
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-       
-    
-           try {
-               generatePDF();
-           } catch (FileNotFoundException ex) {
-               Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
-           } catch (DocumentException ex) {
-               Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
-           } catch (IOException ex) {
+
+        try {
+            generatePDF();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(Invoice.class.getName()).log(Level.SEVERE, null, ex);
         }
-            PlaceOrder order=new PlaceOrder();
-            order.setVisible(true);
-            this.dispose();
-        
-       
-        
+        PlaceOrder order = new PlaceOrder();
+        order.setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_btnPrintActionPerformed
 
-  
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Invoice().setVisible(true);

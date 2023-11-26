@@ -1,4 +1,3 @@
-
 package view;
 
 import database.Database;
@@ -7,33 +6,35 @@ import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
-
 import javax.swing.border.LineBorder;
 
-
 public class Login extends javax.swing.JFrame {
-private static String usernames;
 
-   
+    private static String usernames;
+
     public Login() {
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
-    
-    public String getUsername(){
+
+    public String getUsername() {
         return usernames;
     }
-    
-   private int getDigits(String str) {
-    int digitCount = 0;
-    for (char c : str.toCharArray()) {
-        if (Character.isDigit(c)) {
-            digitCount++;
-        }
+
+    public Login getLoginDetails() {
+        return this;
     }
-    return digitCount;
-}
+
+    private int getDigits(String str) {
+        int digitCount = 0;
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                digitCount++;
+            }
+        }
+        return digitCount;
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -264,123 +265,120 @@ private static String usernames;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-     if(txtUser.getText().equals("Enter username")||txtPwd.getText().equals("")){
-          JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-     }
-     else{
-        Database d1=new Database();
-       String username=txtUser.getText();
-       String password=txtPwd.getText();
-       usernames=username;
-      d1.login(username, password, this, txtUser, txtPwd);
-     }
+        if (txtUser.getText().equals("Enter username") || txtPwd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+        } else {
+            Database d1 = new Database();
+            String username = txtUser.getText();
+            String password = txtPwd.getText();
+            usernames = username;
+            d1.login(username, password, this, txtUser, txtPwd);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked
-         char echo = txtPwd.getEchoChar();
-    if (echo == 0) {
-        txtPwd.setEchoChar('●'); // Set it to the default bullet character to hide characters
-    } else {
-        txtPwd.setEchoChar((char) 0); // Set it to 0 to make characters visible
-    }
+        char echo = txtPwd.getEchoChar();
+        if (echo == 0) {
+            txtPwd.setEchoChar('●'); // Set it to the default bullet character to hide characters
+        } else {
+            txtPwd.setEchoChar((char) 0); // Set it to 0 to make characters visible
+        }
     }//GEN-LAST:event_lblShowMouseClicked
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-          if(txtUser.getText().equals("Enter username")){
-           txtUser.setText("");
-           txtUser.setForeground(Color.black);
-          
-       }
-           txtUser.setBorder(new LineBorder(Color.blue, 2));
+        if (txtUser.getText().equals("Enter username")) {
+            txtUser.setText("");
+            txtUser.setForeground(Color.black);
+
+        }
+        txtUser.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
-          if(txtUser.getText().equals("")){
-           txtUser.setText("Enter username");
-           txtUser.setForeground(new Color(153,153,153));
-           
-       }
-          txtUser.setBorder(new LineBorder(Color.gray, 1));
+        if (txtUser.getText().equals("")) {
+            txtUser.setText("Enter username");
+            txtUser.setForeground(new Color(153, 153, 153));
+
+        }
+        txtUser.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtUserFocusLost
 
     private void txtPwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusGained
-      if(txtPwd.getText().equals("##########")){
-          txtPwd.setText("");
-           txtPwd.setForeground(Color.black);
-         
-       }
-       txtPwd.setBorder(new LineBorder(Color.blue, 2));
-          lblShow.setBorder(new LineBorder(Color.blue, 2));
+        if (txtPwd.getText().equals("##########")) {
+            txtPwd.setText("");
+            txtPwd.setForeground(Color.black);
+
+        }
+        txtPwd.setBorder(new LineBorder(Color.blue, 2));
+        lblShow.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtPwdFocusGained
 
     private void txtPwdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPwdFocusLost
-      // Check if the text is empty
-    if (txtPwd.getText().equals("")) {
-        // If it's empty, set default text and color
-        txtPwd.setText("##########");
-        txtPwd.setForeground(new Color(153, 153, 153));
-    }
+        // Check if the text is empty
+        if (txtPwd.getText().equals("")) {
+            // If it's empty, set default text and color
+            txtPwd.setText("##########");
+            txtPwd.setForeground(new Color(153, 153, 153));
+        }
 
-    // Check if the length is less than 8 and not equal to the default text
-    if (txtPwd.getText().length() < 8 && !txtPwd.getText().equals("##########")) {
-        // If it's less than 8, set an error message
-        lblIpwd.setText("Characters must be more than 8 !!!");
-    } else {
-        // If it's not less than 8, clear the error message
-        lblIpwd.setText("");
-    }
+        // Check if the length is less than 8 and not equal to the default text
+        if (txtPwd.getText().length() < 8 && !txtPwd.getText().equals("##########")) {
+            // If it's less than 8, set an error message
+            lblIpwd.setText("Characters must be more than 8 !!!");
+        } else {
+            // If it's not less than 8, clear the error message
+            lblIpwd.setText("");
+        }
 
-    // Set borders for txtPwd and lblShow
-    txtPwd.setBorder(new LineBorder(Color.gray, 1));
-    lblShow.setBorder(new LineBorder(Color.gray, 1));
+        // Set borders for txtPwd and lblShow
+        txtPwd.setBorder(new LineBorder(Color.gray, 1));
+        lblShow.setBorder(new LineBorder(Color.gray, 1));
 
-    // Check if the text is empty after all other checks
-    if (txtPwd.getText().equals("")) {
-        // If it's empty, set lblIpwd to an empty string
-        lblIpwd.setText("");
-    }
+        // Check if the text is empty after all other checks
+        if (txtPwd.getText().equals("")) {
+            // If it's empty, set lblIpwd to an empty string
+            lblIpwd.setText("");
+        }
     }//GEN-LAST:event_txtPwdFocusLost
 
     private void txtPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwdKeyPressed
-      
-        if(txtPwd.getText().length()<8){
-           lblIpwd.setText("Characters must be more than 8 !!!");
-       }
-       else{
-           lblIpwd.setText("");
-       }
-        
-        
+
+        if (txtPwd.getText().length() < 8) {
+            lblIpwd.setText("Characters must be more than 8 !!!");
+        } else {
+            lblIpwd.setText("");
+        }
+
+
     }//GEN-LAST:event_txtPwdKeyPressed
 
     private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
-         char pressedKey = evt.getKeyChar();
-    String txtUserText = txtUser.getText(); // Get the current text of txtUser
+        char pressedKey = evt.getKeyChar();
+        String txtUserText = txtUser.getText(); // Get the current text of txtUser
 
-    if (pressedKey != KeyEvent.VK_BACK_SPACE) {
-        if (txtUserText.length() < 5) {
-            lblIUser.setText("Characters must be more than 5 !!!");
-        } else if (getDigits(txtUserText) >=3) {
-            lblIUser.setText("Cannot have more than 3 digits");
-        } else {
-            lblIUser.setText("");
+        if (pressedKey != KeyEvent.VK_BACK_SPACE) {
+            if (txtUserText.length() < 5) {
+                lblIUser.setText("Characters must be more than 5 !!!");
+            } else if (getDigits(txtUserText) >= 3) {
+                lblIUser.setText("Cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
+        } else { // Backspace key is pressed
+            if (txtUserText.length() < 5) {
+                lblIUser.setText("Characters must be more than 5 !!!");
+            } else if (getDigits(txtUserText) > 4) {
+                lblIUser.setText("Cannot have more than 3 digits");
+            } else {
+                lblIUser.setText("");
+            }
         }
-    } else { // Backspace key is pressed
-        if (txtUserText.length() < 5) {
-            lblIUser.setText("Characters must be more than 5 !!!");
-        } else if (getDigits(txtUserText) >4) {
-            lblIUser.setText("Cannot have more than 3 digits");
-        } else {
-            lblIUser.setText("");
-        }
-    }
 
 
     }//GEN-LAST:event_txtUserKeyPressed
 
-   
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);

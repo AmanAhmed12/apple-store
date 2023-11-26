@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.ManagerController;
@@ -8,12 +7,10 @@ import javax.swing.border.LineBorder;
 
 public class RemoveProduct extends javax.swing.JFrame {
 
-    
     public RemoveProduct() {
         initComponents();
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,66 +206,64 @@ public class RemoveProduct extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtProductNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusGained
-         if(txtProductName.getText().equals("Enter product name")){
-         txtProductName.setText("");
-         txtProductName.setForeground(Color.black);
-         txtProductName.setBorder(new LineBorder(Color.blue, 2));
-       }
+        if (txtProductName.getText().equals("Enter product name")) {
+            txtProductName.setText("");
+            txtProductName.setForeground(Color.black);
+            txtProductName.setBorder(new LineBorder(Color.blue, 2));
+        }
     }//GEN-LAST:event_txtProductNameFocusGained
 
     private void txtProductNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusLost
-         if( txtProductName.getText().equals("")){
-          txtProductName.setText("Enter product name");
-        txtProductName.setForeground(new Color(153,153,153));
-        txtProductName.setBorder(new LineBorder(Color.gray, 1));
-       }
+        if (txtProductName.getText().equals("")) {
+            txtProductName.setText("Enter product name");
+            txtProductName.setForeground(new Color(153, 153, 153));
+            txtProductName.setBorder(new LineBorder(Color.gray, 1));
+        }
     }//GEN-LAST:event_txtProductNameFocusLost
 
     private void txtQtyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusGained
-       if(txtQty.getText().equals("Enter  a number")){
-         txtQty.setText("");
-        txtQty.setForeground(Color.black);
-         txtQty.setBorder(new LineBorder(Color.blue, 2));
-       }
+        if (txtQty.getText().equals("Enter  a number")) {
+            txtQty.setText("");
+            txtQty.setForeground(Color.black);
+            txtQty.setBorder(new LineBorder(Color.blue, 2));
+        }
     }//GEN-LAST:event_txtQtyFocusGained
 
     private void txtQtyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtyFocusLost
-      if( txtQty.getText().equals("")){
-         txtQty.setText("Enter  a number");
-        txtQty.setForeground(new Color(153,153,153));
-        txtQty.setBorder(new LineBorder(Color.gray, 1));
-       }
+        if (txtQty.getText().equals("")) {
+            txtQty.setText("Enter  a number");
+            txtQty.setForeground(new Color(153, 153, 153));
+            txtQty.setBorder(new LineBorder(Color.gray, 1));
+        }
     }//GEN-LAST:event_txtQtyFocusLost
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-   if(txtProductName.getText().equals("Enter product name")||txtQty.getText().equals("Enter  a number")||cmbCat.getSelectedItem().equals("Select")){
-        
-         JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-    }
-    else{
-        ManagerController m1=new  ManagerController ();
-       
-       String cat=(String) cmbCat.getSelectedItem();
-       String productName=txtProductName.getText();
-       String qty=txtQty.getText();
-       m1.removeProduct(cat,productName,qty );
-       this.dispose();
-      RemoveProduct r1=new RemoveProduct();
-      r1.setVisible(true);
-    }
+        if (txtProductName.getText().equals("Enter product name") || txtQty.getText().equals("Enter  a number") || cmbCat.getSelectedItem().equals("Select")) {
+
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+        } else {
+            ManagerController m1 = new ManagerController();
+
+            String cat = (String) cmbCat.getSelectedItem();
+            String productName = txtProductName.getText();
+            String qty = txtQty.getText();
+            m1.removeProduct(cat, productName, qty);
+            this.dispose();
+            RemoveProduct r1 = new RemoveProduct();
+            r1.setVisible(true);
+        }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-       btnPrev.setBorder(new LineBorder(Color.blue, 3));
+        btnPrev.setBorder(new LineBorder(Color.blue, 3));
     }//GEN-LAST:event_btnPrevMouseEntered
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
         btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
 
-  
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RemoveProduct().setVisible(true);

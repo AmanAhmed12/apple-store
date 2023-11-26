@@ -172,16 +172,14 @@
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblIMail" pref="263" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lblIUser" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblIConfirm" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cmbAccType" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtMail" alignment="0" pref="263" max="32767" attributes="0"/>
-                                  <Component id="txtUser" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtPwd" max="32767" attributes="0"/>
-                                  <Component id="lblIPwd" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtConfirm" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="lblIUser" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblIConfirm" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cmbAccType" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtMail" alignment="0" pref="263" max="32767" attributes="0"/>
+                              <Component id="txtUser" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtPwd" alignment="1" max="32767" attributes="0"/>
+                              <Component id="lblIPwd" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtConfirm" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblShow" min="-2" pref="32" max="-2" attributes="0"/>

@@ -1,5 +1,5 @@
-
 package view;
+
 import controller.ManagerController;
 import java.awt.Color;
 import java.util.regex.Pattern;
@@ -8,12 +8,10 @@ import javax.swing.border.LineBorder;
 
 public class UpdateProduct extends javax.swing.JFrame {
 
-    
     public UpdateProduct() {
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -256,98 +254,93 @@ public class UpdateProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProductIdActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-      Manager m1=new Manager();
-      m1.setVisible(true);
-      this.dispose();
+        Manager m1 = new Manager();
+        m1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-    String updateText = txtUpdateVal.getText();
-    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-        
-   if(txtProductId.getText().equals("")||txtUpdateVal.getText().equals("")||cmbOption.getSelectedItem().equals("Select")){
-        
-        JOptionPane.showMessageDialog(null,"fields cannot be empty"); 
-    }
-    else if(!txtProductId.getText().startsWith("I")){
-        lblIId.setText("ID must start with I");
-        
-    }
-    else if(!txtProductId.getText().substring(1).matches("\\d+")){
+        String updateText = txtUpdateVal.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+
+        if (txtProductId.getText().equals("") || txtUpdateVal.getText().equals("") || cmbOption.getSelectedItem().equals("Select")) {
+
+            JOptionPane.showMessageDialog(null, "fields cannot be empty");
+        } else if (!txtProductId.getText().startsWith("I")) {
+            lblIId.setText("ID must start with I");
+
+        } else if (!txtProductId.getText().substring(1).matches("\\d+")) {
             lblIId.setText("Rest of the values must be digits");
-      }
-    else if(cmbOption.getSelectedItem().equals("Price")&& pattern.matcher(updateText).find()){
-       
+        } else if (cmbOption.getSelectedItem().equals("Price") && pattern.matcher(updateText).find()) {
+
             lblIUp.setText("only digits are allowed!!");
-  
-    }
-    else{
-    
-          lblIUp.setText("");
-        ManagerController m1=new  ManagerController ();
-        String productId=txtProductId.getText();
-        String options=(String) cmbOption.getSelectedItem();
-        String newValue=txtUpdateVal.getText();
-      
-       m1.updateProduct( productId,options,newValue );
-    }
+
+        } else {
+
+            lblIUp.setText("");
+            ManagerController m1 = new ManagerController();
+            String productId = txtProductId.getText();
+            String options = (String) cmbOption.getSelectedItem();
+            String newValue = txtUpdateVal.getText();
+
+            m1.updateProduct(productId, options, newValue);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-      cmbOption.setSelectedIndex(0);
-      txtProductId.setText("");
-      txtUpdateVal.setText("");
+        cmbOption.setSelectedIndex(0);
+        txtProductId.setText("");
+        txtUpdateVal.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtProductIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductIdFocusGained
-       if(txtProductId.getText().equals("Ixxx")){
-        txtProductId.setText("");
-        txtProductId.setForeground(Color.black);
-        
-       }
+        if (txtProductId.getText().equals("Ixxx")) {
+            txtProductId.setText("");
+            txtProductId.setForeground(Color.black);
+
+        }
         txtProductId.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtProductIdFocusGained
 
     private void txtProductIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductIdFocusLost
-         if( txtProductId.getText().equals("")){
-       txtProductId.setText("Ixxx");
-        txtProductId.setForeground(new Color(153,153,153));
-        
-       }
-         txtProductId.setBorder(new LineBorder(Color.gray, 1));
+        if (txtProductId.getText().equals("")) {
+            txtProductId.setText("Ixxx");
+            txtProductId.setForeground(new Color(153, 153, 153));
+
+        }
+        txtProductId.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtProductIdFocusLost
 
     private void txtUpdateValFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUpdateValFocusGained
-         if(txtUpdateVal.getText().equals("Enter update value")){
-        txtUpdateVal.setText("");
-        txtUpdateVal.setForeground(Color.black);
-       
-       }
-          txtUpdateVal.setBorder(new LineBorder(Color.blue, 2));
+        if (txtUpdateVal.getText().equals("Enter update value")) {
+            txtUpdateVal.setText("");
+            txtUpdateVal.setForeground(Color.black);
+
+        }
+        txtUpdateVal.setBorder(new LineBorder(Color.blue, 2));
     }//GEN-LAST:event_txtUpdateValFocusGained
 
     private void txtUpdateValFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUpdateValFocusLost
-          if(txtUpdateVal.getText().equals("")){
-       txtUpdateVal.setText("Enter update value");
-       txtUpdateVal.setForeground(new Color(153,153,153));
-      
-       }
-          String updateText = txtUpdateVal.getText();
-    Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
-    if(cmbOption.getSelectedItem().equals("Price")){
-        if(pattern.matcher(updateText).find()){
-            lblIUp.setText("only digits are allowed!!");
+        if (txtUpdateVal.getText().equals("")) {
+            txtUpdateVal.setText("Enter update value");
+            txtUpdateVal.setForeground(new Color(153, 153, 153));
+
         }
-        else{
-            lblIUp.setText("");
+        String updateText = txtUpdateVal.getText();
+        Pattern pattern = Pattern.compile("\\D"); // \D matches any non-digit character
+        if (cmbOption.getSelectedItem().equals("Price")) {
+            if (pattern.matcher(updateText).find()) {
+                lblIUp.setText("only digits are allowed!!");
+            } else {
+                lblIUp.setText("");
+            }
         }
-    }
-          
-            txtUpdateVal.setBorder(new LineBorder(Color.gray, 1));
+
+        txtUpdateVal.setBorder(new LineBorder(Color.gray, 1));
     }//GEN-LAST:event_txtUpdateValFocusLost
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-         btnPrev.setBorder(new LineBorder(Color.blue, 3));
+        btnPrev.setBorder(new LineBorder(Color.blue, 3));
     }//GEN-LAST:event_btnPrevMouseEntered
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
@@ -355,17 +348,15 @@ public class UpdateProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevMouseExited
 
     private void txtProductIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductIdKeyTyped
-       if(!txtProductId.getText().startsWith("I")){
-           lblIId.setText("ID should be like I001");
-      }
-      else{
-          lblIId.setText("");
-      }
+        if (!txtProductId.getText().startsWith("I")) {
+            lblIId.setText("ID should be like I001");
+        } else {
+            lblIId.setText("");
+        }
     }//GEN-LAST:event_txtProductIdKeyTyped
 
-   
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new UpdateProduct().setVisible(true);

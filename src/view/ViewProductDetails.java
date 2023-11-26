@@ -1,31 +1,38 @@
-
 package view;
 
 import controller.ManagerController;
 import database.Database;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
-
+import javax.swing.table.JTableHeader;
 
 public class ViewProductDetails extends javax.swing.JFrame {
-private boolean isManagerLoggedIn; 
-    
+
+    private boolean isManagerLoggedIn;
+
     public ViewProductDetails(boolean isManagerLoggedIn) {
         initComponents();
-          this.isManagerLoggedIn = isManagerLoggedIn;
+        this.isManagerLoggedIn = isManagerLoggedIn;
+
+        JTableHeader header = tblProductDetails.getTableHeader();
+        // Create a Font object with bold style
+        Font boldFont = new Font(header.getFont().getFontName(), Font.BOLD, header.getFont().getSize());
+
+        // Set the bold font for the header
+        header.setFont(boldFont);
     }
-    public void setTable(){
-     Database d1=new Database();
-     d1.viewAllProduct(tblProductDetails);
-        
- }
 
+    public void setTable() {
+        Database d1 = new Database();
+        d1.viewAllProduct(tblProductDetails);
 
-   
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -184,19 +191,19 @@ private boolean isManagerLoggedIn;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-   if (isManagerLoggedIn) {
-        Manager managerForm = new Manager();
-        managerForm.setVisible(true);
-        
-    } else {
-        Cashier cashierForm = new Cashier();
-        cashierForm.setVisible(true);
-    }
-    this.dispose();
+        if (isManagerLoggedIn) {
+            Manager managerForm = new Manager();
+            managerForm.setVisible(true);
+
+        } else {
+            Cashier cashierForm = new Cashier();
+            cashierForm.setVisible(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewProductDetails(true).setVisible(true);

@@ -2,22 +2,32 @@ package view;
 
 import database.Database;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.JTableHeader;
 
 public class SearchStockDetails extends javax.swing.JFrame {
-  private boolean isManagerLoggedIn; 
+
+    private boolean isManagerLoggedIn;
+
     public SearchStockDetails(boolean isManagerLoggedIn) {
         initComponents();
         this.isManagerLoggedIn = isManagerLoggedIn;
+        JTableHeader header = tblStockDetails.getTableHeader();
+        // Create a Font object with bold style
+        Font boldFont = new Font(header.getFont().getFontName(), Font.BOLD, header.getFont().getSize());
+
+        // Set the bold font for the header
+        header.setFont(boldFont);
     }
 
     @SuppressWarnings("unchecked")
-    
-   public void  setTable(){
-       Database d1=new Database();
-     d1.searchStockDetails(tblStockDetails);
-   }
+
+    public void setTable() {
+        Database d1 = new Database();
+        d1.searchStockDetails(tblStockDetails);
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -178,19 +188,19 @@ public class SearchStockDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-     if (isManagerLoggedIn) {
-        Manager managerForm = new Manager();
-        managerForm.setVisible(true);
-        
-    } else {
-        Cashier cashierForm = new Cashier();
-        cashierForm.setVisible(true);
-    }
-    this.dispose();
+        if (isManagerLoggedIn) {
+            Manager managerForm = new Manager();
+            managerForm.setVisible(true);
+
+        } else {
+            Cashier cashierForm = new Cashier();
+            cashierForm.setVisible(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnPrevMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseEntered
-       btnPrev.setBorder(new LineBorder(Color.blue, 3));
+        btnPrev.setBorder(new LineBorder(Color.blue, 3));
     }//GEN-LAST:event_btnPrevMouseEntered
 
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited

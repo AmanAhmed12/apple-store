@@ -1,4 +1,3 @@
-
 package view;
 
 import java.awt.Color;
@@ -6,28 +5,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.LineBorder;
 
-
 public class PanelAction extends javax.swing.JPanel {
 
     public PanelAction() {
         initComponents();
     }
 
-  public void initEvent(TableActionEvent event,int row){
-      btnActivate.addActionListener(new ActionListener(){
-           @Override
-          public void actionPerformed(ActionEvent e) {
-            event.Activate(row);
-          }
-      });
-      
-      btnDeactivate.addActionListener(new ActionListener(){
-           @Override
-          public void actionPerformed(ActionEvent e) {
-            event.Deactivate(row);
-          }
-      });
-  }
+    public void initEvent(TableActionEvent event, int row) {
+        btnActivate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                event.Activate(row);
+            }
+        });
+
+        btnDeactivate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                event.Deactivate(row);
+            }
+        });
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,19 +95,19 @@ public class PanelAction extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivateActionPerformed
-         
+
     }//GEN-LAST:event_btnActivateActionPerformed
 
     private void btnActivateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActivateMouseEntered
-   // btnActivate.setBorder(new LineBorder(Color.green, 2));
+        // btnActivate.setBorder(new LineBorder(Color.green, 2));
     }//GEN-LAST:event_btnActivateMouseEntered
 
     private void btnDeactivateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeactivateMouseEntered
-     //  btnDeactivate.setBorder(new LineBorder(Color.red, 2));
+        //  btnDeactivate.setBorder(new LineBorder(Color.red, 2));
     }//GEN-LAST:event_btnDeactivateMouseEntered
 
     private void btnDeactivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeactivateActionPerformed
-   
+
     }//GEN-LAST:event_btnDeactivateActionPerformed
 
 
