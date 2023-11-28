@@ -359,6 +359,11 @@ public class addProduct extends javax.swing.JFrame {
             String price = txtPrice.getText();
             String qty = txtQty.getText();
             m1.addProduct(productId, cat, product, price, qty);
+            txtProductId.setText("");
+            cmbCategory.setSelectedItem("Select");
+            txtProduct.setText("");
+            txtPrice.setText("");
+            txtQty.setText("");
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

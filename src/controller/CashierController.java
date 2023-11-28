@@ -1,6 +1,7 @@
 package controller;
 
 import database.Database;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import view.SearchProductDetails;
@@ -32,16 +33,16 @@ public class CashierController extends ProductController {
         d1.updateAccountDetails(oldMail, newMail, username, password, accountType);
     }
 
-    public void deactivateAccount(String username) {
+    public void deactivateAccount(String username) throws SQLException {
         Database d1 = new Database();
         d1.useraccountDeactivate(username);
 
     }
 
-    public void placeOrder(String name, String address, String mobile, String category, String productName, int quantity, String prevName, String prevAddress, String prevMobile) {
+    public void placeOrder(String name, String address, String mobile, String productId, int quantity, String prevName, String prevAddress, String prevMobile) throws SQLException {
         Database d1 = new Database();
 
-        d1.placeOrder(name, address, mobile, category, productName, quantity, prevName, prevAddress, prevMobile);
+        d1.placeOrder(name, address, mobile,productId, quantity, prevName, prevAddress, prevMobile);
     }
 
 }

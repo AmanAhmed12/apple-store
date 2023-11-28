@@ -1,6 +1,7 @@
 package controller;
 
 import database.Database;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import model.CashierModel;
@@ -12,9 +13,9 @@ import model.Product;
 
 public class ManagerController extends ProductController {
 
-    public void createAccount(String username, String password, String accountType, String mail) {
+    public void createAccount(String username, String password, String accountType, String mail, String userId) throws SQLException {
         Database d1 = new Database();
-        d1.accountCreation(username, password, accountType, mail);
+        d1.accountCreation(username, password, accountType, mail, userId);
     }
 
     public void addProduct(String productId, String categoryName, String productName, String price, String quantity) {

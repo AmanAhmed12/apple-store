@@ -4,6 +4,9 @@ import controller.ManagerController;
 import database.Database;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
@@ -30,7 +33,11 @@ public class userAccountDetails extends javax.swing.JFrame {
                 int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to Activate  account " + user + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
                     Database d1 = new Database();
-                    d1.manageActivate(tblUserDetails, row);
+                    try {
+                        d1.manageActivate(tblUserDetails, row);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(userAccountDetails.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
             }
@@ -41,7 +48,11 @@ public class userAccountDetails extends javax.swing.JFrame {
                 int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to Deactivate  account " + user + "?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
                     Database d1 = new Database();
-                    d1.manageDeactivate(tblUserDetails, row);
+                    try {
+                        d1.manageDeactivate(tblUserDetails, row);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(userAccountDetails.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
 

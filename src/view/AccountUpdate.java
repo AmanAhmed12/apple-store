@@ -5,6 +5,9 @@ import controller.ManagerController;
 import database.Database;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -453,7 +456,11 @@ public class AccountUpdate extends javax.swing.JFrame {
                 CashierController c1 = new CashierController();
                 Login l1 = new Login();
                 String user = l1.getUsername();
-                c1.deactivateAccount(user);
+                try {
+                    c1.deactivateAccount(user);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AccountUpdate.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 

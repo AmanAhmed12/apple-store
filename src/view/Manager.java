@@ -1,6 +1,7 @@
 package view;
 
 import controller.ManagerController;
+import database.Database;
 
 public class Manager extends javax.swing.JFrame {
 
@@ -271,6 +272,8 @@ public class Manager extends javax.swing.JFrame {
         Login l1 = new Login();
         l1.setVisible(true);
         this.dispose();
+        Database d1=new Database();
+        d1.logout();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccActionPerformed
