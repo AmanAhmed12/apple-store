@@ -1,5 +1,5 @@
 package database;
-
+import com.mysql.cj.protocol.Resultset;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,6 +17,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import model.AccountModel;
+import model.ManagerModel;
+import model.Order;
 import model.Product;
 import oop_project.Oop_project;
 import view.Cashier;
@@ -25,9 +30,19 @@ import view.PlaceOrder;
 import view.addProduct;
 
 public class Database {
+     Map<String, Double> productPrices = new HashMap<>();
+              
+     
 
     static int yesCount = 1;
 
+    public Database(){
+          productPrices.put("Iphone", 12000.0); // Replace 1000.0 with the actual price for Iphone
+                productPrices.put("Apple_Watch", 5000.0); // Replace 200.0 with the actual price for Apple_Watch
+                 productPrices.put("Airpod", 3000.0);
+                  productPrices.put("Ipad", 6000.0);
+                   productPrices.put("MAC", 2500.0);
+    }
     // Method to establish a database connection
     private Connection getConnection() throws SQLException {
         Connection connection = null;
@@ -38,8 +53,8 @@ public class Database {
 
             // Establish the connection
             String url = "jdbc:mysql://localhost/apple_istore";
-            String username = "Aman";
-            String password = "Ahdheer12";
+            String username = "root";
+            String password = "";
             connection = DriverManager.getConnection(url, username, password);
 
         } catch (ClassNotFoundException | SQLException e) {
@@ -50,82 +65,110 @@ public class Database {
         return connection;
     }
 
-    public void viewAllProduct(JTable tblProductDetails) {
-        try {
-            Connection conn = getConnection();
-            Statement stmt = null;
-            ResultSet rs = null;
+   public void viewAllProduct(JTable tblProductDetails) throws SQLException {
+    Connection conn = getConnection();
+    Statement stmt = null;
+    ResultSet rs = null;
+    PreparedStatement stmt1 = null;
 
-            stmt = conn.createStatement();
-
-            String showTableQuery = "SELECT * FROM user";
-            rs = stmt.executeQuery(showTableQuery);
-            ((DefaultTableModel) tblProductDetails.getModel()).setRowCount(0);
-            while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                String tbData[] = {username, password};
-                DefaultTableModel tblModel = (DefaultTableModel) tblProductDetails.getModel();
-                tblModel.addRow(tbData);
-            }
-            conn.close();
-
-        } catch (SQLException e) {
-            System.out.println("SQL Exception: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-   public void addproduct(Product product) {
     try {
-        Connection conn = getConnection();
-        PreparedStatement stmt = null;
-         PreparedStatement pstmt = null;
-        String adminIdQuery = "SELECT admin_id FROM administrator WHERE Status='active'";
-        pstmt = conn.prepareStatement(adminIdQuery);
-        ResultSet rs = pstmt.executeQuery();
+        stmt = conn.createStatement();
 
-        String pId = product.getProductId();
-        String category = product.getCategory();
-        String pName = product.getProductName();
-        int purchaseQty = Integer.parseInt(product.getQuantity());
-        int purchasePrice = Integer.parseInt(product.getpurchaseprice());
-        int purchaseTotal = purchasePrice * purchaseQty;
-        if(rs.next()){
-                // Use the INSERT ... ON DUPLICATE KEY UPDATE statement
-       String insertRecord = "INSERT INTO product_details(product_id, category, product_Name, purchase_quantity, purchase_price, purchase_total, admin_id) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE purchase_quantity = purchase_quantity + VALUES(purchase_quantity), purchase_total = purchase_total + VALUES(purchase_total)";
+        String showTableQuery = "SELECT product_id, category, purchase_price FROM product_details";
+        rs = stmt.executeQuery(showTableQuery);
 
-        
-        stmt = conn.prepareStatement(insertRecord);
-        stmt.setString(1, pId);
-        stmt.setString(2, category);
-        stmt.setString(3, pName);
-        stmt.setInt(4, purchaseQty);
-        stmt.setInt(5, purchasePrice);
-        stmt.setInt(6, purchaseTotal);
-        stmt.setString(7,rs.getString("admin_id"));
-        stmt.executeUpdate();
-       JOptionPane.showMessageDialog(null, "product added successfully");
+        String showTableQuery2 = "SELECT product_id FROM product_details WHERE category=?";
+        stmt1 = conn.prepareStatement(showTableQuery2);
+
+        ((DefaultTableModel) tblProductDetails.getModel()).setRowCount(0);
+
+        while (rs.next()) {
+            String productId = rs.getString("product_id");
+            String cat = rs.getString("category");
+            stmt1.setString(1, cat);
+
+            // Get purchase price from the database
+            double purchasePrice = rs.getDouble("purchase_price");
+
+            // Get sales price from the map using the category
+            double salesPrice = productPrices.getOrDefault(cat, 0.0);
+
+            // Perform any necessary calculations using purchasePrice and salesPrice
+
+            String tbData[] = {productId, cat, String.valueOf(purchasePrice), String.valueOf(salesPrice)};
+            DefaultTableModel tblModel = (DefaultTableModel) tblProductDetails.getModel();
+            tblModel.addRow(tbData);
         }
-        else{
-            System.out.println("error");
-        }
-
-    
-        
         conn.close();
+
     } catch (SQLException e) {
         System.out.println("SQL Exception: " + e.getMessage());
         e.printStackTrace();
     }
-   }
+}
 
 
-    public void accountCreation(String username, String password, String accountType, String mail, String userId) throws SQLException {
-        System.out.println(userId);
+public void addproduct(Product product) throws SQLException {
+    Connection conn = getConnection();
+    PreparedStatement stmt = null;
+    PreparedStatement pstmt = null;
+
+    try {
+        String adminIdQuery = "SELECT admin_id FROM administrator WHERE Status='active'";
+        pstmt = conn.prepareStatement(adminIdQuery);
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            // Use the INSERT ... ON DUPLICATE KEY UPDATE statement
+            String insertRecord = "INSERT INTO product_details(product_id, category,product_name, purchase_quantity, purchase_price, purchase_total, admin_id) VALUES (?, ?, ?, ?, ?, ?,?) ON DUPLICATE KEY UPDATE purchase_quantity = purchase_quantity + VALUES(purchase_quantity), purchase_total = purchase_total + VALUES(purchase_total)";
+
+            stmt = conn.prepareStatement(insertRecord);
+            stmt.setString(1, product.getProductId());
+            stmt.setString(2, product.getCategory());
+            stmt.setString(3, product.getproductName());
+             stmt.setInt(4, Integer.parseInt(product.getQuantity()));
+            stmt.setInt(5, Integer.parseInt(product.getpurchaseprice()));
+            stmt.setInt(6, Integer.parseInt(product.getpurchaseprice()) * Integer.parseInt(product.getQuantity()));
+            stmt.setString(7, rs.getString("admin_id"));
+            
+
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Product added successfully");
+        } else {
+            // Handle the case where no active administrators are found
+            System.out.println("No active administrators found");
+            // You might want to throw an exception, log an error, or handle it in some way
+        }
+    } catch (SQLException e) {
+        System.out.println("SQL Exception: " + e.getMessage());
+        e.printStackTrace();
+    } finally {
+        // Close resources in the finally block
+        if (stmt != null) {
+            stmt.close();
+        }
+        if (pstmt != null) {
+            pstmt.close();
+        }
+        if (conn != null) {
+            conn.close();
+        }
+    }
+}
+
+
+
+    public void accountCreation(AccountModel model1) throws SQLException {
+       
         Connection conn = getConnection();
         PreparedStatement pstmt = null;
         PreparedStatement stmt = null;
+         String username=model1.getUsername();
+        String password=model1.getPassword();
+        String mail=model1.getMail();
+        String accountType=model1.getAccounType();
+        String userId=model1.getUserId();
+       
 
         try {
             if (accountType.equals("cashier")) {
@@ -186,17 +229,115 @@ public class Database {
 
     }
 
-    public void searchStockDetails(JTable tblStockDetail) {
-        System.out.println(tblStockDetail);
-        System.out.println("stock details");
+    public void searchStockDetails(JTable tblStockDetail) throws SQLException {
+          Connection conn = getConnection();
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    DefaultTableModel model = (DefaultTableModel) tblStockDetail.getModel();
+    model.setRowCount(0); // Clear existing rows in the table
+
+   
+
+    try {
+         String stock = "SELECT category,product_name,purchase_price,purchase_total,purchase_quantity FROM product_details";
+                pstmt = conn.prepareStatement(stock);
+                rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            
+            // Retrieve values from the result set
+            String category= rs.getString("category");
+            String pname = rs.getString("product_name");
+            String  purchaseQuantity = rs.getString("purchase_quantity");
+            int purchasePrice= rs.getInt("purchase_price");
+            double  purchaseTotal= rs.getDouble("purchase_total");
+           
+            // Add a new row to the table model
+            model.addRow(new Object[]{category, pname, purchaseQuantity, purchasePrice, purchaseTotal,purchaseQuantity});
+        }
+
+       
+    } finally {
+        // Close resources in the finally block
+        if (rs != null) {
+            rs.close();
+        }
+        if (pstmt != null) {
+            pstmt.close();
+        }
+        if (conn != null) {
+            conn.close();
+        }
+    }
     }
 
-    public void searchProductDetails(JTable product, String val, String selectItem) {
-        System.out.println(product);
-        System.out.println(val);
-        System.out.println(selectItem);
-        System.out.println("product details");
+  public void searchProductDetails(JTable product, String val, String selectItem) throws SQLException {
+    Connection conn = getConnection();
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    DefaultTableModel model = (DefaultTableModel) product.getModel();
+    model.setRowCount(0); // Clear existing rows in the table
+
+    boolean resultsFound = false;
+
+    try {
+        if (selectItem.equals("Category")) {
+            String query = "SELECT product_id, category, product_name, purchase_quantity, purchase_price, purchase_total FROM product_details WHERE category=?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, val);
+        } else if (selectItem.equals("product name")) {
+            String query = "SELECT product_id, category, product_name, purchase_quantity, purchase_price, purchase_total FROM product_details WHERE product_name=?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, val);
+        } else {
+            String query = "SELECT product_id, category, product_name, purchase_quantity, purchase_price, purchase_total FROM product_details WHERE purchase_price=?";
+            pstmt = conn.prepareStatement(query);
+            try {
+                pstmt.setDouble(1, Double.parseDouble(val));
+            } catch (NumberFormatException e) {
+                // Handle the exception, for example, print an error message
+               JOptionPane.showMessageDialog(null, "No results found for the search criteria.");
+                return; // Exit the method if there's an error
+            }
+        }
+
+        rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            resultsFound = true;
+            // Retrieve values from the result set
+            String productId = rs.getString("product_id");
+            String category = rs.getString("category");
+            String pname = rs.getString("product_name");
+            int purchaseQuantity = rs.getInt("purchase_quantity");
+            double purchasePrice = rs.getDouble("purchase_price");
+            double purchaseTotal = rs.getDouble("purchase_total");
+
+            // Add a new row to the table model
+            model.addRow(new Object[]{productId, category, pname, purchaseQuantity, purchasePrice, purchaseTotal});
+        }
+
+        if (!resultsFound) {
+            // Display a message if no results are found
+            JOptionPane.showMessageDialog(null, "No results found for the search criteria.");
+        }
+    } finally {
+        // Close resources in the finally block
+        if (rs != null) {
+            rs.close();
+        }
+        if (pstmt != null) {
+            pstmt.close();
+        }
+        if (conn != null) {
+            conn.close();
+        }
     }
+}
+
+
 
     public void updateAccountDetails(String oldMail, String newMail, String username, String password, String accountType) {
         System.out.println(oldMail);
@@ -215,65 +356,194 @@ public class Database {
         System.out.println("product updated successfully");
     }
 
-    public void placeOrder(String name, String address, String mobile, String productId, int quantity, String prevName, String prevAddress, String prevMobile) throws SQLException {
-        PreparedStatement pstmt = null;
-        Connection conn = getConnection();
-        try {
+   public void placeOrder(Order o1) throws SQLException {
+    PreparedStatement pstmtSales = null;
+    PreparedStatement pstmtOrder = null;
+    PreparedStatement pstmt = null;
+    PreparedStatement pstmtuser = null;
+    PreparedStatement pstmtcat = null;
+    ResultSet rs = null;
+     ResultSet rs1 = null;
 
-            String createRecord1 = "INSERT INTO order_details (category, product_Name, quantity, price, amount) VALUES (?, ?, ?, ?, ?)";
-            pstmt = conn.prepareStatement(createRecord1);
+    Connection conn = getConnection();
+    String name = o1.getName();
+    String address = o1.getAddress();
+    String mobile = o1.getMobile();
+    String productname = o1.getProductName();
+    int squantity = o1.getQty();
+    String prevName = o1.getPrevName();
+    String prevAddress = o1.getPrevAddress();
+    String prevMobile = o1.getPrevMobile();
 
-            int price = 10;
-            int amount = price * quantity;
+    Login l1 = new Login();
+    String usernames = l1.getUsername();  // Assuming you have a method to get the user ID.
+    // Insert into sales_detail table
+    String userid = "SELECT user_id FROM user where username=?";
+    pstmtuser = conn.prepareStatement(userid);
+    pstmtuser.setString(1, usernames);
+    rs = pstmtuser.executeQuery();
+    String userId = "";
+    if (rs.next()) {
+        userId = rs.getString("user_id");
+       
+    }
 
-//            pstmt.setString(1, category);
-//            pstmt.setString(2, productName);
-            pstmt.setInt(3, quantity);
-            pstmt.setInt(4, price);
-            pstmt.setInt(5, amount);
+    try {
+        
+            // Product does not exist, insert a new record
+            // Insert into sales_detail table
+            int iphoneprice = 1000;
+            int applewatch = 2000;
+            int ipad = 3000;
+            int mac = 4000;
+            int airpod=5000;
+          
 
-            pstmt.executeUpdate();
+            // Corrected table name in the second query
+                    String totQtySale = "SELECT sales_quantity FROM sales_detail WHERE category=? AND product_name=?";
+                    pstmt = conn.prepareStatement(totQtySale);
+                    pstmt.setString(1, o1.getCat()); // Use 1 as the parameter index and set the category value
+                    pstmt.setString(2, productname);
+                    rs1 = pstmt.executeQuery();
+            
+        
+            String salesQuery = "INSERT INTO sales_detail (category,product_name, sales_quantity, sales_price, sales_total,user_id) VALUES (?, ?, ?, ?, ?,?)";
+            pstmtSales = conn.prepareStatement(salesQuery);
+            pstmtSales.setString(1, o1.getCat());
+            pstmtSales.setString(2, productname);
+           
+           
+         switch (o1.getCat()) {
+            case "Iphone":
+                    int price1 = o1.getQty() * iphoneprice;
+                     pstmtSales.setInt(3, o1.getQty());
+                    pstmtSales.setInt(4, iphoneprice);
+                    pstmtSales.setInt(5, price1);// Replace with actual price
+                    pstmtSales.setString(6, userId);
+                    pstmtSales.executeUpdate();
+                  
+                    break;
+                
 
-            JOptionPane.showMessageDialog(null, "Order placed successfully.", "Message", JOptionPane.INFORMATION_MESSAGE);
-
-            int choicemore = JOptionPane.showConfirmDialog(null, "Do you want to place more orders?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            case "Apple_Watch":
+                    int price2 =o1.getQty() * applewatch;
+                     pstmtSales.setInt(3, o1.getQty());
+                    pstmtSales.setInt(4, applewatch);
+                    pstmtSales.setInt(5, price2);// Replace with actual price
+                    pstmtSales.setString(6, userId);
+                    pstmtSales.executeUpdate();
+                    break;
+                
+            case "Ipad":
+                    int price3 = o1.getQty()* ipad;
+                     pstmtSales.setInt(3, o1.getQty());
+                    pstmtSales.setInt(4, ipad);
+                    pstmtSales.setInt(5, o1.getQty() * ipad);// Replace with actual price
+                    pstmtSales.setString(6, userId);
+                    pstmtSales.executeUpdate();
+                    
+                    break;
+                
+            case "Airpod":
+                    pstmtSales.setInt(4, airpod);
+                     pstmtSales.setInt(3, o1.getQty());
+                    pstmtSales.setInt(5, o1.getQty() * airpod);// Replace with actual price
+                    pstmtSales.setString(6, userId);
+                    pstmtSales.executeUpdate();
+                    break;
+                
+            case "MAC":
+                    pstmtSales.setInt(4, mac);
+                     pstmtSales.setInt(3, o1.getQty());
+                    pstmtSales.setInt(5,o1.getQty()* mac);// Replace with actual price
+                    pstmtSales.setString(6, userId);
+                    pstmtSales.executeUpdate();
+                    break;
+                }
+         
+            
+             int choicemore = JOptionPane.showConfirmDialog(null, "Do you want to place more orders?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
             Invoice receipt = new Invoice();
 
             if (choicemore == JOptionPane.YES_OPTION) {
-
+                // Print receipt and reset order form
                 yesCount++;
-                receipt.print(name, address, mobile, yesCount, receipt);
+                receipt.print(name, address, mobile, yesCount, receipt, productname,o1.getQty());
                 PlaceOrder p1 = new PlaceOrder();
                 p1.setName(prevName);
                 p1.setAddress(prevAddress);
                 p1.setMobile(prevMobile);
-              
+
                 p1.setProductId("");
                 p1.setQuantity("");
                 p1.setVisible(true);
                 receipt.setVisible(false);
+                
+                String selectQty= "SELECT purchase_quantity WHERE category = ? AND product_name = ?";
+                pstmt = conn.prepareStatement(selectQty);
+                pstmt.setString(1, o1.getCat());
+                pstmt.setString(2, productname);
+                rs= pstmt.executeQuery();
+                int currentQty=0;
+                if(rs.next()){
+                    currentQty=rs.getInt("purchase_quantity");
+                }
+                
+                int newPurchaseQuantityValue=currentQty-1;
+                String updateQty = "UPDATE product_details SET purchase_quantity = ? WHERE category = ? AND product_name = ?";
+                pstmt = conn.prepareStatement(updateQty);
+                pstmt.setInt(1, newPurchaseQuantityValue); // Assuming you have a new value for purchase_quantity
+                pstmt.setString(2, o1.getCat());
+                pstmt.setString(3, productname);
+                int rowsAffected = pstmt.executeUpdate();
 
+                
             } else {
+                // Print final receipt
+                receipt.print(name, address, mobile, yesCount, receipt, productname,o1.getQty());
+                 String selectQty= "SELECT purchase_quantity FROM product_details WHERE category = ? AND product_name = ?";
+                pstmt = conn.prepareStatement(selectQty);
+                pstmt.setString(1, o1.getCat());
+                pstmt.setString(2, productname);
+                rs= pstmt.executeQuery();
+                int currentQty=0;
+                if(rs.next()){
+                    currentQty=rs.getInt("purchase_quantity");
+                }
+                
+                int newPurchaseQuantityValue=currentQty-1;
+                String updateQty = "UPDATE product_details SET purchase_quantity = ? WHERE category = ? AND product_name = ?";
+                pstmt = conn.prepareStatement(updateQty);
+                pstmt.setInt(1, newPurchaseQuantityValue); // Assuming you have a new value for purchase_quantity
+                pstmt.setString(2, o1.getCat());
+                pstmt.setString(3, productname);
+                int rowsAffected = pstmt.executeUpdate();
+            }
 
-                receipt.print(name, address, mobile, yesCount, receipt);
+        
 
+        // ... (your existing code for showing confirmation dialogs and updating UI)
+
+    } catch (SQLException ex) {
+        Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error in database operations", ex);
+    } finally {
+        try {
+            if (pstmtSales != null) {
+                pstmtSales.close();
+            }
+            if (pstmtOrder != null) {
+                pstmtOrder.close();
+            }
+            if (conn != null) {
+                conn.close();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error in database operations", ex);
-        } finally {
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error closing database resources", ex);
-            }
+            Logger.getLogger(PlaceOrder.class.getName()).log(Level.SEVERE, "Error closing database resources", ex);
         }
     }
+}
+
 
     public void removeProduct(String cat, String productName, String qty) {
 
@@ -382,22 +652,26 @@ public class Database {
         }
     }
 
-    public void printInvoice(JTable tblInvoice, String name, String address, String mobile, int yesCount, Invoice receipt) throws SQLException {
-
+    public void printInvoice(JTable tblInvoice, String name, String address, String mobile, int yesCount, Invoice receipt,String id,int qty) throws SQLException {
+        
+         
         receipt.setName(name);
         receipt.setAddress(address);
         receipt.setMobile(mobile);
 
         Connection conn = getConnection();
         PreparedStatement pstmt = null;
+         PreparedStatement stmt = null;
         ResultSet resultSet = null;
+        ResultSet rs = null;
         ResultSet resultSet1 = null;
 
         try {
+           
 
             // Execute a SQL query to retrieve all the latest records from the database
-            String selectDataQuery = "SELECT Invoice_No, category, product_Name, quantity, price, amount "
-                    + "FROM order_details "
+            String selectDataQuery = "SELECT category,Invoice_No, product_name,sales_quantity, sales_price, sales_total "
+                    + "FROM sales_detail "
                     + "ORDER BY Invoice_No DESC";
             Statement statement = conn.createStatement();
             resultSet = statement.executeQuery(selectDataQuery);
@@ -409,21 +683,24 @@ public class Database {
 
             // Iterate through the result set and add the data to the table
             int recordCount = 0;
-            while (resultSet.next() && recordCount < yesCount) {
+            while (resultSet.next() && recordCount <yesCount) {
                 int invoiceNo = resultSet.getInt("Invoice_No");
-                String category = resultSet.getString("category");
-                String productName = resultSet.getString("product_Name");
-                int quantity = resultSet.getInt("quantity");
-                int price = resultSet.getInt("price");
-                int amount = resultSet.getInt("amount");
+               String cat= resultSet.getString("category");
+                String productName = resultSet.getString("product_name");
+                int quantity = resultSet.getInt("sales_quantity");
+                int price = resultSet.getInt("sales_price");
+                int amount = resultSet.getInt("sales_total");
+                System.out.println(quantity);
 
                 // Add a new row with the retrieved values
-                Object[] rowData = {invoiceNo, category, productName, quantity, price, amount};
+                Object[] rowData = {invoiceNo, cat, productName, quantity, price, amount};
                 model.addRow(rowData);
 
                 recordCount++;
+                
             }
-
+            recordCount=0;
+                yesCount=0;
             int columnToTotal = 5; // Assuming the "amount" column is at index 5
             double total = 0.0;
 

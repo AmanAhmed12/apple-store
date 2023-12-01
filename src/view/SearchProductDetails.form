@@ -207,7 +207,7 @@
               <StringArray count="4">
                 <StringItem index="0" value="Select "/>
                 <StringItem index="1" value="Category"/>
-                <StringItem index="2" value="Name"/>
+                <StringItem index="2" value="product name"/>
                 <StringItem index="3" value="Price"/>
               </StringArray>
             </Property>
@@ -347,11 +347,11 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="10">
-                    <Column editable="true" title="Item_No" type="java.lang.Object"/>
+                    <Column editable="true" title="product_id" type="java.lang.Object"/>
                     <Column editable="true" title="Category_Name" type="java.lang.Object"/>
                     <Column editable="true" title="Product_Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Price_Per_Unit" type="java.lang.Object"/>
                     <Column editable="true" title="Quantity" type="java.lang.Object"/>
+                    <Column editable="true" title="Price_Per_Unit" type="java.lang.Object"/>
                     <Column editable="true" title="Total_Amount" type="java.lang.Object"/>
                   </Table>
                 </Property>

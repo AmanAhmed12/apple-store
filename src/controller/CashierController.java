@@ -2,8 +2,11 @@ package controller;
 
 import database.Database;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import model.Order;
 import view.SearchProductDetails;
 import view.SearchStockDetails;
 import view.ViewProductDetails;
@@ -12,7 +15,11 @@ public class CashierController extends ProductController {
 
     public void viewAllProduct() {
         ViewProductDetails view = new ViewProductDetails(true);
-        view.setTable();
+        try {
+            view.setTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(CashierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         view.setVisible(true);
 
     }
@@ -39,10 +46,10 @@ public class CashierController extends ProductController {
 
     }
 
-    public void placeOrder(String name, String address, String mobile, String productId, int quantity, String prevName, String prevAddress, String prevMobile) throws SQLException {
+    public void placeOrder(String name, String address, String mobile, String productName, int quantity, String prevName, String prevAddress, String prevMobile,String category) throws SQLException {
+        Order o1=new Order(name,address, mobile, productName, quantity, prevName, prevAddress,prevMobile,category);
         Database d1 = new Database();
-
-        d1.placeOrder(name, address, mobile,productId, quantity, prevName, prevAddress, prevMobile);
+       d1.placeOrder(o1);
     }
 
 }

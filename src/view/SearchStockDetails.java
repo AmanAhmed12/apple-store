@@ -3,6 +3,7 @@ package view;
 import database.Database;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
@@ -24,7 +25,7 @@ public class SearchStockDetails extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
 
-    public void setTable() {
+    public void setTable() throws SQLException {
         Database d1 = new Database();
         d1.searchStockDetails(tblStockDetails);
     }
@@ -99,19 +100,19 @@ public class SearchStockDetails extends javax.swing.JFrame {
         tblStockDetails.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tblStockDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Category", "Product_Name", "Sales Quantity", "Sales price per unit", "Sales total", "Purchase quantity", "Purchase price per unit", "Purchase total", "Remaining quantity"
+                "Category", "Product_Name", "Purchase quantity", "Purchase price per unit", "Purchase total", "Available quantity"
             }
         ));
         jScrollPane1.setViewportView(tblStockDetails);

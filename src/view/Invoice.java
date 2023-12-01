@@ -164,10 +164,10 @@ public class Invoice extends javax.swing.JFrame {
     }
     // Initialize the count to 0
 
-    public void print(String name, String address, String mobile, int yesCount, Invoice receipt) throws SQLException {
+    public void print(String name, String address, String mobile, int yesCount, Invoice receipt,String id,int qty) throws SQLException {
 
         Database d1 = new Database();
-        d1.printInvoice(tblInvoice, name, address, mobile, yesCount, receipt);
+        d1.printInvoice(tblInvoice, name, address, mobile, yesCount, receipt,id,qty);
 
     }
 

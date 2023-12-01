@@ -3,6 +3,9 @@ package view;
 import database.Database;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -23,7 +26,7 @@ public class SearchProductDetails extends javax.swing.JFrame {
         header.setFont(boldFont);
     }
 
-    public void setTable() {
+    public void setTable() throws SQLException {
         Database d1 = new Database();
         d1.searchProductDetails(tblProduct, txtVal.getText(), cmbSelect.getSelectedItem().toString());
 
@@ -108,7 +111,7 @@ public class SearchProductDetails extends javax.swing.JFrame {
         lblHead.setText("Search ");
 
         cmbSelect.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        cmbSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select ", "Category", "Name", "Price" }));
+        cmbSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select ", "Category", "product name", "Price" }));
 
         txtVal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtVal.setForeground(new java.awt.Color(153, 153, 153));
@@ -215,7 +218,7 @@ public class SearchProductDetails extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Item_No", "Category_Name", "Product_Name", "Price_Per_Unit", "Quantity", "Total_Amount"
+                "product_id", "Category_Name", "Product_Name", "Quantity", "Price_Per_Unit", "Total_Amount"
             }
         ));
         jScrollPane1.setViewportView(tblProduct);
@@ -314,7 +317,11 @@ public class SearchProductDetails extends javax.swing.JFrame {
         if (txtVal.getText().equals("Category | Name | Price") || cmbSelect.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "fields cannot be empty");
         } else {
-            setTable();
+            try {
+                setTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchProductDetails.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 

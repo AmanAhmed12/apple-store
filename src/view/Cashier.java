@@ -216,7 +216,11 @@ public class Cashier extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         ViewProductDetails v1 = new ViewProductDetails(false);
-        v1.setTable();
+        try {
+            v1.setTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cashier.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnViewActionPerformed

@@ -27,7 +27,7 @@ public class ViewProductDetails extends javax.swing.JFrame {
         header.setFont(boldFont);
     }
 
-    public void setTable() {
+    public void setTable() throws SQLException {
         Database d1 = new Database();
         d1.viewAllProduct(tblProductDetails);
 
@@ -112,7 +112,7 @@ public class ViewProductDetails extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Category_Name", "Product_Name", "Purchase Price_Per_Unit", "Selling Price Per unit"
+                "product_id", "Category_Name", "Purchase Price_Per_Unit", "Selling Price Per unit"
             }
         ));
         tblProductDetails.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

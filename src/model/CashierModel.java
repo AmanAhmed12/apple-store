@@ -2,19 +2,28 @@
 package model;
 
 
-public class CashierModel {
+public class CashierModel  implements AccountModel{
      private String username;
     private String password;
      private String mail;
      private String accountType;
+      private String userId;
      
-     
-     public CashierModel(String username,String password,String accountType,String mail){
+     public CashierModel(String username,String password,String accountType,String mail,String userId){
          this.username=username;
          this.password=password;
          this.mail=mail;
          this.accountType=accountType;
+          this.userId=userId;
      }
+     
+       public String getUserId(){
+         return userId;
+    }
+    
+    public void setUserId(String userId){
+        this.userId=userId;
+    }
      
      
     public String getUsername(){
