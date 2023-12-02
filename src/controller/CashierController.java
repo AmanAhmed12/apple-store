@@ -26,7 +26,11 @@ public class CashierController extends ProductController {
 
     public void SearchStockDetails() {
         SearchStockDetails stock = new SearchStockDetails(true);
-        stock.setTable();
+        try {
+            stock.setTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(CashierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         stock.setVisible(true);
     }
 
@@ -35,9 +39,9 @@ public class CashierController extends ProductController {
         product.setVisible(true);
     }
 
-    public void changeAccountDetails(String oldMail, String newMail, String username, String password, String accountType) {
+    public void changeAccountDetails(String username, String password) throws SQLException {
         Database d1 = new Database();
-        d1.updateAccountDetails(oldMail, newMail, username, password, accountType);
+        d1.updateAccountDetails(username, password);
     }
 
     public void deactivateAccount(String username) throws SQLException {

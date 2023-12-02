@@ -234,7 +234,7 @@ public class PlaceOrder extends javax.swing.JFrame {
 
         txtProductName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtProductName.setForeground(new java.awt.Color(153, 153, 153));
-        txtProductName.setText("Ixxx");
+        txtProductName.setText("Enter product Name");
         txtProductName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtProductNameFocusGained(evt);
@@ -261,58 +261,64 @@ public class PlaceOrder extends javax.swing.JFrame {
         lblProductName1.setText("Category");
 
         cmbCategory.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        cmbCategory.setForeground(new java.awt.Color(153, 153, 153));
         cmbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Iphone", "Apple_Watch", "Ipad", "Airpod", "MAC" }));
 
         javax.swing.GroupLayout txtProductLayout = new javax.swing.GroupLayout(txtProduct);
         txtProduct.setLayout(txtProductLayout);
         txtProductLayout.setHorizontalGroup(
             txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtProductLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(txtProductLayout.createSequentialGroup()
+                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(txtProductLayout.createSequentialGroup()
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(txtProductLayout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(btnOrder))
+                                    .addComponent(lblQty))
+                                .addGap(29, 29, 29)
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtProductLayout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(lblIName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(txtProductLayout.createSequentialGroup()
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblname)
+                                    .addComponent(lblAddress)
+                                    .addComponent(txtTel)
+                                    .addComponent(lblProductName1))
+                                .addGap(39, 39, 39)
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(txtProductLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(lblIMobile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtName)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                    .addComponent(txtMobile)
+                                    .addComponent(cmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(131, Short.MAX_VALUE))
+                    .addGroup(txtProductLayout.createSequentialGroup()
+                        .addComponent(lblProductName)
+                        .addGap(20, 20, 20)
+                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(txtProductLayout.createSequentialGroup()
+                                .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(txtProductLayout.createSequentialGroup()
+                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(txtProductLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblIId, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblIQty, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtProductLayout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHead)
                 .addGap(99, 99, 99))
-            .addGroup(txtProductLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(txtProductLayout.createSequentialGroup()
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTel)
-                            .addGroup(txtProductLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblProductName)
-                                    .addComponent(lblQty)
-                                    .addComponent(lblProductName1)
-                                    .addComponent(btnOrder))))
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(txtProductLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMobile)
-                                    .addComponent(txtProductName)
-                                    .addGroup(txtProductLayout.createSequentialGroup()
-                                        .addComponent(lblIQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(232, 232, 232))
-                                    .addComponent(lblIMobile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtQty)
-                                    .addComponent(lblIId, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(1, 1, 1))
-                            .addGroup(txtProductLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(txtProductLayout.createSequentialGroup()
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblname)
-                            .addComponent(lblAddress))
-                        .addGap(60, 60, 60)
-                        .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblIName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))))
-                .addContainerGap(65, Short.MAX_VALUE))
         );
         txtProductLayout.setVerticalGroup(
             txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,11 +341,11 @@ public class PlaceOrder extends javax.swing.JFrame {
                     .addComponent(txtTel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(8, 8, 8)
+                .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProductName1)
                     .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addGroup(txtProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblProductName))
@@ -544,7 +550,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevMouseExited
 
     private void txtProductNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusGained
-        if (txtProductName.getText().equals("Ixxx")) {
+        if (txtProductName.getText().equals("Enter product Name")) {
             txtProductName.setText("");
             txtProductName.setForeground(Color.black);
 
@@ -554,7 +560,7 @@ public class PlaceOrder extends javax.swing.JFrame {
 
     private void txtProductNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProductNameFocusLost
         if (txtProductName.getText().equals("")) {
-            txtProductName.setText("Ixxx");
+            txtProductName.setText("Enter product Name");
             txtProductName.setForeground(new Color(153, 153, 153));
 
         }

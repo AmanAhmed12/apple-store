@@ -50,25 +50,20 @@ public class AccountUpdate extends javax.swing.JFrame {
         btnPrev = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblHead = new javax.swing.JLabel();
-        lblOldMail = new javax.swing.JLabel();
-        lblNewMail = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         lblPwd = new javax.swing.JLabel();
-        lblAccType = new javax.swing.JLabel();
-        txtOldMail = new javax.swing.JTextField();
-        txtNewMail = new javax.swing.JTextField();
         txtUser = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnDeactivate = new javax.swing.JButton();
         lblActivate = new javax.swing.JLabel();
-        cmbAccType = new javax.swing.JComboBox<>();
         txtPwd = new javax.swing.JPasswordField();
         lblShow = new javax.swing.JLabel();
-        lblIOld = new javax.swing.JLabel();
-        lblINew = new javax.swing.JLabel();
         lblIUser = new javax.swing.JLabel();
         lblIPwd = new javax.swing.JLabel();
+        lblPwd1 = new javax.swing.JLabel();
+        txtConfirm = new javax.swing.JPasswordField();
+        lblIConfirm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,44 +128,11 @@ public class AccountUpdate extends javax.swing.JFrame {
         lblHead.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         lblHead.setText("Update Account Details");
 
-        lblOldMail.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblOldMail.setText("Old Mail");
-
-        lblNewMail.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblNewMail.setText("New Mail");
-
         lblUser.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblUser.setText("New username");
 
         lblPwd.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblPwd.setText("New password");
-
-        lblAccType.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        lblAccType.setText("New Account Type");
-
-        txtOldMail.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtOldMail.setForeground(new java.awt.Color(153, 153, 153));
-        txtOldMail.setText("Enter old mail");
-        txtOldMail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtOldMailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtOldMailFocusLost(evt);
-            }
-        });
-
-        txtNewMail.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtNewMail.setForeground(new java.awt.Color(153, 153, 153));
-        txtNewMail.setText("Enter new mail");
-        txtNewMail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNewMailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNewMailFocusLost(evt);
-            }
-        });
 
         txtUser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtUser.setForeground(new java.awt.Color(153, 153, 153));
@@ -227,9 +189,6 @@ public class AccountUpdate extends javax.swing.JFrame {
         lblActivate.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblActivate.setText("Account Deactivation >>");
 
-        cmbAccType.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        cmbAccType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Manager", "Cashier" }));
-
         txtPwd.setForeground(new java.awt.Color(153, 153, 153));
         txtPwd.setText("##############");
         txtPwd.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -256,115 +215,108 @@ public class AccountUpdate extends javax.swing.JFrame {
             }
         });
 
-        lblIOld.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lblIOld.setForeground(new java.awt.Color(255, 0, 0));
-
-        lblINew.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        lblINew.setForeground(new java.awt.Color(255, 0, 0));
-
         lblIUser.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lblIUser.setForeground(new java.awt.Color(255, 0, 0));
 
         lblIPwd.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lblIPwd.setForeground(new java.awt.Color(255, 0, 0));
 
+        lblPwd1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        lblPwd1.setText("Confirm password");
+
+        txtConfirm.setForeground(new java.awt.Color(153, 153, 153));
+        txtConfirm.setText("##############");
+        txtConfirm.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtConfirmFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtConfirmFocusLost(evt);
+            }
+        });
+        txtConfirm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtConfirmKeyPressed(evt);
+            }
+        });
+
+        lblIConfirm.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        lblIConfirm.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblHead))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPwd)
+                            .addComponent(lblUser))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIUser, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblIPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(53, 53, 53))
+                                .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAccType, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPwd)
-                                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(20, 20, 20)))
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbAccType, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lblIPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtPwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblActivate)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnDeactivate))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUser)
-                                    .addComponent(lblNewMail)
-                                    .addComponent(lblOldMail))
-                                .addGap(41, 41, 41)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNewMail, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                                    .addComponent(txtOldMail, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                                    .addComponent(lblIOld, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblINew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblIUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(lblPwd1)))
+                    .addComponent(lblHead))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(101, 101, 101)
                 .addComponent(lblHead)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblOldMail, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtOldMail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIOld, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblNewMail)
-                        .addGap(33, 33, 33)
-                        .addComponent(lblUser)
-                        .addGap(17, 17, 17))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtNewMail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(lblINew, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(lblIUser, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPwd)
-                    .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbAccType, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAccType))
-                .addGap(31, 31, 31)
+                    .addComponent(lblUser)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIUser, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPwd))
+                    .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(lblIPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPwd1)
+                    .addComponent(txtConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblActivate)
                     .addComponent(btnDeactivate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -373,8 +325,8 @@ public class AccountUpdate extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,28 +342,19 @@ public class AccountUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (txtOldMail.getText().equals("Enter old mail") || txtNewMail.getText().equals("Enter new mail") || txtUser.getText().equals("Enter username") || txtPwd.getText().equals("") || cmbAccType.getSelectedItem().equals("Select")) {
+        if ( txtUser.getText().equals("Enter username") || txtPwd.getText().equals("") || txtConfirm.getText().equals("") ) {
             JOptionPane.showMessageDialog(null, "fields cannot be empty");
-        } else if (!txtOldMail.getText().endsWith("@gmail.com") || !txtNewMail.getText().endsWith("@gmail.com")) {
-            if (!txtOldMail.getText().endsWith("@gmail.com")) {
-                lblIOld.setText("Invalid mail format!!!");
-            } else if (!txtNewMail.getText().endsWith("@gmail.com")) {
-                lblINew.setText("Invalid mail format!!!");
-            } else {
-                lblIOld.setText("");
-                lblINew.setText("");
-            }
-
-        } else if (txtNewMail.getText().equals(txtOldMail.getText())) {
-            lblINew.setText("New Mail and old Mail cannot be same!!!");
-        } else {
+        }  else {
             // Check password length
 
             if (txtPwd.getText().length() < 8) {
                 lblIPwd.setText("Password must be more than 8 characters");
             }
-
-            // Check username length and digit count
+            else if(!txtPwd.getText().equals(txtConfirm.getText())){
+                JOptionPane.showMessageDialog(null, "Password does not match !!!");
+            }
+            else{
+                  // Check username length and digit count
             if (txtUser.getText().length() < 5) {
                 lblIUser.setText("Username must be more than 5 characters");
             } else if (getDigits(txtUser.getText()) > 3) {
@@ -421,27 +364,42 @@ public class AccountUpdate extends javax.swing.JFrame {
             }
 
             // If all validations pass, create the account
-            if (lblIOld.getText().isEmpty() && lblINew.getText().isEmpty() && lblIPwd.getText().isEmpty() && lblIUser.getText().isEmpty()) {
+            if (lblIPwd.getText().isEmpty() && lblIUser.getText().isEmpty()) {
                 if (isManagerLoggedIn) {
                     ManagerController m1 = new ManagerController();
-                    String oldMail = txtOldMail.getText();
-                    String newMail = txtNewMail.getText();
+                  
                     String username = txtUser.getText();
                     String password = txtPwd.getText();
-                    String accountType = (String) cmbAccType.getSelectedItem();
-                    m1.changeAccountDetails(oldMail, newMail, username, password, accountType);
+                   
+                    try {
+                        m1.changeAccountDetails(username, password);
+                        this.dispose();
+                        Login l1=new Login();
+                        l1.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AccountUpdate.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else {
                     CashierController c1 = new CashierController();
-                    String oldMail = txtOldMail.getText();
-                    String newMail = txtNewMail.getText();
+                   
                     String username = txtUser.getText();
                     String password = txtPwd.getText();
-                    String accountType = (String) cmbAccType.getSelectedItem();
-                    c1.changeAccountDetails(oldMail, newMail, username, password, accountType);
+                    
+                    try {
+                        c1.changeAccountDetails(username, password);
+                          this.dispose();
+                          Login l1=new Login();
+                        l1.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AccountUpdate.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
             }
+            }
+
+          
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -480,11 +438,10 @@ public class AccountUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        txtOldMail.setText("");
-        txtNewMail.setText("");
+       
         txtUser.setText("");
         txtPwd.setText("");
-        cmbAccType.setSelectedIndex(0);
+      
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked
@@ -495,57 +452,6 @@ public class AccountUpdate extends javax.swing.JFrame {
             txtPwd.setEchoChar((char) 0); // Set it to 0 to make characters visible
         }
     }//GEN-LAST:event_lblShowMouseClicked
-
-    private void txtOldMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOldMailFocusGained
-        if (txtOldMail.getText().equals("Enter old mail")) {
-            txtOldMail.setText("");
-            txtOldMail.setForeground(Color.black);
-
-        }
-
-        txtOldMail.setBorder(new LineBorder(Color.blue, 2));
-    }//GEN-LAST:event_txtOldMailFocusGained
-
-    private void txtOldMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOldMailFocusLost
-        if (txtOldMail.getText().equals("")) {
-            txtOldMail.setText("Enter old mail");
-            txtOldMail.setForeground(new Color(153, 153, 153));
-            lblIOld.setText("");  // Set lblIOld to default value
-        } else {
-            if (txtOldMail.getText().endsWith("@gmail.com")) {
-                lblIOld.setText("");
-            } else {
-                lblIOld.setText("Invalid mail format!!!");
-            }
-        }
-
-        txtOldMail.setBorder(new LineBorder(Color.gray, 1));
-    }//GEN-LAST:event_txtOldMailFocusLost
-
-    private void txtNewMailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewMailFocusGained
-        if (txtNewMail.getText().equals("Enter new mail")) {
-            txtNewMail.setText("");
-            txtNewMail.setForeground(Color.black);
-
-        }
-        txtNewMail.setBorder(new LineBorder(Color.blue, 2));
-    }//GEN-LAST:event_txtNewMailFocusGained
-
-    private void txtNewMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewMailFocusLost
-        if (txtNewMail.getText().equals("")) {
-            txtNewMail.setText("Enter new mail");
-            txtNewMail.setForeground(new Color(153, 153, 153));
-            lblINew.setText("");  // Set lblINew to default value
-        } else {
-            if (txtNewMail.getText().endsWith("@gmail.com")) {
-                lblINew.setText("");
-            } else {
-                lblINew.setText("Invalid mail format!!!");
-            }
-        }
-
-        txtNewMail.setBorder(new LineBorder(Color.gray, 1));
-    }//GEN-LAST:event_txtNewMailFocusLost
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
         if (txtUser.getText().equals("Enter username")) {
@@ -623,6 +529,28 @@ public class AccountUpdate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtUserKeyTyped
 
+    private void txtConfirmFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusGained
+       if (txtConfirm.getText().equals("##############")) {
+            txtConfirm.setText("");
+            txtConfirm.setForeground(Color.black);
+
+        }
+       txtConfirm.setBorder(new LineBorder(Color.blue, 2));
+    }//GEN-LAST:event_txtConfirmFocusGained
+
+    private void txtConfirmFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmFocusLost
+       if (txtConfirm.getText().equals("")) {
+            txtConfirm.setText("##############");
+           txtConfirm.setForeground(new Color(153, 153, 153));
+
+        }
+        txtConfirm.setBorder(new LineBorder(Color.gray, 1));
+    }//GEN-LAST:event_txtConfirmFocusLost
+
+    private void txtConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConfirmKeyPressed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -637,25 +565,20 @@ public class AccountUpdate extends javax.swing.JFrame {
     private javax.swing.JButton btnDeactivate;
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbAccType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblAccType;
     private javax.swing.JLabel lblActivate;
     private javax.swing.JLabel lblHead;
-    private javax.swing.JLabel lblINew;
-    private javax.swing.JLabel lblIOld;
+    private javax.swing.JLabel lblIConfirm;
     private javax.swing.JLabel lblIPwd;
     private javax.swing.JLabel lblIUser;
     private javax.swing.JLabel lblLogoHead;
-    private javax.swing.JLabel lblNewMail;
-    private javax.swing.JLabel lblOldMail;
     private javax.swing.JLabel lblPwd;
+    private javax.swing.JLabel lblPwd1;
     private javax.swing.JLabel lblShow;
     private javax.swing.JLabel lblUser;
-    private javax.swing.JTextField txtNewMail;
-    private javax.swing.JTextField txtOldMail;
+    private javax.swing.JPasswordField txtConfirm;
     private javax.swing.JPasswordField txtPwd;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

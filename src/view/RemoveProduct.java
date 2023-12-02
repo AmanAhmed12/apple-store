@@ -2,6 +2,9 @@ package view;
 
 import controller.ManagerController;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -55,6 +58,11 @@ public class RemoveProduct extends javax.swing.JFrame {
                 btnPrevMouseExited(evt);
             }
         });
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,7 +107,7 @@ public class RemoveProduct extends javax.swing.JFrame {
         lblQty.setText("Quantity");
 
         cmbCat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        cmbCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Iphone", "Apple Watch", "Ipad", "Airpod", "MAC", " " }));
+        cmbCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Iphone", "Apple_Watch", "Ipad", "Airpod", "MAC", " " }));
 
         txtProductName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtProductName.setForeground(new java.awt.Color(153, 153, 153));
@@ -247,7 +255,11 @@ public class RemoveProduct extends javax.swing.JFrame {
             String cat = (String) cmbCat.getSelectedItem();
             String productName = txtProductName.getText();
             String qty = txtQty.getText();
-            m1.removeProduct(cat, productName, qty);
+            try {
+                m1.removeProduct(cat, productName, qty);
+            } catch (SQLException ex) {
+                Logger.getLogger(RemoveProduct.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.dispose();
             RemoveProduct r1 = new RemoveProduct();
             r1.setVisible(true);
@@ -261,6 +273,12 @@ public class RemoveProduct extends javax.swing.JFrame {
     private void btnPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseExited
         btnPrev.setBorder(new LineBorder(Color.white, 3));
     }//GEN-LAST:event_btnPrevMouseExited
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+      UpdateProduct u1=new   UpdateProduct();
+        this.dispose();
+        u1.setVisible(true);
+    }//GEN-LAST:event_btnPrevActionPerformed
 
     public static void main(String args[]) {
 

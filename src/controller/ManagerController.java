@@ -50,7 +50,7 @@ public class ManagerController extends ProductController {
 
     }
 
-    public void removeProduct(String cat, String productName, String qty) {
+    public void removeProduct(String cat, String productName, String qty) throws SQLException {
         Database d1 = new Database();
         d1.removeProduct(cat, productName, qty);
     }
@@ -68,7 +68,11 @@ public class ManagerController extends ProductController {
 
     public void SearchStockDetails() {
         SearchStockDetails stock = new SearchStockDetails(true);
-        stock.setTable();
+        try {
+            stock.setTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         stock.setVisible(true);
     }
 
@@ -77,9 +81,9 @@ public class ManagerController extends ProductController {
         product.setVisible(true);
     }
 
-    public void changeAccountDetails(String oldMail, String newMail, String username, String password, String accountType) {
+    public void changeAccountDetails(String username, String password) throws SQLException {
         Database d1 = new Database();
-        d1.updateAccountDetails(oldMail, newMail, username, password, accountType);
+        d1.updateAccountDetails(username, password);
 
     }
 

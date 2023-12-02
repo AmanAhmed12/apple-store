@@ -32,6 +32,8 @@ public class UpdateProduct extends javax.swing.JFrame {
         lblProductId = new javax.swing.JLabel();
         lblIId = new javax.swing.JLabel();
         lblIUp = new javax.swing.JLabel();
+        lblUpdateVal1 = new javax.swing.JLabel();
+        btnClear1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +90,7 @@ public class UpdateProduct extends javax.swing.JFrame {
                 .addComponent(lblLogoImg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblLogoText)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -158,7 +160,7 @@ public class UpdateProduct extends javax.swing.JFrame {
         });
 
         cmbOption.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        cmbOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Category", "Product Name", "Price", " ", " " }));
+        cmbOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "category", "product name", "price", " ", " " }));
 
         lblProductId.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         lblProductId.setText("Product ID");
@@ -168,6 +170,19 @@ public class UpdateProduct extends javax.swing.JFrame {
 
         lblIUp.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         lblIUp.setForeground(new java.awt.Color(255, 0, 0));
+
+        lblUpdateVal1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        lblUpdateVal1.setText("Remove Product >>");
+
+        btnClear1.setBackground(new java.awt.Color(0, 0, 0));
+        btnClear1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        btnClear1.setForeground(new java.awt.Color(255, 255, 255));
+        btnClear1.setText("Click Here!!!");
+        btnClear1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClear1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -184,7 +199,8 @@ public class UpdateProduct extends javax.swing.JFrame {
                             .addComponent(lblProductId)
                             .addComponent(lblOption)
                             .addComponent(lblUpdateVal)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUpdateVal1))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
@@ -197,8 +213,10 @@ public class UpdateProduct extends javax.swing.JFrame {
                                         .addComponent(lblIUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 55, Short.MAX_VALUE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnClear1))))))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +243,11 @@ public class UpdateProduct extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUpdateVal1)
+                    .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,6 +377,12 @@ public class UpdateProduct extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtProductIdKeyTyped
 
+    private void btnClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear1ActionPerformed
+        RemoveProduct r1=new RemoveProduct();
+        this.dispose();
+        r1.setVisible(true);
+    }//GEN-LAST:event_btnClear1ActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -366,6 +394,7 @@ public class UpdateProduct extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbOption;
@@ -379,6 +408,7 @@ public class UpdateProduct extends javax.swing.JFrame {
     private javax.swing.JLabel lblOption;
     private javax.swing.JLabel lblProductId;
     private javax.swing.JLabel lblUpdateVal;
+    private javax.swing.JLabel lblUpdateVal1;
     private javax.swing.JTextField txtProductId;
     private javax.swing.JTextField txtUpdateVal;
     // End of variables declaration//GEN-END:variables
